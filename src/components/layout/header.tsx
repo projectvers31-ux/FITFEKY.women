@@ -13,7 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CATEGORIES } from "@/lib/categories";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { useIsClient } from "@/hooks/use-is-client";
 import { Logo } from "@/components/shared/logo";
 import { cn } from "@/lib/utils";

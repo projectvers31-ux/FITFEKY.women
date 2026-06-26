@@ -68,7 +68,7 @@ export default function AboutPage() {
       <div className="my-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Stat value={stats.total} label="Products scored" />
         <Stat value={`${stats.avgRating}★`} label="Avg rating" />
-        <Stat value={`${stats.totalReviews.toLocaleString()}+`} label="Reviews analyzed" />
+        <Stat value={`${stats.totalReviews.toLocaleString("en-US")}+`} label="Reviews analyzed" />
         <Stat value="0" label="Paid placements" />
       </div>
 

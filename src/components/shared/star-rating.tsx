@@ -57,7 +57,7 @@ export function StarRating({
       <span className="text-xs font-medium text-foreground/80">{rating.toFixed(1)}</span>
       {showCount && (
         <span className="text-[11px] text-muted-foreground">
-          {reviews != null ? `(${reviews.toLocaleString()})` : ""}
+          {reviews != null ? `(${reviews.toLocaleString("en-US")})` : ""}
         </span>
       )}
     </div>

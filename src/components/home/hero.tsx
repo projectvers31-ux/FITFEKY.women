@@ -100,7 +100,7 @@ export function Hero() {
                     ))}
                   </span>
                   <span className="font-semibold text-foreground">{stats.avgRating}</span>
-                  · {stats.totalReviews.toLocaleString()}+ reviews
+                  · {stats.totalReviews.toLocaleString("en-US")}+ reviews
                 </span>
                 <span className="h-4 w-px bg-foreground/15" />
                 <span className="text-foreground/70">

@@ -261,7 +261,7 @@ function editorialBlurb(p: Product): string {
 
   const ratingLine =
     p.rating != null && p.rating >= 4.6
-      ? ` Shoppers love it — a ${p.rating}-star rating${p.reviews ? ` across ${p.reviews.toLocaleString()} reviews` : ""} backs it up.`
+      ? ` Shoppers love it — a ${p.rating}-star rating${p.reviews ? ` across ${p.reviews.toLocaleString("en-US")} reviews` : ""} backs it up.`
       : p.rating != null
         ? ` It carries a respectable ${p.rating}-star rating from real buyers.`
         : "";

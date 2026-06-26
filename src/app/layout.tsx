@@ -62,6 +62,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Theme initialization — prevents flash of wrong theme before hydration */}
+        <script dangerouslySetInnerHTML={{ __html: `!function(){try{var e=localStorage.getItem("theme")||"light";"system"===e&&(e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(e);document.documentElement.style.colorScheme=e}catch(e){}}()` }} />
         {/* Organization + WebSite structured data (sitewide) */}
         <script
           type="application/ld+json"
