@@ -293,3 +293,21 @@ Stage Summary:
 - Comprehensive animation system: scroll-triggered reveals, staggered entrances, animated counters, 3D tilt on product cards, animated text gradients, parallax blobs, magnetic hover, spring physics.
 - All animations respect prefers-reduced-motion for accessibility.
 - 7 new CSS keyframe animations + 5 framer-motion primitives.
+
+---
+Task ID: 51
+Agent: main (orchestrator)
+Task: Improve the logo — replace the generic Heart icon with a custom FitFeky brand mark.
+
+Work Log:
+- Built src/components/shared/logo.tsx — a custom SVG monogram combining an "F" letterform with a growth leaf accent (symbolizing fitness + flourishing). Uses a warm terracotta-to-gold gradient background (matching the site palette) in a rounded square. The "F" is geometric and confident; the top-right corner has a small leaf sprout suggesting growth. Includes Logo (icon only) and LogoLockup (icon + wordmark) exports.
+- Replaced the generic Heart icon in the header (both desktop and mobile sheet) with the new Logo component at 36px / 32px.
+- Replaced the Heart icon in the footer with the Logo component at 36px.
+- Removed unused Heart imports from header.tsx and footer.tsx.
+- Updated public/logo.svg to the new brand mark (used for OG images, manifest, AI plugin manifest, OpenSearch).
+- Verification: ESLint 0 errors. 0 console warnings/errors. Logo SVG present in header, footer, and mobile. VLM graded A: "custom, professional brand mark... refined, approachable aesthetic... excellent sophistication and brand fit."
+
+Stage Summary:
+- New custom FitFeky logo: a warm terracotta-to-gold rounded square with a geometric "F" monogram + growth leaf accent.
+- Replaces the generic Lucide Heart icon everywhere (header desktop, header mobile sheet, footer).
+- Updated the public/logo.svg asset used for OG images, PWA manifest, and AI plugin discovery.

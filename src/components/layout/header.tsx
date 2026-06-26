@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, Menu, X, Heart, Moon, Sun } from "lucide-react";
+import { Search, Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,6 +15,7 @@ import {
 import { CATEGORIES } from "@/lib/categories";
 import { useTheme } from "next-themes";
 import { useIsClient } from "@/hooks/use-is-client";
+import { Logo } from "@/components/shared/logo";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -72,11 +73,9 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
       )}
     >
       <div className="mx-auto flex h-16 items-center gap-3 px-6 sm:px-8 lg:px-12">
-        {/* Logo — refined, no gradient box */}
-        <Link href="#top" className="flex shrink-0 items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background">
-            <Heart size={15} className="fill-background" />
-          </span>
+        {/* Logo */}
+        <Link href="#top" className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]">
+          <Logo size={36} />
           <span className="flex flex-col leading-none">
             <span className="font-display text-xl font-semibold tracking-tight text-foreground">
               FitFeky
@@ -151,10 +150,8 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
             </SheetTrigger>
             <SheetContent side="right" className="flex w-[88vw] max-w-sm flex-col gap-0 p-0">
               <SheetHeader className="border-b px-5 py-4">
-                <SheetTitle className="flex items-center gap-2 text-left">
-                  <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
-                    <Heart size={16} className="fill-primary-foreground" />
-                  </span>
+                <SheetTitle className="flex items-center gap-2.5 text-left">
+                  <Logo size={32} />
                   FitFeky
                 </SheetTitle>
               </SheetHeader>

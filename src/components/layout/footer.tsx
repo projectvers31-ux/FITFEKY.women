@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Heart, Mail, ShieldCheck } from "lucide-react";
+import { Mail, ShieldCheck } from "lucide-react";
 import { CATEGORIES } from "@/lib/categories";
+import { Logo } from "@/components/shared/logo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -28,10 +29,8 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-4">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-background text-foreground">
-                <Heart size={15} className="fill-foreground" />
-              </span>
-              <span className="font-display text-xl font-semibold">FitFeky</span>
+              <Logo size={36} />
+              <span className="font-display text-xl font-semibold text-background">FitFeky</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-background/60">
               Premium, quality-scored at-home fitness gear curated for women
