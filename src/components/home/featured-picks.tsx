@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/product-card";
+import { Reveal } from "@/components/shared/animations";
 import type { Product } from "@/lib/types";
 
 interface FeaturedPicksProps {
@@ -25,33 +26,35 @@ export function FeaturedPicks({ products, onQuickView, onSeeAll }: FeaturedPicks
 
   return (
     <section id="featured" className="relative overflow-hidden bg-secondary/30 section-editorial">
-      <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 blob bg-primary/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 blob bg-primary/5 blur-3xl animate-drift" />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <p className="kicker mb-4">The Edit</p>
-            <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
-              Our editor's top picks
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              The walking pads, bands and recovery tools that earned a perfect
-              quality score. The gear we'd actually buy for our own mothers.
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="kicker mb-4">The Edit</p>
+              <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+                Our editor's top picks
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                The walking pads, bands and recovery tools that earned a perfect
+                quality score. The gear we'd actually buy for our own mothers.
             </p>
-          </div>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" className="hidden h-10 w-10 rounded-full sm:inline-flex" onClick={() => scrollBy(-1)} aria-label="Scroll left">
-              <ChevronLeft size={18} />
-            </Button>
-            <Button variant="outline" size="icon" className="hidden h-10 w-10 rounded-full sm:inline-flex" onClick={() => scrollBy(1)} aria-label="Scroll right">
-              <ChevronRight size={18} />
-            </Button>
-            <Button variant="ghost" size="sm" className="gap-1.5 rounded-full" onClick={onSeeAll}>
-              View all <ArrowRight size={15} />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="icon" className="hidden h-10 w-10 rounded-full sm:inline-flex" onClick={() => scrollBy(-1)} aria-label="Scroll left">
+                <ChevronLeft size={18} />
+              </Button>
+              <Button variant="outline" size="icon" className="hidden h-10 w-10 rounded-full sm:inline-flex" onClick={() => scrollBy(1)} aria-label="Scroll right">
+                <ChevronRight size={18} />
+              </Button>
+              <Button variant="ghost" size="sm" className="gap-1.5 rounded-full" onClick={onSeeAll}>
+                View all <ArrowRight size={15} />
+              </Button>
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         <div
           ref={scroller}

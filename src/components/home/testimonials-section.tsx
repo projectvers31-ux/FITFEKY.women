@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -41,9 +42,15 @@ export function TestimonialsSection() {
             strokeWidth={1}
             fill="currentColor"
           />
-          <blockquote className="mt-6 font-display text-2xl font-medium leading-[1.4] tracking-tight sm:text-3xl lg:text-[2.1rem] lg:leading-[1.4]">
+          <motion.blockquote
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 font-display text-2xl font-medium leading-[1.4] tracking-tight sm:text-3xl lg:text-[2.1rem] lg:leading-[1.4]"
+          >
             &ldquo;{TESTIMONIALS[active].quote}&rdquo;
-          </blockquote>
+          </motion.blockquote>
           <figcaption className="mt-8 flex flex-col items-center gap-3">
             <div className="flex items-center gap-1">
               {Array.from({ length: 5 }).map((_, i) => (

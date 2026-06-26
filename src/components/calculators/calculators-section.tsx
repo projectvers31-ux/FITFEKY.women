@@ -13,6 +13,7 @@ import { ProductCard } from "@/components/products/product-card";
 import { productsForCalculator, products } from "@/lib/product-utils";
 import { CALCULATORS } from "@/lib/categories";
 import { resolveIcon } from "@/lib/icon-registry";
+import { Reveal } from "@/components/shared/animations";
 import type { Product } from "@/lib/types";
 
 interface CalculatorsSectionProps {
@@ -43,17 +44,19 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
   return (
     <section id="calculators" className="bg-ambient section-editorial">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="mb-12 max-w-2xl">
-          <p className="kicker mb-4">Free wellness tools</p>
-          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
-            Know your numbers, then{" "}
-            <span className="text-gradient-warm">pick your gear.</span>
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Plan your home gym, estimate your body fat, calculate your BMI and
-            calorie burn — then we'll suggest the gear that fits.
-          </p>
-        </div>
+        <Reveal>
+          <div className="mb-12 max-w-2xl">
+            <p className="kicker mb-4">Free wellness tools</p>
+            <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+              Know your numbers, then{" "}
+              <span className="text-gradient-warm text-gradient-animate">pick your gear.</span>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Plan your home gym, estimate your body fat, calculate your BMI and
+              calorie burn — then we'll suggest the gear that fits.
+            </p>
+          </div>
+        </Reveal>
 
         <Tabs value={tab} onValueChange={onTabChange} className="w-full">
           <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-full border border-border/50 bg-card/40 p-1">

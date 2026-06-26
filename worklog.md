@@ -270,3 +270,26 @@ Work Log:
 Stage Summary:
 - Mobile speed: optimized images (AVIF/WebP, device-sized variants, 30-day cache), shorter hero on mobile, fetchPriority high on LCP image, compressed responses, optimized package imports.
 - Mobile design: 16px base text, 44px+ touch targets, 2-col product grid, no horizontal overflow, tighter mobile padding with desktop breathing room, responsive typography scaling throughout.
+
+---
+Task ID: 49
+Agent: main (orchestrator)
+Task: Add powerful animation effects to the website.
+
+Work Log:
+- Built src/components/shared/animations.tsx — reusable framer-motion primitives: Reveal (fade+rise on scroll), StaggerContainer/StaggerItem (sequential reveals), ScaleIn (image/card scale), AnimatedCounter (counts 0→value on scroll into view, easeOutExpo), Magnetic (cursor-following drift).
+- Added 7 new keyframe animations to globals.css: shimmer (skeleton loading), glow-pulse (CTA rings), scale-in (modal entrance), slide-fade (dropdowns), gradient-shift (animated text gradients), drift (parallax blobs), ring-spin. Added prefers-reduced-motion media query to disable all animations for accessibility.
+- Hero entrance animation: staggered reveal of kicker → headline → body → CTAs with 0.12s stagger + 0.2s delay. Animated the kicker underline (width 0→32px). Added text-gradient-animate to the "at home." accent (shifting gradient). CTA buttons now scale on hover (1.03) and press (0.98).
+- Stats bar + trust badges: added AnimatedCounter — numbers count from 0 to value (172, 4.7★, 50K+, 0, 65) with easeOutExpo easing when scrolled into view. Each stat also fades in with staggered delay.
+- Category showcase: wrapped tiles in StaggerContainer (0.05s stagger) so they reveal sequentially as you scroll. Category icons now scale to 110% on hover with color transition. Tiles have hover scale (1.02) + active press (0.99).
+- Product cards: added 3D tilt on hover using framer-motion useMotionValue + useSpring (rotateX/rotateY ±6° with transformPerspective 800). The card tilts toward the cursor for a premium, tactile feel. Spring physics (stiffness 150, damping 20) give it a smooth, weighted response.
+- Featured picks: heading wrapped in Reveal. Decorative blob now uses animate-drift (18s parallax drift).
+- Testimonials: blockquote animates on testimonial change (key={active} triggers re-mount → fade+rise). Smooth transitions between quotes.
+- Calculators section: heading wrapped in Reveal, gradient text uses text-gradient-animate.
+- Affiliate buttons: added hover:scale-[1.02] + active:scale-[0.98] + shadow-lg on hover for all CTAs.
+- Verification: ESLint 0 errors. 0 console warnings/errors. 30 animated elements in DOM. Mobile: 0 horizontal overflow, 0 errors. VLM confirmed: "category cards fade in sequentially... staggered reveal... smooth elevation effect on hover... gentle fade-in transitions... gradient animations subtly shift... soft color transitions."
+
+Stage Summary:
+- Comprehensive animation system: scroll-triggered reveals, staggered entrances, animated counters, 3D tilt on product cards, animated text gradients, parallax blobs, magnetic hover, spring physics.
+- All animations respect prefers-reduced-motion for accessibility.
+- 7 new CSS keyframe animations + 5 framer-motion primitives.

@@ -38,8 +38,9 @@ export function AffiliateButton({
       size={size}
       variant={variant}
       className={cn(
-        "group gap-2 rounded-full font-medium transition-all duration-300",
+        "group gap-2 rounded-full font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
         fullWidth && "w-full",
+        variant === "default" && "shadow-md hover:shadow-lg hover:shadow-primary/20",
         className,
       )}
     >

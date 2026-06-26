@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { CATEGORIES } from "@/lib/categories";
 import { resolveIcon } from "@/lib/icon-registry";
+import { StaggerContainer, StaggerItem } from "@/components/shared/animations";
 import { cn } from "@/lib/utils";
 
 interface CategoryShowcaseProps {
@@ -31,38 +32,39 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+      <StaggerContainer className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5" stagger={0.05}>
         {CATEGORIES.map((c) => {
           const Icon = resolveIcon(c.icon);
           const count = counts[c.id] ?? 0;
           return (
-            <button
-              key={c.id}
-              onClick={() => handle(c.id)}
-              className="card-modern group flex min-h-[120px] flex-col items-start p-4 text-left sm:p-5"
-            >
-              <div className="flex w-full items-center justify-between">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon size={18} strokeWidth={1.75} />
-                </span>
-                <ArrowUpRight
-                  size={16}
-                  className="text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
-                />
-              </div>
-              <h3 className="mt-4 font-display text-base font-semibold leading-tight text-foreground">
-                {c.label}
-              </h3>
-              <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                {c.blurb}
-              </p>
-              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-muted-foreground/70">
-                {count} {count === 1 ? "piece" : "pieces"}
-              </p>
-            </button>
+            <StaggerItem key={c.id}>
+              <button
+                onClick={() => handle(c.id)}
+                className="card-modern group flex min-h-[120px] w-full flex-col items-start p-4 text-left transition-transform hover:scale-[1.02] active:scale-[0.99] sm:p-5"
+              >
+                <div className="flex w-full items-center justify-between">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon size={18} strokeWidth={1.75} />
+                  </span>
+                  <ArrowUpRight
+                    size={16}
+                    className="text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                  />
+                </div>
+                <h3 className="mt-4 font-display text-base font-semibold leading-tight text-foreground">
+                  {c.label}
+                </h3>
+                <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                  {c.blurb}
+                </p>
+                <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-muted-foreground/70">
+                  {count} {count === 1 ? "piece" : "pieces"}
+                </p>
+              </button>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
     </section>
   );
 }
