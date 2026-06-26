@@ -39,7 +39,7 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
             <button
               key={c.id}
               onClick={() => handle(c.id)}
-              className="card-modern group flex flex-col items-start p-5 text-left"
+              className="card-modern group flex min-h-[120px] flex-col items-start p-4 text-left sm:p-5"
             >
               <div className="flex w-full items-center justify-between">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

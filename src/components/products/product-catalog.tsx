@@ -219,7 +219,7 @@ export function ProductCatalog({
 
       {/* Grid — generous padding, max 3 cols for editorial breathing room */}
       {shown.length > 0 ? (
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {shown.map((p) => (
             <ProductCard key={p.id} product={p} onQuickView={onQuickView} />
           ))}
@@ -267,7 +267,7 @@ function CategoryPill({
     <button
       onClick={onClick}
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all",
+        "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-xs font-medium transition-all",
         active
           ? "border-primary bg-primary text-primary-foreground"
           : "border-border/60 bg-transparent text-muted-foreground hover:border-foreground/30 hover:text-foreground",

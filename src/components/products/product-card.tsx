@@ -68,13 +68,13 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
         </div>
       </button>
 
-      {/* Body — editorial type treatment */}
-      <div className="flex flex-1 flex-col p-5">
-        <p className="kicker mb-2 text-[0.625rem]">
+      {/* Body — editorial type treatment, tighter padding on mobile */}
+      <div className="flex flex-1 flex-col p-3 sm:p-5">
+        <p className="kicker mb-1.5 text-[0.625rem] sm:mb-2">
           {categoryLabel(product.category)}
         </p>
         <h3
-          className="line-clamp-2 cursor-pointer font-display text-[0.975rem] font-semibold leading-snug text-foreground transition-colors hover:text-primary"
+          className="line-clamp-2 cursor-pointer font-display text-[0.8rem] font-semibold leading-snug text-foreground transition-colors hover:text-primary sm:text-[0.975rem]"
           onClick={() => onQuickView(product)}
         >
           {product.title}
@@ -102,18 +102,18 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
           )}
         </div>
 
-        {/* Refined CTA row */}
+        {/* Refined CTA row — larger touch targets on mobile */}
         <div className="mt-4 flex items-center gap-2">
           <AffiliateButton
             href={product.affiliateUrl}
             priceDisplay={product.priceDisplay}
             size="sm"
             fullWidth
-            className="font-medium"
+            className="h-11 font-medium sm:h-9"
           />
           <button
             onClick={() => onQuickView(product)}
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary sm:h-9 sm:w-9"
             aria-label="View details"
           >
             <ArrowUpRight size={15} />

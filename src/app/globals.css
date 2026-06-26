@@ -132,11 +132,29 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Prevent horizontal scroll from any overflow */
+    overflow-x: hidden;
+    /* Better mobile text rendering */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "ss01", "cv01", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Larger base text for mobile readability (women 40+) */
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  /* Ensure tap targets are at least 44px on touch devices */
+  @media (pointer: coarse) {
+    button, a, [role="button"], input[type="checkbox"], input[type="radio"] {
+      min-height: 44px;
+    }
   }
   /* Confident editorial display headlines */
   h1, h2, h3, h4 {
@@ -161,10 +179,10 @@
     radial-gradient(45rem 28rem at 95% 8%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 65%);
 }
 
-/* Editorial section breathing room */
+/* Editorial section breathing room — tighter on mobile, generous on desktop */
 .section-editorial {
-  padding-top: clamp(4rem, 8vw, 7rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(2.5rem, 6vw, 7rem);
+  padding-bottom: clamp(2.5rem, 6vw, 7rem);
 }
 
 /* Modern card — borderless, soft shadow, tactile */

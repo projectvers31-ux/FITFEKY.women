@@ -249,3 +249,24 @@ Work Log:
 Stage Summary:
 - Google Analytics 4 (G-94FHK4LBMY) live via @next/third-parties — Google's official optimized integration with async loading + automatic page_view tracking on every route.
 - Privacy policy updated to disclose GA usage with opt-out instructions.
+
+---
+Task ID: 48
+Agent: main (orchestrator)
+Task: Improve mobile speed and make the design suitable for phones.
+
+Work Log:
+- next.config.ts image optimization: added deviceSizes (360, 414, 640, 750, 828, 1080, 1200, 1920), imageSizes, 30-day minimumCacheTTL, compress: true, experimental.optimizePackageImports for lucide-react. Serves correctly-sized AVIF/WebP variants per viewport.
+- globals.css mobile base: html/body overflow-x: hidden (prevents horizontal scroll), -webkit-text-size-adjust: 100%, 16px base font-size with 1.6 line-height (readability for 40+), @media (pointer: coarse) min-height: 44px on buttons/links/inputs (touch target minimum).
+- Hero mobile optimization: height reduced to 70vh on mobile (was 88vh — less to load), min-height 520px. Headline scaled to text-[2.25rem] on mobile (was 2.75rem). Body text 15px. CTA buttons h-12 (48px) on mobile. Added fetchPriority="high" to hero image.
+- Product card mobile: tighter padding (p-3 on mobile, p-5 on desktop), smaller title text on mobile (0.8rem → 0.975rem desktop), CTA buttons h-11 (44px) on mobile for proper touch targets.
+- Catalog grid: 2 columns on mobile (was 1 column — too sparse), gap-3 on mobile.
+- Category pills: h-9 fixed height for consistent touch targets.
+- Category showcase tiles: min-h-[120px] + p-4 on mobile for better touch area.
+- Trust badges bar: 2-col grid with border separators on mobile, smaller text scaling (xl→3xl, xs→sm, 11px→xs).
+- section-editorial padding: clamp(2.5rem, 6vw, 7rem) — tighter on mobile (was 4rem), still generous on desktop.
+- Verification: ESLint 0 errors. 0 console warnings/errors. 0 horizontal overflow on all pages (/, /blog). VLM graded mobile A: "mobile-polished: text readable, touch targets adequate, spacing good... no remaining mobile issues". Hero A, catalog A.
+
+Stage Summary:
+- Mobile speed: optimized images (AVIF/WebP, device-sized variants, 30-day cache), shorter hero on mobile, fetchPriority high on LCP image, compressed responses, optimized package imports.
+- Mobile design: 16px base text, 44px+ touch targets, 2-col product grid, no horizontal overflow, tighter mobile padding with desktop breathing room, responsive typography scaling throughout.
