@@ -67,7 +67,7 @@ export default function PrivacyPage() {
       </PageP>
       <PageList>
         <><strong>Essential cookies</strong> — required for the site to function (e.g., remembering your theme preference). These cannot be disabled.</>
-        <><strong>Analytics cookies</strong> — help us understand which pages are popular so we can improve content. Aggregate and anonymized only.</>
+        <><strong>Analytics cookies</strong> — we use Google Analytics 4 to understand which pages are popular and how visitors find us. GA sets first-party cookies (<code>_ga</code>, <code>_ga_*</code>) with a 2-year retention for returning-visitor recognition. Data is aggregate and anonymized — we never see individual identities. You can opt out via the Google Analytics opt-out browser add-on or by blocking <code>googletagmanager.com</code>.</>
         <><strong>Affiliate cookies</strong> — set by Amazon when you click a product link, so Amazon can attribute your purchase to us. Governed by Amazon&rsquo;s Privacy Notice.</>
       </PageList>
       <PageP>

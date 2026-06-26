@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import { homeMetadata, organizationJsonLd, websiteJsonLd, jsonLdScript } from "@/lib/seo";
+
+/** Google Analytics 4 measurement ID. */
+export const GA_MEASUREMENT_ID = "G-94FHK4LBMY";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -116,6 +120,9 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <Toaster />
+
+        {/* Google Analytics 4 — async, privacy-friendly, Googlebot-aware */}
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

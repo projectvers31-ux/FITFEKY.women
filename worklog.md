@@ -233,3 +233,19 @@ Stage Summary:
 - React key prop warning fixed (PageList refactored from items array to children pattern, 11 call sites updated).
 - Empty src errors fixed (EditorialSection now imports shared ARTICLES with image fields).
 - All 7 routes: 0 console warnings, 0 console errors, 0 lint errors.
+
+---
+Task ID: 47
+Agent: main (orchestrator)
+Task: Add Google Analytics 4 measurement tag G-94FHK4LBMY to the site.
+
+Work Log:
+- Installed @next/third-parties@16.2.9 (Google's official Next.js integration for GA4, AdSense, etc.).
+- Added GoogleAnalytics component to src/app/layout.tsx with gaId="G-94FHK4LBMY". Placed inside <body> so it loads after hydration with async, privacy-friendly, Googlebot-aware behavior.
+- Exported GA_MEASUREMENT_ID constant for potential reuse (e.g., custom event tracking).
+- Updated /privacy page cookies section to disclose Google Analytics 4 usage: explains _ga/_ga_* first-party cookies, 2-year retention, aggregate/anonymized data, and opt-out options (Google Analytics opt-out add-on or blocking googletagmanager.com).
+- Verification: ESLint 0 errors. Browser confirms gtag.js loads from googletagmanager.com/gtag/js?id=G-94FHK4LBMY, window.gtag is available, 4 events pushed to dataLayer, GA4 config confirmed for G-94FHK4LBMY, 0 console warnings/errors.
+
+Stage Summary:
+- Google Analytics 4 (G-94FHK4LBMY) live via @next/third-parties — Google's official optimized integration with async loading + automatic page_view tracking on every route.
+- Privacy policy updated to disclose GA usage with opt-out instructions.
