@@ -3,13 +3,18 @@
 import { useState, useCallback } from "react";
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
+import { TrustBadgesBar } from "@/components/home/trust-badges-bar";
 import { StatsBar, TrustMarquee } from "@/components/home/stats-bar";
 import { CategoryShowcase } from "@/components/home/category-showcase";
 import { FeaturedPicks } from "@/components/home/featured-picks";
+import { HowWeTestSection } from "@/components/home/how-we-test-section";
 import { CalculatorsSection } from "@/components/calculators/calculators-section";
 import { ProductCatalog } from "@/components/products/product-catalog";
 import { ProductDetailDialog } from "@/components/products/product-detail-dialog";
+import { TestimonialsSection } from "@/components/home/testimonials-section";
+import { SeoContentSection } from "@/components/home/seo-content-section";
 import { EditorialSection } from "@/components/home/editorial-section";
+import { FaqSection } from "@/components/home/faq-section";
 import { Newsletter } from "@/components/home/newsletter";
 import type { Product } from "@/lib/types";
 
@@ -19,20 +24,19 @@ interface HomeClientProps {
 }
 
 /**
- * Single client orchestrator for the homepage. Owns the shared UI state
- * (search, category filter, active product) and the one detail dialog, so
- * the Header, CategoryShowcase, FeaturedPicks, Calculators and Catalog can
- * all drive the same quick-view experience.
+ * Single client orchestrator for the homepage. Owns shared UI state and the
+ * product detail dialog so every section can drive the same quick-view.
+ *
+ * Section order is tuned for conversion:
+ *  Hero → Trust → Stats → Categories → Featured → How We Test → Calculators →
+ *  Catalog → Buying guides → Testimonials → Editorial → FAQ → Newsletter
  */
 export function HomeClient({ categoryCounts, featuredPicks }: HomeClientProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
 
-  const onQuickView = useCallback((p: Product) => {
-    setActiveProduct(p);
-  }, []);
-
+  const onQuickView = useCallback((p: Product) => setActiveProduct(p), []);
   const onSearch = useCallback((term: string) => setSearchTerm(term), []);
   const onCategorySelect = useCallback((cat: string) => setSelectedCategory(cat), []);
 
@@ -46,10 +50,12 @@ export function HomeClient({ categoryCounts, featuredPicks }: HomeClientProps) {
       <Header onSearch={onSearch} onCategorySelect={onCategorySelect} initialSearch={searchTerm} />
       <main className="flex-1">
         <Hero />
+        <TrustBadgesBar />
         <StatsBar />
         <TrustMarquee />
         <CategoryShowcase counts={categoryCounts} onSelect={onCategorySelect} />
         <FeaturedPicks products={featuredPicks} onQuickView={onQuickView} onSeeAll={seeAll} />
+        <HowWeTestSection />
         <CalculatorsSection onQuickView={onQuickView} onCategorySelect={onCategorySelect} />
         <ProductCatalog
           searchTerm={searchTerm}
@@ -58,7 +64,10 @@ export function HomeClient({ categoryCounts, featuredPicks }: HomeClientProps) {
           onSearchChange={onSearch}
           onCategoryChange={onCategorySelect}
         />
+        <SeoContentSection onCategorySelect={onCategorySelect} />
+        <TestimonialsSection />
         <EditorialSection />
+        <FaqSection />
         <Newsletter />
       </main>
       <ProductDetailDialog

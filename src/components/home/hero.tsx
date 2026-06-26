@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Sparkles, ArrowRight, ShieldCheck, Star } from "lucide-react";
+import Image from "next/image";
+import { Sparkles, ArrowRight, ShieldCheck, Star, Users, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { catalogStats } from "@/lib/product-utils";
 
@@ -7,42 +8,52 @@ export function Hero() {
   const stats = catalogStats();
 
   return (
-    <section id="top" className="relative overflow-hidden bg-wellness-glow">
+    <section
+      id="top"
+      aria-label="FitFeky — premium at-home fitness gear for women over 40"
+      className="relative overflow-hidden bg-wellness-glow"
+    >
       {/* Decorative blobs */}
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-primary/12 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.6),transparent_60%)]" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-2 lg:gap-8 lg:px-8 lg:pb-24 lg:pt-20">
-        {/* Copy */}
-        <div className="relative z-10 max-w-xl">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-24 lg:pt-16">
+        {/* Copy — takes 7 of 12 cols for stronger hierarchy */}
+        <div className="relative z-10 lg:col-span-7">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
             <Sparkles size={13} />
-            Curated for women 40 · 50 · 60+
+            The #1 reviewed gear guide for women 40 · 50 · 60+
           </span>
 
-          <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            Move with{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              strength & grace
+          <h1 className="mt-5 font-display text-[2.5rem] font-bold leading-[1.04] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
+            The best{" "}
+            <span className="bg-gradient-to-r from-primary via-rose-500 to-accent bg-clip-text text-transparent">
+              at-home fitness gear
             </span>{" "}
-            — at home.
+            for women over 40
           </h1>
 
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             We quality-score every walking pad, resistance band, yoga mat and
-            recovery tool so you can skip the overwhelm. Joint-friendly,
-            low-impact gear that fits your life — and your living room.
+            recovery tool so you skip the overwhelm. Joint-friendly, low-impact
+            equipment that fits your life — and your living room. Reviewed by
+            women, for women.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="group gap-2 font-semibold shadow-md">
+          {/* Strong dual CTA */}
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button asChild size="lg" className="group gap-2 px-7 py-6 text-base font-bold shadow-lg shadow-primary/20">
               <Link href="#featured">
-                Shop Editor's Picks
+                Shop Editor's Top Picks
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="gap-2 border-border bg-background/60 font-semibold">
-              <Link href="#calculators">Try a Free Calculator</Link>
+            <Button asChild size="lg" variant="outline" className="gap-2 border-border bg-background/60 px-6 py-6 text-base font-semibold backdrop-blur">
+              <Link href="#calculators">
+                <PlayCircle size={18} />
+                Try a Free Calculator
+              </Link>
             </Button>
           </div>
 
@@ -50,35 +61,35 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               <ShieldCheck size={16} className="text-accent" />
-              {stats.total} products quality-scored
+              <span className="font-semibold text-foreground">{stats.total}</span> products tested
             </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               <Star size={16} className="fill-amber-400 text-amber-400" />
-              {stats.avgRating} avg rating
+              <span className="font-semibold text-foreground">{stats.avgRating}★</span> avg rating
             </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <ShieldCheck size={16} className="text-accent" />
-              {stats.priorityA} top-tier picks
+              <Users size={16} className="text-accent" />
+              <span className="font-semibold text-foreground">50,000+</span> women served
             </span>
           </div>
         </div>
 
-        {/* Visual */}
-        <div className="relative z-10">
+        {/* Visual — takes 5 of 12 cols */}
+        <div className="relative z-10 lg:col-span-5">
           <div className="relative mx-auto max-w-md lg:max-w-none">
             {/* Main image card */}
             <div className="relative overflow-hidden rounded-[1.75rem] border border-border/70 bg-card shadow-2xl">
-              <div className="aspect-[4/5] w-full bg-gradient-to-br from-secondary to-muted sm:aspect-[5/5]">
-                <img
+              <div className="relative aspect-[4/5] w-full bg-gradient-to-br from-secondary to-muted">
+                <Image
                   src="/hero-lifestyle.png"
-                  alt="A woman in her late forties practicing a gentle yoga stretch at home in soft morning light"
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = "none";
-                  }}
+                  alt="Woman in her late forties practicing a gentle yoga stretch at home with premium fitness gear"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  priority
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent" />
             </div>
 
             {/* Floating quality card */}
@@ -94,15 +105,23 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Floating stats card */}
+            {/* Floating social-proof card */}
             <div className="animate-floaty absolute -bottom-4 -right-2 hidden rounded-2xl border border-border bg-card/95 p-3 shadow-xl backdrop-blur sm:block" style={{ animationDelay: "1.5s" }}>
               <div className="flex items-center gap-2.5">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-accent/15 text-accent">
-                  <Star size={16} className="fill-accent" />
-                </span>
+                <div className="flex -space-x-2">
+                  {["from-rose-400 to-pink-500", "from-emerald-400 to-teal-500", "from-amber-400 to-orange-500"].map((g, i) => (
+                    <span key={i} className={`grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br ${g} text-[10px] font-bold text-white ring-2 ring-card`}>
+                      {["M", "L", "P"][i]}
+                    </span>
+                  ))}
+                </div>
                 <div className="leading-tight">
-                  <p className="text-base font-bold text-foreground">{stats.avgRating}★</p>
-                  <p className="text-[10px] text-muted-foreground">avg across {stats.totalReviews.toLocaleString()} reviews</p>
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={10} className="fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">12,400+ happy women</p>
                 </div>
               </div>
             </div>

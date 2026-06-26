@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import { homeMetadata, organizationJsonLd, websiteJsonLd, jsonLdScript } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,34 +21,15 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "FitFeky — Premium At-Home Fitness for Women 40+",
-  description:
-    "Thoughtfully curated walking pads, resistance bands, yoga gear, smart scales and recovery tools for women over 40. Every product is quality-scored so you can move with strength, grace and confidence at home.",
-  keywords: [
-    "fitness for women over 40",
-    "at-home workout equipment",
-    "walking pad",
-    "resistance bands for women",
-    "yoga for women 50+",
-    "low-impact cardio",
-    "smart body scale",
-    "massage gun recovery",
+export const metadata: Metadata = homeMetadata;
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fdf8f3" },
+    { media: "(prefers-color-scheme: dark)", color: "#2a2420" },
   ],
-  authors: [{ name: "FitFeky Editorial Team" }],
-  openGraph: {
-    title: "FitFeky — Premium At-Home Fitness for Women 40+",
-    description:
-      "Quality-scored walking pads, resistance bands, yoga gear & recovery tools for women over 40.",
-    siteName: "FitFeky",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "FitFeky — Premium At-Home Fitness for Women 40+",
-    description:
-      "Quality-scored walking pads, resistance bands, yoga gear & recovery tools for women over 40.",
-  },
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -57,6 +39,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Organization + WebSite structured data (sitewide) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteJsonLd()) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased bg-background text-foreground`}
       >
