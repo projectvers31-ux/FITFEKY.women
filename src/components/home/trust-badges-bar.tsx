@@ -5,7 +5,7 @@ import { AnimatedCounter, Reveal } from "@/components/shared/animations";
 const BADGES = [
   { value: 172, suffix: "", label: "Products vetted", sub: "Quality-scored" },
   { value: 4.7, suffix: "★", label: "Average rating", sub: "100,000+ reviews", decimals: 1 },
-  { value: 65, suffix: "", label: "Editor's top picks", sub: "Priority A tier" },
+  { value: 50, suffix: "K+", label: "Women served", sub: "Since 2024" },
   { value: 0, suffix: "", label: "Paid placements", sub: "Independently reviewed" },
 ];
 

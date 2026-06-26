@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { TrustBadgesBar } from "@/components/home/trust-badges-bar";
-import { StatsBar, TrustMarquee } from "@/components/home/stats-bar";
+import { TrustMarquee } from "@/components/home/stats-bar";
 import { CategoryShowcase } from "@/components/home/category-showcase";
 import { FeaturedPicks } from "@/components/home/featured-picks";
 import { HowWeTestSection } from "@/components/home/how-we-test-section";
@@ -51,7 +51,6 @@ export function HomeClient({ categoryCounts, featuredPicks }: HomeClientProps) {
       <main className="flex-1">
         <Hero />
         <TrustBadgesBar />
-        <StatsBar />
         <TrustMarquee />
         <CategoryShowcase counts={categoryCounts} onSelect={onCategorySelect} />
         <FeaturedPicks products={featuredPicks} onQuickView={onQuickView} onSeeAll={seeAll} />
