@@ -37,30 +37,29 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
   };
 
   return (
-    <section id="calculators" className="bg-wellness-glow py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 max-w-2xl">
-          <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            <CalcIcon size={14} /> Free tools
-          </p>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Know your numbers, then pick your gear
+    <section id="calculators" className="bg-ambient section-editorial">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="mb-12 max-w-2xl">
+          <p className="kicker mb-4">Free wellness tools</p>
+          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+            Know your numbers, then{" "}
+            <span className="text-gradient-warm">pick your gear.</span>
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Calculate your BMI, estimate calorie burn for low-impact workouts,
             and plan smart recovery — then we'll suggest the gear that fits.
           </p>
         </div>
 
         <Tabs value={tab} onValueChange={onTabChange} className="w-full">
-          <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-xl bg-secondary/60 p-1">
-            <TabsTrigger value="bmi" className="rounded-lg data-[state=active]:bg-background">
+          <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-full border border-border/50 bg-card/40 p-1">
+            <TabsTrigger value="bmi" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               Healthy Weight (BMI)
             </TabsTrigger>
-            <TabsTrigger value="burn" className="rounded-lg data-[state=active]:bg-background">
+            <TabsTrigger value="burn" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               Calorie Burn
             </TabsTrigger>
-            <TabsTrigger value="recovery" className="rounded-lg data-[state=active]:bg-background">
+            <TabsTrigger value="recovery" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               Recovery Time
             </TabsTrigger>
           </TabsList>

@@ -91,16 +91,15 @@ export function EditorialSection() {
   const [featured, ...rest] = ARTICLES;
 
   return (
-    <section id="editorial" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+    <section id="editorial" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+      <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="max-w-2xl">
-          <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            <BookOpen size={14} /> Wellness Journal
-          </p>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Honest guidance, written for you
+          <p className="kicker mb-4">The Wellness Journal</p>
+          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+            Honest guidance,{" "}
+            <span className="text-gradient-warm">written for you.</span>
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             No fad diets, no “blast your belly” nonsense. Just thoughtful,
             science-backed reading for women building strength at midlife and
             beyond.
@@ -112,31 +111,29 @@ export function EditorialSection() {
         {/* Featured article */}
         <button
           onClick={() => setActive(featured)}
-          className="card-lift group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card text-left"
+          className="card-modern group relative flex flex-col overflow-hidden p-0 text-left"
         >
-          <div className={`relative h-48 bg-gradient-to-br ${featured.accent} sm:h-64`}>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className={`relative h-56 bg-gradient-to-br ${featured.accent} sm:h-72`}>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute left-4 top-4">
-              <Badge className="bg-white/90 text-foreground hover:bg-white/90">
-                <Sparkles size={12} className="mr-1" /> Featured read
-              </Badge>
+              <span className="badge-minimal border-none bg-white/90 text-foreground backdrop-blur">
+                <Sparkles size={11} /> Featured read
+              </span>
             </div>
-            <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-90">
-                {featured.category}
-              </p>
-              <h3 className="mt-1 font-display text-xl font-bold leading-tight sm:text-2xl">
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <p className="kicker text-white/80">{featured.category}</p>
+              <h3 className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl">
                 {featured.title}
               </h3>
             </div>
           </div>
-          <div className="flex flex-1 flex-col p-5">
-            <p className="text-sm leading-relaxed text-muted-foreground">{featured.excerpt}</p>
-            <div className="mt-4 flex items-center justify-between">
+          <div className="flex flex-1 flex-col p-6">
+            <p className="text-base leading-relaxed text-muted-foreground">{featured.excerpt}</p>
+            <div className="mt-5 flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Clock size={13} /> {featured.readMinutes} min read
               </span>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Read article <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </span>
             </div>
@@ -149,18 +146,16 @@ export function EditorialSection() {
             <button
               key={a.id}
               onClick={() => setActive(a)}
-              className="card-lift group flex gap-4 rounded-2xl border border-border/70 bg-card p-4 text-left"
+              className="card-modern group flex gap-5 p-5 text-left"
             >
-              <div className={`hidden h-20 w-28 shrink-0 rounded-xl bg-gradient-to-br ${a.accent} sm:block`} />
+              <div className={`hidden h-24 w-32 shrink-0 rounded-xl bg-gradient-to-br ${a.accent} sm:block`} />
               <div className="flex flex-1 flex-col">
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">
-                  {a.category}
-                </p>
-                <h3 className="mt-1 font-display text-base font-bold leading-snug text-foreground group-hover:text-primary">
+                <p className="kicker text-[0.625rem]">{a.category}</p>
+                <h3 className="mt-1.5 font-display text-lg font-semibold leading-snug text-foreground group-hover:text-primary">
                   {a.title}
                 </h3>
-                <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{a.excerpt}</p>
-                <div className="mt-auto flex items-center gap-3 pt-2 text-xs text-muted-foreground">
+                <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">{a.excerpt}</p>
+                <div className="mt-auto flex items-center gap-3 pt-3 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-1"><Clock size={12} /> {a.readMinutes} min</span>
                   <span className="inline-flex items-center gap-1 text-primary">Read <ArrowRight size={12} /></span>
                 </div>

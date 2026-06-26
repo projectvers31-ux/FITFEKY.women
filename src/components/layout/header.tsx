@@ -65,53 +65,50 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
+        "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-border bg-background/85 backdrop-blur-lg supports-[backdrop-filter]:bg-background/70"
-          : "border-transparent bg-background/40 backdrop-blur-sm",
+          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/75"
+          : "border-b border-transparent bg-background/60 backdrop-blur-md",
       )}
     >
-      <div className="mx-auto flex h-16 items-center gap-3 px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="#top" className="flex shrink-0 items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm">
-            <Heart size={18} className="fill-primary-foreground" />
+      <div className="mx-auto flex h-16 items-center gap-3 px-6 sm:px-8 lg:px-12">
+        {/* Logo — refined, no gradient box */}
+        <Link href="#top" className="flex shrink-0 items-center gap-2.5">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background">
+            <Heart size={15} className="fill-background" />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold tracking-tight">
+            <span className="font-display text-xl font-semibold tracking-tight text-foreground">
               FitFeky
-            </span>
-            <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
-              Strength at 40+
             </span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="ml-4 hidden items-center gap-1 lg:flex">
+        <nav className="ml-6 hidden items-center gap-1 lg:flex">
           <Link
             href="#catalog"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
-            Shop Gear
+            Shop
           </Link>
           <Link
             href="#categories"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Categories
           </Link>
           <button
             onClick={goCalculators}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
-            Calculators
+            Tools
           </button>
           <button
             onClick={goEditorial}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
-            Wellness Journal
+            Journal
           </button>
         </nav>
 

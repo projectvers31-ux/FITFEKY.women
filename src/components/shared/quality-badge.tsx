@@ -8,7 +8,8 @@ interface QualityBadgeProps {
 }
 
 /**
- * Conic-gradient quality score ring. Scores >= 85 are "Editor's Choice".
+ * Refined quality indicator. Minimalist ring + label. Scores >= 85
+ * read as "Editor's Choice" in gold.
  */
 export function QualityBadge({
   score,
@@ -16,13 +17,13 @@ export function QualityBadge({
   showLabel = true,
   className,
 }: QualityBadgeProps) {
-  const dim = size === "sm" ? 40 : size === "lg" ? 72 : 52;
+  const dim = size === "sm" ? 36 : size === "lg" ? 64 : 48;
   const labelSize =
-    size === "sm" ? "text-[9px]" : size === "lg" ? "text-sm" : "text-[11px]";
+    size === "sm" ? "text-[10px]" : size === "lg" ? "text-sm" : "text-xs";
   const editorsChoice = score >= 85;
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center gap-2.5", className)}>
       <div
         className="quality-ring relative grid place-items-center rounded-full"
         style={
@@ -35,7 +36,7 @@ export function QualityBadge({
       >
         <div
           className="grid place-items-center rounded-full bg-card"
-          style={{ width: dim - 6, height: dim - 6 }}
+          style={{ width: dim - 5, height: dim - 5 }}
         >
           <span className={cn("font-semibold leading-none text-foreground", labelSize)}>
             {score}
@@ -44,7 +45,7 @@ export function QualityBadge({
       </div>
       {showLabel && (
         <div className="leading-tight">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
             Quality
           </p>
           <p
@@ -53,7 +54,7 @@ export function QualityBadge({
               editorsChoice ? "text-primary" : "text-foreground/80",
             )}
           >
-            {editorsChoice ? "Editor's Choice" : "Verified Pick"}
+            {editorsChoice ? "Editor's Choice" : "Verified"}
           </p>
         </div>
       )}

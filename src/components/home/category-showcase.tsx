@@ -17,67 +17,48 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
   };
 
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-        <div className="max-w-2xl">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            Find your fit
-          </p>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Shop by what moves you
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            From under-desk walking pads to recovery massage guns — every
-            category is curated around low-impact, joint-kind movement for
-            women in their 40s, 50s and beyond.
-          </p>
-        </div>
+    <section id="categories" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+      <div className="mb-12 max-w-2xl">
+        <p className="kicker mb-4">Browse by category</p>
+        <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+          Shop by what{" "}
+          <span className="text-gradient-warm">moves you.</span>
+        </h2>
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+          Fifteen thoughtfully curated categories — every product chosen for its
+          kindness to joints, quality of build, and fit for women building
+          strength at midlife and beyond.
+        </p>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
-        {CATEGORIES.map((c, idx) => {
+        {CATEGORIES.map((c) => {
           const Icon = resolveIcon(c.icon);
           const count = counts[c.id] ?? 0;
-          const featured = idx < 5; // first row gets larger treatment on desktop
           return (
             <button
               key={c.id}
               onClick={() => handle(c.id)}
-              className={cn(
-                "card-lift group relative overflow-hidden rounded-2xl border border-border/70 bg-card p-4 text-left sm:p-5",
-                featured && "lg:col-span-1",
-              )}
+              className="card-modern group flex flex-col items-start p-5 text-left"
             >
-              {/* gradient accent */}
-              <div
-                className={cn(
-                  "pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br opacity-20 blur-2xl transition-opacity group-hover:opacity-40",
-                  c.accent,
-                )}
-              />
-              <div
-                className={cn(
-                  "relative grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br text-white shadow-sm",
-                  c.accent,
-                )}
-              >
-                <Icon size={20} />
-              </div>
-              <h3 className="relative mt-4 font-display text-base font-bold text-foreground sm:text-lg">
-                {c.label}
-              </h3>
-              <p className="relative mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                {c.blurb}
-              </p>
-              <div className="relative mt-3 flex items-center justify-between">
-                <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-secondary-foreground">
-                  {count} {count === 1 ? "item" : "items"}
+              <div className="flex w-full items-center justify-between">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon size={18} strokeWidth={1.75} />
                 </span>
                 <ArrowUpRight
                   size={16}
-                  className="text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                  className="text-muted-foreground/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
                 />
               </div>
+              <h3 className="mt-4 font-display text-base font-semibold leading-tight text-foreground">
+                {c.label}
+              </h3>
+              <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                {c.blurb}
+              </p>
+              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-muted-foreground/70">
+                {count} {count === 1 ? "piece" : "pieces"}
+              </p>
             </button>
           );
         })}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, CheckCircle2, Gift } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -19,29 +19,28 @@ export function Newsletter() {
     }
     setDone(true);
     toast({
-      title: "You're in! 🌸",
-      description: "Check your inbox for a welcome guide to low-impact fitness after 40.",
+      title: "Welcome to FitFeky",
+      description: "Your free guide to low-impact fitness after 40 is on its way.",
     });
     setEmail("");
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-gradient-to-br from-primary to-accent p-8 text-primary-foreground sm:p-12">
-        <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/15 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-12 -left-8 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+    <section className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+      <div className="relative overflow-hidden rounded-[1.5rem] bg-primary p-8 text-primary-foreground sm:p-12 lg:p-16">
+        {/* Organic blob accents */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 blob bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-16 h-80 w-80 blob-2 bg-accent/20 blur-3xl" />
 
         <div className="relative grid items-center gap-8 lg:grid-cols-2">
           <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">
-              <Gift size={13} /> Free welcome guide
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-              Get our weekly drop of gentle, effective fitness picks.
+            <p className="kicker mb-4 text-primary-foreground/80">The weekly edit</p>
+            <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+              Thoughtful fitness picks, in your inbox weekly.
             </h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-primary-foreground/90">
-              One thoughtful email a week: new editor's-choice gear, quick
-              low-impact workouts, and honest recovery tips. No spam, ever.
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/80 sm:text-base">
+              One email a week: new editor's-choice gear, quick low-impact
+              workouts, and honest recovery tips. No spam, ever.
             </p>
           </div>
 
@@ -50,37 +49,34 @@ export function Newsletter() {
               <div className="flex items-center gap-3 rounded-2xl bg-white/15 p-5 backdrop-blur">
                 <CheckCircle2 size={28} />
                 <div>
-                  <p className="font-semibold">You're subscribed!</p>
-                  <p className="text-sm text-primary-foreground/85">
+                  <p className="font-semibold">You're subscribed</p>
+                  <p className="text-sm text-primary-foreground/80">
                     Your welcome guide is on its way.
                   </p>
                 </div>
               </div>
             ) : (
               <form onSubmit={submit} className="flex flex-col gap-3 sm:flex-row">
-                <div className="relative flex-1">
-                  <Mail size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-primary" />
-                  <Input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@email.com"
-                    className="h-12 rounded-xl border-0 bg-white pl-10 text-foreground"
-                    aria-label="Email address"
-                  />
-                </div>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                  className="h-12 flex-1 rounded-full border-0 bg-white/95 px-5 text-foreground shadow-sm"
+                  aria-label="Email address"
+                />
                 <Button
                   type="submit"
                   size="lg"
-                  variant="secondary"
-                  className="h-12 shrink-0 font-semibold shadow-md"
+                  className="h-12 shrink-0 gap-2 rounded-full bg-foreground px-6 font-medium text-background shadow-md hover:bg-foreground/90"
                 >
-                  Get the guide
+                  Subscribe
+                  <ArrowRight size={16} />
                 </Button>
               </form>
             )}
-            <p className="mt-3 text-center text-[11px] text-primary-foreground/75 sm:text-left">
-              By subscribing you agree to our Privacy Policy. Unsubscribe anytime.
+            <p className="mt-3 text-center text-[11px] text-primary-foreground/70 sm:text-left">
+              Free welcome guide · Unsubscribe anytime · No spam
             </p>
           </div>
         </div>

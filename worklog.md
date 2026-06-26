@@ -88,3 +88,30 @@ Stage Summary:
 - VLM grade improved from "basic/unprofessional" to B (professional + conversion-focused) with strong trust signals, social proof, urgency cues, and keyword-rich SEO content.
 - SEO: 5 structured-data schemas, dynamic sitemap, robots.txt, 15 long-tail keywords in metadata, 8 FAQ schema Q&As, 4 buying-guide H2s targeting high-intent queries.
 - Conversion: Editor's Choice ribbons, Bestseller/Trending badges, "bought this week" FOMO, was-price anchoring, testimonials, trust badges, how-we-test transparency, FAQ objection-handling.
+
+---
+Task ID: 16-21
+Agent: main (orchestrator)
+Task: Complete modern redesign — move from "2018 affiliate blog" to sophisticated 2026 editorial wellness brand (Goop/Kinfolk/Equinox level) suited to women 40-60.
+
+Work Log:
+- VLM critique of prior design identified: pastel pink = dated, cluttered grids, generic badges, transactional tone, lacks editorial sophistication.
+- Complete theme overhaul (globals.css): new sophisticated palette — warm terracotta primary (oklch 0.6 0.135 42), muted sage accent, warm oat background, rich espresso ink, champagne gold token. Added modern utilities: bg-ambient, section-editorial, card-modern (borderless soft shadow), badge-minimal (thin-stroke), kicker (editorial uppercase label), text-gradient-warm, blob/blob-2 organic shapes, animate-fade-up, hairline divider.
+- Hero redesigned: full-bleed editorial magazine cover (88vh) with overlay headline "Strength finds you at home", gradient legibility overlay, kicker label, dual CTA, inline proof (stars + review count + women served). VLM graded hero A.
+- Product card redesigned: card-modern (no heavy borders), generous p-5 padding, minimalist Editor's Choice badge (backdrop blur), refined quality ring, subtle hover scale, elegant Quick view affordance, ArrowUpRight details button. Removed clutter (was-price, FOMO badges) for cleaner editorial feel.
+- Shared components refined: PriorityBadge → thin-stroke badge-minimal; QualityBadge → refined ring + smaller label; AffiliateButton → pill-shaped, warm; StarRating → amber with 25% empty state for elegance.
+- Sections redesigned with editorial breathing room (section-editorial = clamp 4-7rem padding): CategoryShowcase (card-modern tiles), FeaturedPicks (organic blob bg), HowWeTest (larger image, refined criteria), Testimonials (dark foreground bg, large editorial quote, dot selector), Newsletter (organic blob accents), FAQ (bolder display questions, larger answer text), SeoContent (buying guides), EditorialSection (card-modern articles).
+- Header refined: logo as solid foreground circle (no gradient), pill nav links, backdrop-blur-xl on scroll.
+- Footer redesigned: dark espresso foreground bg, background/opacity text colors, kicker labels, refined spacing.
+- Catalog grid density reduced: lg:grid-cols-3 (was 4) with gap-6 for editorial breathing room. CategoryPill refined to thin border, transparent bg.
+- Generated new editorial hero image (1344x768): confident woman early 50s, silver streaked hair, terracotta linen tank, olive leggings, sunlit minimalist living room, Kinfolk aesthetic.
+- Fixed: product detail dialog image positioning already correct.
+- Verification: ESLint 0 errors, 0 console warnings/errors. VLM final grade B+ (up from D), hero graded A, typography/color/spacing A-. Mobile responsive (B). VLM: "modern, sophisticated, editorial... market-ready... successfully positions the brand as a sophisticated, trustworthy resource for women 40+".
+
+Stage Summary:
+- Complete visual transformation from dated pastel affiliate blog to sophisticated editorial wellness brand.
+- New palette: warm terracotta + sage + oat + espresso + gold (replaces dated berry-rose pastel).
+- New typography: confident Fraunces display with -0.035em tracking, generous scale (text-7xl hero), kicker labels.
+- New layout: full-bleed hero, section-editorial breathing room, max 3-col product grid, organic blob shapes, dark testimonials section for contrast.
+- New components: card-modern (borderless soft shadow), badge-minimal (thin-stroke), kicker, text-gradient-warm.
+- VLM confirms: "Goop/Kinfolk/Equinox editorial standard", "market-ready", hero A, typography/color A-.

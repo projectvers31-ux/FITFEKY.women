@@ -113,16 +113,14 @@ export function ProductCatalog({
     !includeNaPrice;
 
   return (
-    <section id="catalog" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <section id="catalog" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+      <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            The catalog
-          </p>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Every pick, quality-scored
+          <p className="kicker mb-4">The catalog</p>
+          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+            Every pick, quality-scored.
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Filter, sort and compare {products.length} curated products. Tap any
             card for a deep dive — or go straight to Amazon for live pricing.
           </p>
@@ -130,7 +128,7 @@ export function ProductCatalog({
       </div>
 
       {/* Filter toolbar */}
-      <div className="rounded-2xl border border-border/70 bg-card/60 p-3 sm:p-4">
+      <div className="rounded-2xl border border-border/50 bg-card/40 p-4 sm:p-5">
         {/* Category pills */}
         <div className="scroll-soft -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
           <CategoryPill
@@ -219,19 +217,19 @@ export function ProductCatalog({
         )}
       </div>
 
-      {/* Grid */}
+      {/* Grid — generous padding, max 3 cols for editorial breathing room */}
       {shown.length > 0 ? (
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {shown.map((p) => (
             <ProductCard key={p.id} product={p} onQuickView={onQuickView} />
           ))}
         </div>
       ) : (
-        <div className="mt-10 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 py-16 text-center">
-          <span className="grid h-14 w-14 place-items-center rounded-full bg-secondary text-muted-foreground">
+        <div className="mt-10 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 bg-card/30 py-20 text-center">
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-secondary/60 text-muted-foreground">
             <PackageOpen size={26} />
           </span>
-          <h3 className="mt-4 font-display text-lg font-bold text-foreground">No products match</h3>
+          <h3 className="mt-4 font-display text-lg font-semibold text-foreground">No products match</h3>
           <p className="mt-1 max-w-sm text-sm text-muted-foreground">
             Try a different category, clear the search, or turn on “Show N/A prices”.
           </p>
@@ -269,19 +267,14 @@ function CategoryPill({
     <button
       onClick={onClick}
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all",
         active
-          ? "border-primary bg-primary text-primary-foreground shadow-sm"
-          : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
+          ? "border-primary bg-primary text-primary-foreground"
+          : "border-border/60 bg-transparent text-muted-foreground hover:border-foreground/30 hover:text-foreground",
       )}
     >
       {label}
-      <span
-        className={cn(
-          "rounded-full px-1.5 py-0.5 text-[10px] font-bold tabular-nums",
-          active ? "bg-primary-foreground/25" : "bg-secondary",
-        )}
-      >
+      <span className={cn("text-[10px] tabular-nums", active ? "opacity-70" : "text-muted-foreground/60")}>
         {count}
       </span>
     </button>

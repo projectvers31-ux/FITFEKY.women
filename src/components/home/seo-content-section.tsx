@@ -31,16 +31,14 @@ export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) 
         return (
           <div
             key={cat.id}
-            className={`border-b border-border/60 ${idx % 2 === 1 ? "bg-secondary/20" : ""}`}
+            className={`border-b border-border/40 ${idx % 2 === 1 ? "bg-secondary/20" : ""}`}
           >
-            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div className="mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:px-12 lg:py-20">
               <div className={`grid items-center gap-8 lg:grid-cols-12 ${reversed ? "lg:[&>*:first-child]:order-2" : ""}`}>
                 {/* Copy */}
                 <div className="lg:col-span-8">
-                  <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                    <BookOpen size={13} /> Buying guide
-                  </p>
-                  <h2 className="font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl">
+                  <p className="kicker mb-4">Buying guide</p>
+                  <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
                     {content.h2}
                   </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">

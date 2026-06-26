@@ -9,11 +9,11 @@ interface StarRatingProps {
   showCount?: boolean;
 }
 
-/** Read-only star rating with optional review count. */
+/** Refined star rating — smaller, amber, with review count in muted tone. */
 export function StarRating({
   rating,
   reviews,
-  size = 14,
+  size = 13,
   className,
   showCount = true,
 }: StarRatingProps) {
@@ -39,14 +39,13 @@ export function StarRating({
             <span key={i} className="relative" style={{ width: size, height: size }}>
               <Star
                 size={size}
-                className="absolute inset-0 text-amber-400"
+                className="absolute inset-0 text-amber-500/25"
                 strokeWidth={1.5}
-                style={{ fill: "transparent" }}
               />
               {(isFull || isHalf) && (
                 <Star
                   size={size}
-                  className="absolute inset-0 text-amber-400"
+                  className="absolute inset-0 text-amber-500"
                   strokeWidth={1.5}
                   style={{ fill: "currentColor", clipPath: isHalf ? "inset(0 50% 0 0)" : undefined }}
                 />
@@ -57,8 +56,8 @@ export function StarRating({
       </div>
       <span className="text-xs font-medium text-foreground/80">{rating.toFixed(1)}</span>
       {showCount && (
-        <span className="text-xs text-muted-foreground">
-          {reviews != null ? `(${reviews.toLocaleString()})` : "(N/A)"}
+        <span className="text-[11px] text-muted-foreground">
+          {reviews != null ? `(${reviews.toLocaleString()})` : ""}
         </span>
       )}
     </div>

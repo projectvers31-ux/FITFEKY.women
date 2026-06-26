@@ -1,18 +1,19 @@
 import { cn } from "@/lib/utils";
 import type { Priority } from "@/lib/types";
 
+/** Minimalist thin-stroke badges — editorial, not chunky. */
 const STYLES: Record<Priority, { label: string; className: string }> = {
   A: {
     label: "Top Pick",
-    className: "bg-primary/10 text-primary border-primary/20",
+    className: "text-primary border-primary/40",
   },
   B: {
     label: "Recommended",
-    className: "bg-accent/15 text-accent-foreground border-accent/25",
+    className: "text-accent-foreground border-accent/40",
   },
   C: {
     label: "Good Option",
-    className: "bg-muted text-muted-foreground border-border",
+    className: "text-muted-foreground border-foreground/20",
   },
 };
 
@@ -25,13 +26,7 @@ export function PriorityBadge({
 }) {
   const s = STYLES[priority];
   return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
-        s.className,
-        className,
-      )}
-    >
+    <span className={cn("badge-minimal", s.className, className)}>
       {s.label}
     </span>
   );
