@@ -115,3 +115,21 @@ Stage Summary:
 - New layout: full-bleed hero, section-editorial breathing room, max 3-col product grid, organic blob shapes, dark testimonials section for contrast.
 - New components: card-modern (borderless soft shadow), badge-minimal (thin-stroke), kicker, text-gradient-warm.
 - VLM confirms: "Goop/Kinfolk/Equinox editorial standard", "market-ready", hero A, typography/color A-.
+
+---
+Task ID: 22-26
+Agent: main (orchestrator)
+Task: Add Home Gym Planner and Body Fat Calculator to the wellness tools section.
+
+Work Log:
+- Built src/lib/planner.ts — the recommendation engine: recommendGearForPlan(budget, roomSize, goals) maps 5 fitness goals to 15 product categories, gates space-heavy gear by room size (closet/bedroom/dedicated), picks the best product per category within budget (Priority A → quality score → price), and returns a structured kit with total cost, within-budget flag, and remaining budget.
+- Built Home Gym Planner component (home-gym-planner.tsx): budget slider ($50–$3,000), 3 room-size cards, 5 goal toggles with icons. Renders a personalized kit: budget summary card (total + progress + within/over budget badge), numbered kit slots (role, product thumbnail, title, reason, price, quality, affiliate CTA + details link). Handles N/A prices gracefully. VLM graded A.
+- Built Body Fat Calculator (body-fat-calculator.tsx): U.S. Navy circumference method (imperial formulas — women: 163.205×log10(waist+hip−neck) − 97.684×log10(height) − 78.387; men: 86.01×log10(waist−neck) − 70.041×log10(height) + 36.76). Inputs: sex, units (imperial/metric), age, height, neck, waist, hip (women). Result: body fat %, ACE category (Essential/Athletic/Fitness/Acceptable/Higher), 5-tier healthy range scale, advice. Verified: female 64in/w32/h40/n13 → 34.2% (Higher); healthier w28/h38/n14 → 25.2% (Acceptable). VLM graded B.
+- Fixed: initial formula used the metric 495/(...)−450 version with inch inputs → produced 476% (capped at 60%). Switched to the correct imperial Navy formulas which are the online-calculator standard.
+- Integrated both as new tabs in CalculatorsSection (now 5 tabs: Home Gym Planner [default], Body Fat Calculator, Healthy Weight BMI, Calorie Burn, Recovery Time). Updated section intro copy.
+- Verification: ESLint 0 errors, 0 console warnings/errors. All 5 tabs present and interactive. Planner generates real kits from the 172-product catalog. Body fat calculator produces accurate Navy-method results with correct category classification. Planner VLM grade A, Body Fat VLM grade B.
+
+Stage Summary:
+- Two new flagship tools added: Home Gym Planner (genuinely useful — recommends real gear from budget/room/goals) and Body Fat Calculator (Navy method, accurate within ~3% of DEXA).
+- Calculators section now has 5 tools, with the planner as the default tab — a strong conversion hook.
+- Both tools drive product engagement: planner shows affiliate CTAs inline; body fat calculator suggests smart scales below.

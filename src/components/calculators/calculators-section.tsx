@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { BmiCalculator } from "./bmi-calculator";
 import { CalorieBurnCalculator } from "./calorie-burn-calculator";
 import { RecoveryCalculator } from "./recovery-calculator";
+import { HomeGymPlanner } from "./home-gym-planner";
+import { BodyFatCalculator } from "./body-fat-calculator";
 import { ProductCard } from "@/components/products/product-card";
 import { productsForCalculator, products } from "@/lib/product-utils";
 import { CALCULATORS } from "@/lib/categories";
@@ -19,8 +21,8 @@ interface CalculatorsSectionProps {
 }
 
 export function CalculatorsSection({ onQuickView, onCategorySelect }: CalculatorsSectionProps) {
-  const [tab, setTab] = useState("bmi");
-  const [activeCalcId, setActiveCalcId] = useState("BMI Calculator");
+  const [tab, setTab] = useState("planner");
+  const [activeCalcId, setActiveCalcId] = useState("Home Workout Calorie Calculator");
 
   const suggestions = productsForCalculator(activeCalcId, 4);
 
@@ -33,6 +35,8 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
     setTab(value);
     if (value === "bmi") setActiveCalcId("BMI Calculator");
     else if (value === "recovery") setActiveCalcId("Muscle Recovery Time Calculator");
+    else if (value === "planner") setActiveCalcId("Home Workout Calorie Calculator");
+    else if (value === "bodyfat") setActiveCalcId("BMI Calculator");
     // "burn" leaves activeCalcId driven by the activity select (default walking)
   };
 
@@ -46,13 +50,19 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
             <span className="text-gradient-warm">pick your gear.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Calculate your BMI, estimate calorie burn for low-impact workouts,
-            and plan smart recovery — then we'll suggest the gear that fits.
+            Plan your home gym, estimate your body fat, calculate your BMI and
+            calorie burn — then we'll suggest the gear that fits.
           </p>
         </div>
 
         <Tabs value={tab} onValueChange={onTabChange} className="w-full">
           <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-full border border-border/50 bg-card/40 p-1">
+            <TabsTrigger value="planner" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              Home Gym Planner
+            </TabsTrigger>
+            <TabsTrigger value="bodyfat" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              Body Fat Calculator
+            </TabsTrigger>
             <TabsTrigger value="bmi" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               Healthy Weight (BMI)
             </TabsTrigger>
@@ -64,22 +74,35 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
             </TabsTrigger>
           </TabsList>
 
+          <TabsContent value="planner" className="mt-5">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+              <HomeGymPlanner onQuickView={onQuickView} />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="bodyfat" className="mt-5">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+              <BodyFatCalculator />
+            </div>
+            <SuggestionIntro />
+          </TabsContent>
+
           <TabsContent value="bmi" className="mt-5">
-            <div className="rounded-2xl border border-border/70 bg-card p-5 sm:p-6">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
               <BmiCalculator />
             </div>
             <SuggestionIntro />
           </TabsContent>
 
           <TabsContent value="burn" className="mt-5">
-            <div className="rounded-2xl border border-border/70 bg-card p-5 sm:p-6">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
               <CalorieBurnCalculator onActivityChange={setActiveCalcId} />
             </div>
             <SuggestionIntro />
           </TabsContent>
 
           <TabsContent value="recovery" className="mt-5">
-            <div className="rounded-2xl border border-border/70 bg-card p-5 sm:p-6">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
               <RecoveryCalculator />
             </div>
             <SuggestionIntro />
