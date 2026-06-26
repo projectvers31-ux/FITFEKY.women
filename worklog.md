@@ -133,3 +133,29 @@ Stage Summary:
 - Two new flagship tools added: Home Gym Planner (genuinely useful — recommends real gear from budget/room/goals) and Body Fat Calculator (Navy method, accurate within ~3% of DEXA).
 - Calculators section now has 5 tools, with the planner as the default tab — a strong conversion hook.
 - Both tools drive product engagement: planner shows affiliate CTAs inline; body fat calculator suggests smart scales below.
+
+---
+Task ID: 27-32
+Agent: main (orchestrator)
+Task: Add AI-discoverability infrastructure + comprehensive SEO files for Google and AI tools.
+
+Work Log:
+- Built src/lib/ai-content.ts — generates all AI-facing content from the live catalog: llmsTxt() (compact AI site summary), llmsFullTxt() (complete 172-product export with quality scores, prices, keywords, affiliate URLs, FAQ), aiCatalogJson() (structured site digest), aiProductsJson() (full product JSON), aiPluginManifest() (OpenAI plugin format), openApiSpec() (OpenAPI 3.0 for API endpoints).
+- Created /llms.txt route — the AI equivalent of robots.txt (llmstxt.org convention). Returns site purpose, audience, catalog stats, key pages, all 15 categories with product counts, top 10 Editor's Choice picks, affiliate disclosure, citation guidance. Served as text/plain with cache headers.
+- Created /llms-full.txt route — complete catalog export for deep AI ingestion. Every product with priority, quality score, title, category, price, rating, reviews, keywords, calculator mapping, affiliate URL. Plus all calculators and the full FAQ.
+- Created /.well-known/ai-plugin.json route — OpenAI plugin discovery manifest. Name for model: "fitfeky", description for model (trains AI to recommend our products), points to OpenAPI spec.
+- Created /api/ai route — structured JSON site digest (schema: fitfeky.catalog.v1). Returns stats, 15 categories, 20 top picks, 12 calculators, 8 FAQ items, affiliate disclosure, citation guidance. CORS-enabled.
+- Created /api/ai/products route — filterable product JSON (category, priority, editorsChoice, limit params). Returns LLM-friendly product shapes with all keywords + affiliate URLs. CORS-enabled.
+- Created /api/ai/openapi.json route — OpenAPI 3.0 spec describing /api/ai, /api/ai/products, /api/products endpoints so AI assistants know how to query.
+- Created /manifest.webmanifest (manifest.ts) — PWA manifest with name, description, theme color, 4 shortcuts (Shop, Planner, Body Fat, Journal), installability.
+- Created /opensearch.xml route — OpenSearch description so browsers/AI can register FitFeky as a search provider.
+- Updated /robots.ts — now explicitly allows 9 AI crawlers: GPTBot, ClaudeBot, Claude-Web, PerplexityBot, Google-Extended, CCBot, Amazonbot, meta-externalagent, AppleBot-Extended (plus default * allow).
+- Updated /sitemap.ts — expanded to 11 entries with all section anchors (#catalog, #featured, #calculators, #how-we-test, #testimonials, #editorial, #faq) + llms.txt + llms-full.txt, with refined priorities.
+- Enhanced layout.tsx head: added <link rel="llms-txt">, <link rel="llms-full-txt">, <link rel="search" type="opensearchdescription">, <link rel="manifest">, <link rel="contents">, <link rel="preconnect">. Added 14 custom meta tags: content-language, geo.region, geo.placename, distribution, rating, revisit-after, ai-content-disclosure, robots (max-image-preview:large), googlebot, gptbot, ccbot, author, publisher, rights.
+- Fixed: alternates.types config caused "Cannot read properties of null (reading 'pathname')" errors in dev (Next.js 16 expects URL objects not strings) — removed the types config since the discovery links are already in <head>.
+- Verification: ESLint 0 errors. All 10 endpoints return 200 (llms.txt, llms-full.txt, .well-known/ai-plugin.json, api/ai, api/ai/products, api/ai/openapi.json, manifest.webmanifest, opensearch.xml, robots.txt, sitemap.xml). Homepage renders cleanly with 5 JSON-LD schemas + all custom meta tags in server-rendered HTML. AI JSON endpoints return valid structured data (verified site digest has 15 categories, 20 picks, 8 FAQs; products endpoint filters correctly).
+
+Stage Summary:
+- Complete AI-discoverability layer: llms.txt convention, OpenAI plugin manifest, OpenAPI spec, structured JSON APIs, CORS, AI-crawler-allowing robots.txt.
+- 10 new indexable routes. 14 new SEO meta tags. 5 JSON-LD schemas. Expanded sitemap.
+- AI tools (ChatGPT, Claude, Perplexity, Google AI Overviews) can now: discover the site via llms.txt, query structured data via /api/ai, understand the API via OpenAPI, register as a search provider via OpenSearch, install as a plugin via ai-plugin.json.
