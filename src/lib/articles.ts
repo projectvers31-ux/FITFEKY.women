@@ -12,6 +12,10 @@ export interface Article {
   excerpt: string;
   readMinutes: number;
   accent: string;
+  /** Editorial image path (generated, in /public). */
+  image: string;
+  /** Alt text for the image (accessibility + SEO). */
+  imageAlt: string;
   /** Long-tail SEO keywords this article targets. */
   keywords: string[];
   body: string[];
@@ -27,6 +31,8 @@ export const ARTICLES: Article[] = [
       "Joint-friendly, apartment-friendly and Netflix-friendly. Here's how 30 minutes a day on a walking pad can transform your energy — without the impact of running.",
     readMinutes: 5,
     accent: "from-orange-400/70 to-rose-500/70",
+    image: "/blog-walking-pad.png",
+    imageAlt: "A walking pad treadmill in a sunlit minimalist home office with warm oak floors",
     keywords: [
       "walking pad for women over 45",
       "under desk treadmill weight loss",
@@ -49,6 +55,8 @@ export const ARTICLES: Article[] = [
       "Weights win for bone density, but bands win for consistency. Here's how to combine both — and why bands are the safest place to (re)start.",
     readMinutes: 6,
     accent: "from-rose-400/70 to-fuchsia-500/70",
+    image: "/blog-resistance-bands.png",
+    imageAlt: "Colorful resistance bands arranged on warm cream linen",
     keywords: [
       "resistance bands vs weights",
       "strength training after 40",
@@ -71,6 +79,8 @@ export const ARTICLES: Article[] = [
       "Sitting shortens your hip flexors and weakens your glutes. This short, restorative flow reopens your hips and decompresses your lower back.",
     readMinutes: 4,
     accent: "from-emerald-400/70 to-teal-500/70",
+    image: "/blog-yoga-hips.png",
+    imageAlt: "A woman practicing a gentle yoga hip opener on a cream mat in a sunlit living room",
     keywords: [
       "yoga for stiff hips",
       "yoga for women over 50",
@@ -93,6 +103,8 @@ export const ARTICLES: Article[] = [
       "Body fat %, muscle mass, water weight — a smart scale reframes 'progress' so you stop quitting on week three. Here's how to read yours.",
     readMinutes: 5,
     accent: "from-amber-400/70 to-orange-500/70",
+    image: "/blog-smart-scale.png",
+    imageAlt: "A modern smart body fat scale on a warm cream bathroom floor",
     keywords: [
       "smart scale body fat accuracy",
       "body composition scale reviews",
@@ -115,6 +127,8 @@ export const ARTICLES: Article[] = [
       "If running hurts, you have options. These five cardio machines and movements protect your knees while still burning serious calories.",
     readMinutes: 6,
     accent: "from-sky-400/70 to-cyan-500/70",
+    image: "/blog-low-impact-cardio.png",
+    imageAlt: "A rowing machine and walking pad in a sunlit home gym with warm oak floors",
     keywords: [
       "low impact cardio bad knees",
       "knee friendly cardio machines",
@@ -137,6 +151,8 @@ export const ARTICLES: Article[] = [
       "Your body takes longer to recover after 50 — that's normal, not a failure. Here's how to use a massage gun, foam roller and smart rest to train consistently for decades.",
     readMinutes: 7,
     accent: "from-violet-400/70 to-purple-500/70",
+    image: "/blog-recovery.png",
+    imageAlt: "A massage gun and foam roller arranged on warm cream linen",
     keywords: [
       "muscle recovery after 50",
       "foam roller benefits",

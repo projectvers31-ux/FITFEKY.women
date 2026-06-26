@@ -184,3 +184,52 @@ Stage Summary:
 - Shared PageShell component for consistent editorial styling across all content pages.
 - Affiliate disclosure page is the centerpiece — clearly explains commission comes from Amazon, not the visitor, with a prominent callout and 5 supporting points.
 - All footer links wired to real pages. Sitemap updated. Articles extracted to shared module.
+
+---
+Task ID: 5-fix-keys
+Agent: general-purpose
+Task: Update PageList call sites from items prop to children pattern
+
+Work Log:
+- Read worklog.md to understand prior context (Task 33-40 introduced PageShell + PageList).
+- Confirmed PageList signature in src/components/layout/page-shell.tsx now accepts `children` (not `items`), wrapping children via `React.Children.toArray` so keyless fragments are safe.
+- Audited the 4 candidate files with Grep for `<PageList` JSX usage: privacy/page.tsx (7), terms/page.tsx (3), affiliate-disclosure/page.tsx (1), about/page.tsx (0 — only imports PageList but never calls it). Total: 11 call sites across 3 files.
+- Rewrote all 11 PageList blocks from the `items={[ <>,…,<> ]}` array-prop form to the children form `<PageList> <>…</> </PageList>`:
+  - privacy/page.tsx: 7 blocks (info you provide, info collected automatically, how we use, what we do NOT do, cookies, your rights CCPA/GDPR, contact).
+  - terms/page.tsx: 3 blocks (user conduct, limitation of liability, contact).
+  - affiliate-disclosure/page.tsx: 1 block (how we earn — 5 points).
+- Preserved all inner content (`<strong>`, `<a>`, `<code>`, entities, em-dashes, special characters) byte-for-byte. Only changes per block: (1) `<PageList\n        items={[\n` → `<PageList>\n`, (2) each item line's leading 10-space indent reduced to 8 spaces and trailing `,` removed, (3) closing `        ]}\n      />` → `      </PageList>`. The `<PageList>` opener and `</PageList>` closer remain at the original 6-space indent; children indented 2 spaces relative to `<PageList>`.
+- Did NOT touch any other code (imports, metadata, PageP, PageHeading, blockquotes, Commitment/Pillar/Stat helpers).
+- Verified: ripgrep multiline search for `PageList\s*\n\s*items=\{\[` across src/ → 0 matches.
+- Ran `cd /home/z/my-project && bun run lint` → `eslint .` exited clean (0 errors, 0 warnings). No "key" prop warnings remain because items are no longer passed as an array.
+
+Stage Summary:
+- All 11 PageList call sites migrated from `items={[…]}` array prop to `children` pattern, matching the new PageList component signature.
+- Files changed: src/app/privacy/page.tsx, src/app/terms/page.tsx, src/app/affiliate-disclosure/page.tsx. about/page.tsx confirmed to have no PageList usage (unchanged).
+- ESLint clean. Indentation and inner content preserved exactly. Next.js React "key" prop warning for keyless fragments inside arrays is fully resolved.
+
+---
+Task ID: 41-46
+Agent: main (orchestrator) + general-purpose subagent
+Task: Add images to blog articles + fix all site errors.
+
+Work Log:
+- Generated 6 editorial blog images via z-ai image CLI (1344x768 each):
+  - blog-walking-pad.png — walking pad in sunlit home office
+  - blog-resistance-bands.png — colorful bands on cream linen
+  - blog-yoga-hips.png — woman doing yoga hip opener
+  - blog-smart-scale.png — smart body fat scale on bathroom floor
+  - blog-low-impact-cardio.png — rowing machine + walking pad in home gym
+  - blog-recovery.png — massage gun + foam roller on linen
+- Added `image` and `imageAlt` fields to the Article interface in src/lib/articles.ts. Updated all 6 articles with image paths and descriptive alt text for accessibility + SEO.
+- Updated EditorialSection (homepage): replaced gradient placeholders with real next/image components for the featured article card, the small article thumbnails, and the article reader dialog. Added hover scale effect.
+- Updated /blog page: replaced gradient placeholders with real next/image components for the featured article and the grid cards. Added `priority` to the featured image (LCP optimization).
+- Fixed React "unique key prop" warning: the PageList component accepted an `items` array prop containing keyless JSX fragments. Changed PageList to accept `children` instead (React handles JSX children without requiring keys). Updated all 11 call sites across privacy, terms, and affiliate-disclosure pages (done by general-purpose subagent).
+- Fixed empty src errors on homepage: EditorialSection had a LOCAL copy of the ARTICLES array (without the `image` field) instead of importing from @/lib/articles. Replaced the local copy with `import { ARTICLES, type Article } from "@/lib/articles"` so it uses the shared data with images.
+- Verification: ESLint 0 errors. Console 0 warnings/errors across ALL 7 routes (/, /blog, /privacy, /terms, /about, /features, /affiliate-disclosure). All 6 blog images load correctly (verified naturalWidth > 0). VLM confirmed: "real editorial photographs are visible on the article cards."
+
+Stage Summary:
+- 6 blog images generated and integrated into both the homepage Wellness Journal section and the /blog index page.
+- React key prop warning fixed (PageList refactored from items array to children pattern, 11 call sites updated).
+- Empty src errors fixed (EditorialSection now imports shared ARTICLES with image fields).
+- All 7 routes: 0 console warnings, 0 console errors, 0 lint errors.

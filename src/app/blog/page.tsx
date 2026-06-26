@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import { ARTICLES } from "@/lib/articles";
@@ -48,8 +49,16 @@ export default function BlogPage() {
           href={`/#editorial`}
           className="card-modern group block overflow-hidden p-0"
         >
-          <div className={`relative h-56 bg-gradient-to-br ${featured.accent} sm:h-72`}>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="relative h-56 overflow-hidden sm:h-72">
+            <Image
+              src={featured.image}
+              alt={featured.imageAlt}
+              fill
+              priority
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 672px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute left-5 top-5">
               <span className="badge-minimal border-none bg-white/90 text-foreground backdrop-blur">
                 <BookOpen size={11} /> Featured
@@ -84,8 +93,15 @@ export default function BlogPage() {
             href={`/#editorial`}
             className="card-modern group flex flex-col p-0 overflow-hidden"
           >
-            <div className={`relative h-40 bg-gradient-to-br ${a.accent}`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="relative h-40 overflow-hidden">
+              <Image
+                src={a.image}
+                alt={a.imageAlt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 336px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <p className="kicker text-white/80">{a.category}</p>
                 <h3 className="mt-1 font-display text-lg font-semibold leading-tight">

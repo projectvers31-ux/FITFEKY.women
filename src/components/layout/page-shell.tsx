@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/layout/header";
@@ -85,8 +86,10 @@ export function PageP({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Reusable bulleted list. */
-export function PageList({ items }: { items: React.ReactNode[] }) {
+/** Reusable bulleted list. Accepts children (not an items array) so React
+ *  doesn't flag keyless fragments passed as array props. */
+export function PageList({ children }: { children: React.ReactNode }) {
+  const items = React.Children.toArray(children);
   return (
     <ul className="mt-4 space-y-2.5">
       {items.map((it, i) => (

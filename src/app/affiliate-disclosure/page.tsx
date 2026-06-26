@@ -63,15 +63,13 @@ export default function AffiliateDisclosurePage() {
         and complete a qualifying purchase on Amazon within 24 hours, Amazon
         pays us a small percentage of the sale. The important points:
       </PageP>
-      <PageList
-        items={[
-          <><strong>The commission comes from Amazon, not you.</strong> Amazon pays us out of its own revenue. Your price is identical to what you&rsquo;d pay without our link.</>,
-          <><strong>You never pay a fee to FitFeky.</strong> We have no paywall, no subscription, no checkout. Our content and tools are 100% free.</>,
-          <><strong>The price you see on Amazon is the price you pay.</strong> We display the price Amazon reports at the time we published the recommendation, but Amazon sets the final price — and it can change at any moment.</>,
-          <><strong>Clicking our link never costs you anything.</strong> There is no surcharge, no hidden fee, no difference in your Amazon checkout total.</>,
-          <><strong>It doesn&rsquo;t matter what you buy.</strong> If you click our link and then buy anything on Amazon within the session (not just the product we recommended), we may earn a commission on those items too — still at zero extra cost to you.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>The commission comes from Amazon, not you.</strong> Amazon pays us out of its own revenue. Your price is identical to what you&rsquo;d pay without our link.</>
+        <><strong>You never pay a fee to FitFeky.</strong> We have no paywall, no subscription, no checkout. Our content and tools are 100% free.</>
+        <><strong>The price you see on Amazon is the price you pay.</strong> We display the price Amazon reports at the time we published the recommendation, but Amazon sets the final price — and it can change at any moment.</>
+        <><strong>Clicking our link never costs you anything.</strong> There is no surcharge, no hidden fee, no difference in your Amazon checkout total.</>
+        <><strong>It doesn&rsquo;t matter what you buy.</strong> If you click our link and then buy anything on Amazon within the session (not just the product we recommended), we may earn a commission on those items too — still at zero extra cost to you.</>
+      </PageList>
 
       <PageHeading id="why-this-matters">Why this matters to us</PageHeading>
       <PageP>

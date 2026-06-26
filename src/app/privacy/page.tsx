@@ -31,55 +31,45 @@ export default function PrivacyPage() {
       <PageHeading id="information-we-collect">Information we collect</PageHeading>
 
       <h3>Information you provide directly</h3>
-      <PageList
-        items={[
-          <><strong>Email address</strong> — only if you subscribe to our newsletter. We use it solely to send you our weekly editorial email and product picks.</>,
-          <><strong>Search queries</strong> — the text you type into our search box is processed in your browser to filter products; it is not sent to or stored on our servers.</>,
-          <><strong>Calculator inputs</strong> — measurements you enter into our BMI, body fat, calorie burn or home gym planner tools are processed entirely in your browser and never transmitted to us.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>Email address</strong> — only if you subscribe to our newsletter. We use it solely to send you our weekly editorial email and product picks.</>
+        <><strong>Search queries</strong> — the text you type into our search box is processed in your browser to filter products; it is not sent to or stored on our servers.</>
+        <><strong>Calculator inputs</strong> — measurements you enter into our BMI, body fat, calorie burn or home gym planner tools are processed entirely in your browser and never transmitted to us.</>
+      </PageList>
 
       <h3>Information collected automatically</h3>
-      <PageList
-        items={[
-          <><strong>Cookies and similar technologies</strong> — we use a minimal set of first-party cookies for theme preference (light/dark mode) and basic analytics. We do not use third-party advertising cookies.</>,
-          <><strong>Log data</strong> — like most websites, our hosting provider records IP addresses, browser type, referring URLs and pages visited. This is used only for security, debugging and aggregate traffic analysis.</>,
-          <><strong>Affiliate tracking</strong> — when you click a product link, Amazon&rsquo;s affiliate tag (<code>tag=fitfeky-20</code>) is passed so Amazon can attribute any purchase to us. Amazon sets its own cookies on amazon.com; see Amazon&rsquo;s Privacy Notice for details.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>Cookies and similar technologies</strong> — we use a minimal set of first-party cookies for theme preference (light/dark mode) and basic analytics. We do not use third-party advertising cookies.</>
+        <><strong>Log data</strong> — like most websites, our hosting provider records IP addresses, browser type, referring URLs and pages visited. This is used only for security, debugging and aggregate traffic analysis.</>
+        <><strong>Affiliate tracking</strong> — when you click a product link, Amazon&rsquo;s affiliate tag (<code>tag=fitfeky-20</code>) is passed so Amazon can attribute any purchase to us. Amazon sets its own cookies on amazon.com; see Amazon&rsquo;s Privacy Notice for details.</>
+      </PageList>
 
       <PageHeading id="how-we-use">How we use your information</PageHeading>
-      <PageList
-        items={[
-          <>To operate, maintain and improve the Site and our free tools.</>,
-          <>To send our weekly newsletter to subscribers who opted in (you can unsubscribe at any time).</>,
-          <>To analyze how visitors use the Site so we can optimize content and product recommendations.</>,
-          <>To detect, prevent and address technical issues, fraud or security violations.</>,
-          <>To comply with our legal obligations under FTC affiliate disclosure rules.</>,
-        ]}
-      />
+      <PageList>
+        <>To operate, maintain and improve the Site and our free tools.</>
+        <>To send our weekly newsletter to subscribers who opted in (you can unsubscribe at any time).</>
+        <>To analyze how visitors use the Site so we can optimize content and product recommendations.</>
+        <>To detect, prevent and address technical issues, fraud or security violations.</>
+        <>To comply with our legal obligations under FTC affiliate disclosure rules.</>
+      </PageList>
 
       <PageHeading id="what-we-do-not-do">What we do <em>not</em> do</PageHeading>
-      <PageList
-        items={[
-          <><strong>We never sell your personal information.</strong> Not to advertisers, not to brands, not to data brokers. Ever.</>,
-          <><strong>We do not run third-party ad networks.</strong> You will not see tracking-based ads on FitFeky.</>,
-          <><strong>We do not profile you for behavioral advertising.</strong> Our product recommendations are editorial, not algorithmically targeted to you.</>,
-          <><strong>We do not share your email</strong> with any third party. The only emails you receive come from us.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>We never sell your personal information.</strong> Not to advertisers, not to brands, not to data brokers. Ever.</>
+        <><strong>We do not run third-party ad networks.</strong> You will not see tracking-based ads on FitFeky.</>
+        <><strong>We do not profile you for behavioral advertising.</strong> Our product recommendations are editorial, not algorithmically targeted to you.</>
+        <><strong>We do not share your email</strong> with any third party. The only emails you receive come from us.</>
+      </PageList>
 
       <PageHeading id="cookies">Cookies</PageHeading>
       <PageP>
         FitFeky uses the following categories of cookies:
       </PageP>
-      <PageList
-        items={[
-          <><strong>Essential cookies</strong> — required for the site to function (e.g., remembering your theme preference). These cannot be disabled.</>,
-          <><strong>Analytics cookies</strong> — help us understand which pages are popular so we can improve content. Aggregate and anonymized only.</>,
-          <><strong>Affiliate cookies</strong> — set by Amazon when you click a product link, so Amazon can attribute your purchase to us. Governed by Amazon&rsquo;s Privacy Notice.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>Essential cookies</strong> — required for the site to function (e.g., remembering your theme preference). These cannot be disabled.</>
+        <><strong>Analytics cookies</strong> — help us understand which pages are popular so we can improve content. Aggregate and anonymized only.</>
+        <><strong>Affiliate cookies</strong> — set by Amazon when you click a product link, so Amazon can attribute your purchase to us. Governed by Amazon&rsquo;s Privacy Notice.</>
+      </PageList>
       <PageP>
         Most browsers allow you to control cookies through their settings. Disabling
         cookies may limit some site features (such as theme persistence).
@@ -108,15 +98,13 @@ export default function PrivacyPage() {
         If you are a California resident or a resident of the EU/EEA/UK, you
         have specific rights regarding your personal information:
       </PageP>
-      <PageList
-        items={[
-          <><strong>The right to know</strong> what personal information we have collected about you.</>,
-          <><strong>The right to delete</strong> your personal information (with certain exceptions).</>,
-          <><strong>The right to opt out</strong> of the &ldquo;sale&rdquo; or &ldquo;sharing&rdquo; of your personal information. FitFeky does not sell your data, so there is nothing to opt out of — but you can still submit a request.</>,
-          <><strong>The right to correct</strong> inaccurate personal information we hold about you.</>,
-          <><strong>The right to access</strong> your data in a portable, machine-readable format.</>,
-        ]}
-      />
+      <PageList>
+        <><strong>The right to know</strong> what personal information we have collected about you.</>
+        <><strong>The right to delete</strong> your personal information (with certain exceptions).</>
+        <><strong>The right to opt out</strong> of the &ldquo;sale&rdquo; or &ldquo;sharing&rdquo; of your personal information. FitFeky does not sell your data, so there is nothing to opt out of — but you can still submit a request.</>
+        <><strong>The right to correct</strong> inaccurate personal information we hold about you.</>
+        <><strong>The right to access</strong> your data in a portable, machine-readable format.</>
+      </PageList>
       <PageP>
         To exercise any of these rights, email us at{" "}
         <a href="mailto:privacy@fitfeky.com">privacy@fitfeky.com</a> with the
@@ -156,13 +144,11 @@ export default function PrivacyPage() {
         If you have questions or concerns about this Privacy Policy or our
         data practices, please contact us:
       </PageP>
-      <PageList
-        items={[
-          <>By email: <a href="mailto:privacy@fitfeky.com">privacy@fitfeky.com</a></>,
-          <>For general inquiries: <a href="mailto:hello@fitfeky.com">hello@fitfeky.com</a></>,
-          <>We aim to respond to all privacy requests within 48 hours.</>,
-        ]}
-      />
+      <PageList>
+        <>By email: <a href="mailto:privacy@fitfeky.com">privacy@fitfeky.com</a></>
+        <>For general inquiries: <a href="mailto:hello@fitfeky.com">hello@fitfeky.com</a></>
+        <>We aim to respond to all privacy requests within 48 hours.</>
+      </PageList>
     </PageShell>
   );
 }

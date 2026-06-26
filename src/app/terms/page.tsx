@@ -91,16 +91,14 @@ export default function TermsPage() {
 
       <PageHeading id="user-conduct">7. User conduct</PageHeading>
       <PageP>By using the Site, you agree not to:</PageP>
-      <PageList
-        items={[
-          <>Use the Site in any way that violates applicable federal, state or international law.</>,
-          <>Attempt to gain unauthorized access to our systems, data or content.</>,
-          <>Scrape, copy or redistribute our original editorial content at scale for commercial purposes without permission.</>,
-          <>Use automated tools (bots, crawlers) to access the Site in a way that sends more requests than a human reasonably could, except for search engine and AI crawlers following our robots.txt.</>,
-          <>Submit false or misleading information through our newsletter form or any contact channel.</>,
-          <>Interfere with the proper functioning of the Site, its affiliate links or its calculators.</>,
-        ]}
-      />
+      <PageList>
+        <>Use the Site in any way that violates applicable federal, state or international law.</>
+        <>Attempt to gain unauthorized access to our systems, data or content.</>
+        <>Scrape, copy or redistribute our original editorial content at scale for commercial purposes without permission.</>
+        <>Use automated tools (bots, crawlers) to access the Site in a way that sends more requests than a human reasonably could, except for search engine and AI crawlers following our robots.txt.</>
+        <>Submit false or misleading information through our newsletter form or any contact channel.</>
+        <>Interfere with the proper functioning of the Site, its affiliate links or its calculators.</>
+      </PageList>
 
       <PageHeading id="limitation-of-liability">8. Limitation of liability</PageHeading>
       <PageP>
@@ -111,14 +109,12 @@ export default function TermsPage() {
         damages arising out of or in connection with your use of (or inability
         to use) the Site, including but not limited to:
       </PageP>
-      <PageList
-        items={[
-          <>Purchasing decisions based on our reviews or recommendations.</>,
-          <>Injuries or health issues arising from following our fitness guides or using recommended products.</>,
-          <> inaccuracies in prices, ratings or product specifications displayed on the Site.</>,
-          <>Disruptions, outages or security breaches affecting the Site.</>,
-        ]}
-      />
+      <PageList>
+        <>Purchasing decisions based on our reviews or recommendations.</>
+        <>Injuries or health issues arising from following our fitness guides or using recommended products.</>
+        <> inaccuracies in prices, ratings or product specifications displayed on the Site.</>
+        <>Disruptions, outages or security breaches affecting the Site.</>
+      </PageList>
 
       <PageHeading id="disclaimer-of-warranties">9. Disclaimer of warranties</PageHeading>
       <PageP>
@@ -167,13 +163,11 @@ export default function TermsPage() {
       <PageP>
         If you have questions about these Terms, please contact us:
       </PageP>
-      <PageList
-        items={[
-          <>By email: <a href="mailto:hello@fitfeky.com">hello@fitfeky.com</a></>,
-          <>For privacy requests: <a href="mailto:privacy@fitfeky.com">privacy@fitfeky.com</a></>,
-          <>For affiliate or partnership inquiries: <a href="mailto:partners@fitfeky.com">partners@fitfeky.com</a></>,
-        ]}
-      />
+      <PageList>
+        <>By email: <a href="mailto:hello@fitfeky.com">hello@fitfeky.com</a></>
+        <>For privacy requests: <a href="mailto:privacy@fitfeky.com">privacy@fitfeky.com</a></>
+        <>For affiliate or partnership inquiries: <a href="mailto:partners@fitfeky.com">partners@fitfeky.com</a></>
+      </PageList>
 
       <div className="mt-12 rounded-2xl bg-secondary/40 p-6">
         <p className="text-sm text-muted-foreground">
