@@ -159,3 +159,28 @@ Stage Summary:
 - Complete AI-discoverability layer: llms.txt convention, OpenAI plugin manifest, OpenAPI spec, structured JSON APIs, CORS, AI-crawler-allowing robots.txt.
 - 10 new indexable routes. 14 new SEO meta tags. 5 JSON-LD schemas. Expanded sitemap.
 - AI tools (ChatGPT, Claude, Perplexity, Google AI Overviews) can now: discover the site via llms.txt, query structured data via /api/ai, understand the API via OpenAPI, register as a search provider via OpenSearch, install as a plugin via ai-plugin.json.
+
+---
+Task ID: 33-40
+Agent: main (orchestrator)
+Task: Create Privacy, Terms, About, Blog, Features pages + dedicated Affiliate Disclosure page explaining commission comes from Amazon not the visitor.
+
+Work Log:
+- Built src/components/layout/page-shell.tsx — shared PageShell (client component) with sticky header, hero band, prose column, footer. Includes PageHeading, PageP, PageList, PageMeta helpers. Added .prose-fitfeky styling to globals.css (headings, paragraphs, links, blockquotes, lists).
+- Created /affiliate-disclosure page — the key page: opens with "You never pay more because of us" callout stating commission is paid by Amazon out of its own margin. Covers: what FitFeky is, how we earn (5 points — commission from Amazon not you, no fee, same price, no surcharge, any purchase), why it matters, 4 commitment cards (no paid placements, no price markups, honest reviews, clear affiliate links), Amazon Operating Agreement, price accuracy, other programs, contact. VLM graded A: "crystal clear, professional, FTC-compliant".
+- Created /privacy page — comprehensive privacy policy: information collected (direct + automatic), how we use it, what we do NOT do (never sell, no ad networks, no behavioral profiling, no email sharing), cookies (essential/analytics/affiliate), third-party links, data retention, CCPA/GDPR rights (5 rights), children's privacy, security, changes, contact.
+- Created /terms page — 14-section terms of service: agreement, intellectual property, affiliate relationship, no professional advice, external links, price accuracy, user conduct, limitation of liability, disclaimer of warranties, indemnification, changes, governing law (California), severability, contact.
+- Created /about page — brand story: why we started (founder's frustration at 47), mission callout, stats band, 4 differentiator pillars (transparent scoring, written for women 40+, real-customer driven, free tools), how we score (4 weighted criteria), our promise (no paid placements), who we are (independent team), CTA.
+- Created /features page — showcases 8 features (Home Gym Planner, Body Fat Calculator, BMI, Calorie Burn, Recovery, Quality-Scored Catalog, Smart Filtering, Buying Guides) as gradient cards with CTAs. Includes stats band, 4-criteria scoring breakdown, CTA band.
+- Extracted articles to src/lib/articles.ts (shared module) — 6 articles with slugs, keywords, and full body content. Homepage EditorialSection and new /blog page both use it.
+- Created /blog page — index of 6 editorial articles: featured article card + 2-col grid + category pills + SEO footer + CTA. Each article links to /#editorial.
+- Updated footer.tsx: bottom legal bar now links to /about, /blog, /features, /privacy, /terms, /affiliate-disclosure. Explore column updated with /blog, /about, /features.
+- Updated sitemap.ts: added 6 new page entries (about, blog, features, privacy, terms, affiliate-disclosure) with appropriate priorities and change frequencies.
+- Fixed: PageShell was a server component passing event handlers to the client Header → 500 errors. Added "use client" to PageShell.
+- Verification: ESLint 0 errors. All 6 pages return 200. Homepage still 200. Footer links verified pointing to real pages. VLM graded affiliate disclosure A (clear, professional, FTC-compliant).
+
+Stage Summary:
+- 6 new pages: /about, /blog, /features, /privacy, /terms, /affiliate-disclosure.
+- Shared PageShell component for consistent editorial styling across all content pages.
+- Affiliate disclosure page is the centerpiece — clearly explains commission comes from Amazon, not the visitor, with a prominent callout and 5 supporting points.
+- All footer links wired to real pages. Sitemap updated. Articles extracted to shared module.

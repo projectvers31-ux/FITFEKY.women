@@ -64,11 +64,13 @@ export function Footer() {
           <div className="md:col-span-2">
             <h3 className="kicker mb-4 text-background/50">Explore</h3>
             <ul className="grid grid-cols-1 gap-2.5 text-sm">
-              <li><Link href="#catalog" className="text-background/70 transition-colors hover:text-accent">All Products</Link></li>
-              <li><Link href="#featured" className="text-background/70 transition-colors hover:text-accent">Editor's Picks</Link></li>
-              <li><Link href="#categories" className="text-background/70 transition-colors hover:text-accent">Categories</Link></li>
-              <li><Link href="#calculators" className="text-background/70 transition-colors hover:text-accent">Calculators</Link></li>
-              <li><Link href="#editorial" className="text-background/70 transition-colors hover:text-accent">Wellness Journal</Link></li>
+              <li><Link href="/#catalog" className="text-background/70 transition-colors hover:text-accent">All Products</Link></li>
+              <li><Link href="/#featured" className="text-background/70 transition-colors hover:text-accent">Editor's Picks</Link></li>
+              <li><Link href="/#categories" className="text-background/70 transition-colors hover:text-accent">Categories</Link></li>
+              <li><Link href="/#calculators" className="text-background/70 transition-colors hover:text-accent">Calculators</Link></li>
+              <li><Link href="/blog" className="text-background/70 transition-colors hover:text-accent">Wellness Journal</Link></li>
+              <li><Link href="/about" className="text-background/70 transition-colors hover:text-accent">About Us</Link></li>
+              <li><Link href="/features" className="text-background/70 transition-colors hover:text-accent">Features</Link></li>
             </ul>
           </div>
 
@@ -94,10 +96,13 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-background/10 pt-6 text-xs text-background/50 sm:flex-row">
           <p>© {year} FitFeky. All rights reserved.</p>
-          <p className="flex items-center gap-4">
-            <Link href="#" className="transition-colors hover:text-accent">Privacy</Link>
-            <Link href="#" className="transition-colors hover:text-accent">Terms</Link>
-            <Link href="#" className="transition-colors hover:text-accent">Affiliate Disclosure</Link>
+          <p className="flex flex-wrap items-center justify-center gap-4">
+            <Link href="/about" className="transition-colors hover:text-accent">About</Link>
+            <Link href="/blog" className="transition-colors hover:text-accent">Blog</Link>
+            <Link href="/features" className="transition-colors hover:text-accent">Features</Link>
+            <Link href="/privacy" className="transition-colors hover:text-accent">Privacy</Link>
+            <Link href="/terms" className="transition-colors hover:text-accent">Terms</Link>
+            <Link href="/affiliate-disclosure" className="transition-colors hover:text-accent">Affiliate Disclosure</Link>
           </p>
         </div>
       </div>
