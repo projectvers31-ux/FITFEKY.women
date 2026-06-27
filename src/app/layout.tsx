@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -125,6 +126,9 @@ export default function RootLayout({
 
         {/* Google Analytics 4 — async, privacy-friendly, Googlebot-aware */}
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </body>
     </html>
   );
