@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { AffiliateButton } from "@/components/shared/affiliate-button";
+import { ProductImage } from "@/components/shared/product-image";
 import { resolveIcon } from "@/lib/icon-registry";
 import {
   recommendGearForPlan,
@@ -64,7 +65,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
           </Label>
           <div className="mt-3 flex items-baseline gap-1">
             <span className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              ${budget.toLocaleString()}
+              ${budget.toLocaleString("en-US")}
             </span>
             <span className="text-sm text-muted-foreground">total</span>
           </div>
@@ -89,7 +90,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
             <Home size={15} className="text-primary" />
             Room size
           </Label>
-          <div className="mt-3 grid grid-cols-1 gap-2">
+          <div className="mt-3 grid grid-cols-1 gap-2" role="radiogroup" aria-label="Room size">
             {ROOMS.map((r) => {
               const meta = ROOM_LABELS[r];
               const active = roomSize === r;
@@ -97,6 +98,8 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                 <button
                   key={r}
                   type="button"
+                  role="radio"
+                  aria-checked={active}
                   onClick={() => setRoomSize(r)}
                   className={cn(
                     "flex items-center justify-between rounded-xl border p-3 text-left transition-all",
@@ -127,7 +130,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
               ({goals.length} selected)
             </span>
           </Label>
-          <div className="mt-3 grid grid-cols-1 gap-2">
+          <div className="mt-3 grid grid-cols-1 gap-2" role="group" aria-label="Fitness goals">
             {GOALS.map((g) => {
               const meta = GOAL_LABELS[g];
               const Icon = resolveIcon(meta.icon);
@@ -136,6 +139,8 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                 <button
                   key={g}
                   type="button"
+                  role="checkbox"
+                  aria-checked={active}
                   onClick={() => toggleGoal(g)}
                   className={cn(
                     "flex items-center gap-3 rounded-xl border p-3 text-left transition-all",
@@ -185,7 +190,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                 <div>
                   <p className="kicker">Your plan total</p>
                   <p className="mt-1 font-display text-3xl font-semibold tracking-tight text-foreground">
-                    ${plan.totalCost.toLocaleString()}
+                    ${plan.totalCost.toLocaleString("en-US")}
                     {plan.hasNaPrice && (
                       <span className="ml-1.5 text-sm font-normal text-muted-foreground">
                         + N/A items
@@ -204,14 +209,14 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                     </span>
                   )}
                   <p className="mt-1.5 text-xs text-muted-foreground">
-                    Budget: ${budget.toLocaleString()}
+                    Budget: ${budget.toLocaleString("en-US")}
                   </p>
                 </div>
               </div>
               <Progress value={budgetPct} className="mt-3 h-2" />
               {plan.withinBudget && plan.remainingBudget > 0 && (
                 <p className="mt-2 text-xs text-muted-foreground">
-                  ${plan.remainingBudget.toLocaleString()} remaining — consider
+                  ${plan.remainingBudget.toLocaleString("en-US")} remaining — consider
                   adding a foam roller or resistance band.
                 </p>
               )}
@@ -237,13 +242,12 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                   {/* Product */}
                   {slot.product && (
                     <div className="flex flex-1 items-center gap-3 overflow-hidden">
-                      <img
+                      <ProductImage
                         src={slot.product.image}
                         alt={slot.product.title}
+                        width={56}
+                        height={56}
                         className="h-14 w-14 shrink-0 rounded-lg border border-border/50 bg-secondary/40 object-contain"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
-                        }}
                       />
                       <div className="min-w-0 flex-1">
                         <p className="line-clamp-1 text-sm font-semibold text-foreground">

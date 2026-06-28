@@ -112,7 +112,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
         </nav>
 
         {/* Desktop search */}
-        <form onSubmit={submitSearch} className="ml-auto hidden flex-1 max-w-xs md:block">
+        <form onSubmit={submitSearch} role="search" className="ml-auto hidden flex-1 max-w-xs md:block">
           <div className="relative">
             <Search
               size={16}
@@ -157,7 +157,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
               </SheetHeader>
 
               <div className="scroll-soft flex-1 overflow-y-auto px-5 py-4">
-                <form onSubmit={submitSearch} className="relative mb-5">
+                <form onSubmit={submitSearch} role="search" className="relative mb-5">
                   <Search
                     size={16}
                     className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
@@ -167,6 +167,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                     onChange={(e) => setTerm(e.target.value)}
                     placeholder="Search products…"
                     className="h-10 rounded-full pl-9"
+                    aria-label="Search products"
                   />
                 </form>
 

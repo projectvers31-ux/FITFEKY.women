@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { catalogStats } from "@/lib/product-utils";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const stats = catalogStats();
@@ -34,50 +31,25 @@ export function Hero() {
         {/* Editorial content — left-aligned, magazine cover style */}
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
-            <motion.div
-              className="max-w-2xl"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
-              }}
-            >
-              <motion.p
-                className="kicker mb-5 flex items-center gap-2"
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
-              >
-                <motion.span
-                  className="h-px bg-primary"
-                  initial={{ width: 0 }}
-                  animate={{ width: 32 }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
-                />
+            <div className="max-w-2xl hero-stagger">
+              <p className="kicker mb-5 flex items-center gap-2 hero-fade-in hero-delay-1">
+                <span className="hero-line h-px bg-primary" />
                 The Curated Edit · 2026
-              </motion.p>
+              </p>
 
-              <motion.h1
-                className="font-display text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.04em] text-foreground sm:text-6xl lg:text-7xl"
-                variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } } }}
-              >
+              <h1 className="font-display text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.04em] text-foreground sm:text-6xl lg:text-7xl hero-fade-in hero-delay-2">
                 Strength finds you{" "}
                 <span className="text-gradient-warm text-gradient-animate">at home.</span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                className="mt-5 max-w-xl text-[15px] leading-relaxed text-foreground/75 sm:text-lg"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } }}
-              >
+              <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-foreground/75 sm:text-lg hero-fade-in hero-delay-3">
                 Premium, quality-scored fitness gear for women in their forties,
                 fifties and beyond. Walking pads, resistance bands, yoga essentials
                 and recovery tools — curated by women who train, for women who
                 move with intention.
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } }}
-              >
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center hero-fade-in hero-delay-4">
                 <Button asChild size="lg" className="group h-12 gap-2 rounded-full px-6 text-[15px] font-medium shadow-lg shadow-primary/20 transition-transform hover:scale-[1.03] active:scale-[0.98] sm:h-14 sm:px-7 sm:text-base">
                   <Link href="#featured">
                     Explore the Edit
@@ -89,12 +61,12 @@ export function Hero() {
                     Free Wellness Tools
                   </Link>
                 </Button>
-              </motion.div>
+              </div>
 
               {/* Inline proof */}
-              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm">
+              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm hero-fade-in hero-delay-5">
                 <span className="flex items-center gap-2 text-foreground/70">
-                  <span className="flex">
+                  <span className="flex" aria-hidden="true">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} size={13} className="fill-amber-500 text-amber-500" />
                     ))}
@@ -111,7 +83,7 @@ export function Hero() {
                   For women <span className="font-semibold text-foreground">40 · 50 · 60+</span>
                 </span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,71 +1,85 @@
 "use client";
 
-import { motion, useInView, useAnimation, type Variants } from "framer-motion";
-import { useEffect, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 
 /* ============================================================
- * FitFeky animation system — built on framer-motion.
- * Reusable primitives for scroll-triggered reveals, staggered
- * entrances, and animated counters.
+ * FitFeky animation system — CSS-based scroll-triggered
+ * reveals, staggered entrances, and animated counters.
+ * No framer-motion dependency.
  * ============================================================ */
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const StaggerCtx = createContext<{ visible: boolean; index: { current: number }; stagger: number } | null>(null);
 
-/** Fade + rise into view. The workhorse reveal animation. */
+/** Fade + rise into view using IntersectionObserver + CSS transitions. */
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
   className,
-  once = true,
 }: {
   children: ReactNode;
   delay?: number;
-  y?: number;
   className?: string;
-  once?: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: "-60px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-/** Container that staggers its <StaggerItem> children on scroll. */
+/** Container that staggers its children on scroll. */
 export function StaggerContainer({
   children,
   className,
   stagger = 0.08,
-  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   stagger?: number;
-  delay?: number;
 }) {
-  const variants: Variants = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: stagger, delayChildren: delay },
-    },
-  };
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const indexRef = useRef({ current: 0 });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: "-60px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-    >
-      {children}
-    </motion.div>
+    <StaggerCtx.Provider value={{ visible, index: indexRef, stagger }}>
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    </StaggerCtx.Provider>
   );
 }
 
@@ -73,20 +87,26 @@ export function StaggerContainer({
 export function StaggerItem({
   children,
   className,
-  y = 20,
 }: {
   children: ReactNode;
   className?: string;
-  y?: number;
 }) {
-  const variants: Variants = {
-    hidden: { opacity: 0, y },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-  };
+  const ctx = useContext(StaggerCtx);
+  const idx = ctx ? ctx.index.current++ : 0;
+  const visible = ctx?.visible ?? true;
+  const delay = ctx ? ctx.stagger * idx : 0;
+
   return (
-    <motion.div className={className} variants={variants}>
+    <div
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+      }}
+    >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -100,16 +120,32 @@ export function ScaleIn({
   className?: string;
   delay?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: "-60px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, scale: 0.94 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "scale(1)" : "scale(0.94)",
+        transition: `opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -133,8 +169,18 @@ export function AnimatedCounter({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const controls = useAnimation();
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect(); } },
+      { rootMargin: "-40px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!inView) return;
@@ -142,7 +188,6 @@ export function AnimatedCounter({
     let raf = 0;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / (duration * 1000));
-      // easeOutExpo for a snappy finish
       const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
       const current = value * eased;
       if (ref.current) {
@@ -158,7 +203,7 @@ export function AnimatedCounter({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, value, duration, decimals, prefix, suffix, controls]);
+  }, [inView, value, duration, decimals, prefix, suffix]);
 
   return (
     <span ref={ref} className={className}>

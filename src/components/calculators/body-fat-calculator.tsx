@@ -115,6 +115,7 @@ export function BodyFatCalculator() {
               value={sex}
               onValueChange={(v) => v && setSex(v as Sex)}
               className="mt-2 justify-start"
+              aria-label="Sex"
             >
               <ToggleGroupItem value="female" className="rounded-full">Female</ToggleGroupItem>
               <ToggleGroupItem value="male" className="rounded-full">Male</ToggleGroupItem>
@@ -129,6 +130,7 @@ export function BodyFatCalculator() {
               value={unit}
               onValueChange={(v) => v && setUnit(v as Unit)}
               className="mt-2 justify-start"
+              aria-label="Unit system"
             >
               <ToggleGroupItem value="imperial" className="rounded-full">Imperial</ToggleGroupItem>
               <ToggleGroupItem value="metric" className="rounded-full">Metric</ToggleGroupItem>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import dynamic from "next/dynamic";
+
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { TrustBadgesBar } from "@/components/home/trust-badges-bar";
@@ -8,15 +10,40 @@ import { TrustMarquee } from "@/components/home/stats-bar";
 import { CategoryShowcase } from "@/components/home/category-showcase";
 import { FeaturedPicks } from "@/components/home/featured-picks";
 import { HowWeTestSection } from "@/components/home/how-we-test-section";
-import { CalculatorsSection } from "@/components/calculators/calculators-section";
-import { ProductCatalog } from "@/components/products/product-catalog";
-import { ProductDetailDialog } from "@/components/products/product-detail-dialog";
-import { TestimonialsSection } from "@/components/home/testimonials-section";
-import { SeoContentSection } from "@/components/home/seo-content-section";
-import { EditorialSection } from "@/components/home/editorial-section";
-import { FaqSection } from "@/components/home/faq-section";
-import { Newsletter } from "@/components/home/newsletter";
 import type { Product } from "@/lib/types";
+
+const CalculatorsSection = dynamic(
+  () => import("@/components/calculators/calculators-section").then((m) => ({ default: m.CalculatorsSection })),
+  { ssr: true },
+);
+const ProductCatalog = dynamic(
+  () => import("@/components/products/product-catalog").then((m) => ({ default: m.ProductCatalog })),
+  { ssr: true },
+);
+const ProductDetailDialog = dynamic(
+  () => import("@/components/products/product-detail-dialog").then((m) => ({ default: m.ProductDetailDialog })),
+  { ssr: false },
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/home/testimonials-section").then((m) => ({ default: m.TestimonialsSection })),
+  { ssr: false },
+);
+const SeoContentSection = dynamic(
+  () => import("@/components/home/seo-content-section").then((m) => ({ default: m.SeoContentSection })),
+  { ssr: false },
+);
+const EditorialSection = dynamic(
+  () => import("@/components/home/editorial-section").then((m) => ({ default: m.EditorialSection })),
+  { ssr: false },
+);
+const FaqSection = dynamic(
+  () => import("@/components/home/faq-section").then((m) => ({ default: m.FaqSection })),
+  { ssr: false },
+);
+const Newsletter = dynamic(
+  () => import("@/components/home/newsletter").then((m) => ({ default: m.Newsletter })),
+  { ssr: false },
+);
 
 interface HomeClientProps {
   categoryCounts: Record<string, number>;
@@ -55,6 +82,7 @@ export function HomeClient({ categoryCounts, featuredPicks }: HomeClientProps) {
         <CategoryShowcase counts={categoryCounts} onSelect={onCategorySelect} />
         <FeaturedPicks products={featuredPicks} onQuickView={onQuickView} onSeeAll={seeAll} />
         <HowWeTestSection />
+
         <CalculatorsSection onQuickView={onQuickView} onCategorySelect={onCategorySelect} />
         <ProductCatalog
           searchTerm={searchTerm}

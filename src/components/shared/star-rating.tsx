@@ -36,7 +36,7 @@ export function StarRating({
           const isFull = i < roundedFull;
           const isHalf = hasHalf && i === full;
           return (
-            <span key={i} className="relative" style={{ width: size, height: size }}>
+            <span key={i} className="relative" style={{ width: size, height: size }} aria-hidden="true">
               <Star
                 size={size}
                 className="absolute inset-0 text-amber-500/25"

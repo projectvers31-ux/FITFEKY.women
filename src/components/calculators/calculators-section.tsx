@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator as CalcIcon, ArrowRight, Link2 } from "lucide-react";
+import dynamic from "next/dynamic";
+import { ArrowRight, Link2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { BmiCalculator } from "./bmi-calculator";
-import { CalorieBurnCalculator } from "./calorie-burn-calculator";
-import { RecoveryCalculator } from "./recovery-calculator";
-import { HomeGymPlanner } from "./home-gym-planner";
-import { BodyFatCalculator } from "./body-fat-calculator";
 import { ProductCard } from "@/components/products/product-card";
 import { productsForCalculator, products } from "@/lib/product-utils";
 import { CALCULATORS } from "@/lib/categories";
 import { resolveIcon } from "@/lib/icon-registry";
 import { Reveal } from "@/components/shared/animations";
 import type { Product } from "@/lib/types";
+
+const HomeGymPlanner = dynamic(() => import("./home-gym-planner").then((m) => ({ default: m.HomeGymPlanner })), { ssr: true });
+const BodyFatCalculator = dynamic(() => import("./body-fat-calculator").then((m) => ({ default: m.BodyFatCalculator })), { ssr: true });
+const BmiCalculator = dynamic(() => import("./bmi-calculator").then((m) => ({ default: m.BmiCalculator })), { ssr: true });
+const CalorieBurnCalculator = dynamic(() => import("./calorie-burn-calculator").then((m) => ({ default: m.CalorieBurnCalculator })), { ssr: true });
+const RecoveryCalculator = dynamic(() => import("./recovery-calculator").then((m) => ({ default: m.RecoveryCalculator })), { ssr: true });
 
 interface CalculatorsSectionProps {
   onQuickView: (p: Product) => void;
@@ -59,7 +61,7 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
         </Reveal>
 
         <Tabs value={tab} onValueChange={onTabChange} className="w-full">
-          <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-full border border-border/50 bg-card/40 p-1">
+          <TabsList aria-label="Wellness calculators" className="flex h-auto w-full flex-wrap justify-start gap-1 rounded-full border border-border/50 bg-card/40 p-1">
             <TabsTrigger value="planner" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               Home Gym Planner
             </TabsTrigger>

@@ -56,14 +56,15 @@ export function Newsletter() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={submit} className="flex flex-col gap-3 sm:flex-row">
+              <form onSubmit={submit} aria-label="Subscribe to newsletter" className="flex flex-col gap-3 sm:flex-row">
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                 <Input
+                  id="newsletter-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@email.com"
                   className="h-12 flex-1 rounded-full border-0 bg-white/95 px-5 text-foreground shadow-sm"
-                  aria-label="Email address"
                 />
                 <Button
                   type="submit"

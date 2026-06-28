@@ -91,7 +91,7 @@ export function CalorieBurnCalculator({
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-xl bg-card/70 p-3">
             <Footprints size={16} className="text-accent" />
-            <p className="mt-1 text-lg font-bold tabular-nums">{steps.toLocaleString()}</p>
+            <p className="mt-1 text-lg font-bold tabular-nums">{steps.toLocaleString("en-US")}</p>
             <p className="text-[11px] text-muted-foreground">equivalent steps</p>
           </div>
           <div className="rounded-xl bg-card/70 p-3">

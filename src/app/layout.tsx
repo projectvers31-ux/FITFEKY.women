@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -22,7 +23,8 @@ const geistMono = Geist_Mono({
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -62,8 +64,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Theme initialization — prevents flash of wrong theme before hydration */}
-        <script dangerouslySetInnerHTML={{ __html: `!function(){try{var e=localStorage.getItem("theme")||"light";"system"===e&&(e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(e);document.documentElement.style.colorScheme=e}catch(e){}}()` }} />
+        {/* Preload hero LCP image */}
+        <link rel="preload" as="image" href="/hero-editorial.png" fetchPriority="high" />
+        {/* Preconnect for Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Organization + WebSite structured data (sitewide) */}
         <script
           type="application/ld+json"
@@ -89,29 +94,9 @@ export default function RootLayout({
         {/* PWA / manifest */}
         <link rel="manifest" href="/manifest.webmanifest" />
 
-        {/* Content authentication (optional, for AI provenance) */}
-        <link rel="contents" href="/llms-full.txt" type="text/plain" />
-
-        {/* Prefetch key AI endpoints for faster assistant responses */}
-        <link rel="preconnect" href="https://fitfeky.com" />
-
-        {/* Extra SEO + AI meta tags */}
-        <meta name="content-language" content="en-US" />
-        <meta name="geo.region" content="US" />
-        <meta name="geo.placename" content="United States" />
-        <meta name="distribution" content="global" />
-        <meta name="rating" content="general" />
-        <meta name="revisit-after" content="3 days" />
-        <meta name="ai-content-disclosure" content="FitFeky content is editorially curated. Product data is factual (prices, ratings, ASINs) and updated regularly." />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noarchive" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         {/* AI crawler directives */}
         <meta name="gptbot" content="index, follow" />
         <meta name="ccbot" content="index, follow" />
-        {/* Author + publisher for E-E-A-T signals */}
-        <meta name="author" content="FitFeky Editorial Team" />
-        <meta name="publisher" content="FitFeky" />
-        <meta name="rights" content="© 2026 FitFeky. All rights reserved." />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased bg-background text-foreground`}
@@ -125,6 +110,9 @@ export default function RootLayout({
 
         {/* Google Analytics 4 — async, privacy-friendly, Googlebot-aware */}
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+
+        {/* Theme initialization — injected into <head> as raw HTML by Next.js (beforeInteractive) */}
+        <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `!function(){try{var e=localStorage.getItem("theme")||"light";"system"===e&&(e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(e);document.documentElement.style.colorScheme=e}catch(e){}}()` }} />
       </body>
     </html>
   );

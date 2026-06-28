@@ -58,6 +58,7 @@ export function BmiCalculator() {
           value={unit}
           onValueChange={(v) => v && setUnit(v as Unit)}
           className="justify-start"
+          aria-label="Unit system"
         >
           <ToggleGroupItem value="imperial" className="rounded-full">Imperial (lb / ft)</ToggleGroupItem>
           <ToggleGroupItem value="metric" className="rounded-full">Metric (kg / cm)</ToggleGroupItem>
