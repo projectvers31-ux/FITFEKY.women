@@ -44,7 +44,7 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
   };
 
   return (
-    <section id="calculators" className="bg-ambient section-editorial">
+    <section id="calculators" className="bg-ambient section-editorial scroll-mt-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <Reveal>
           <div className="mb-12 max-w-2xl">

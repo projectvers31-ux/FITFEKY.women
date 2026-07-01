@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { SlidersHorizontal, Search, X, PackageOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,6 +49,22 @@ export function ProductCatalog({
   const [sort, setSort] = useState<SortKey>("featured");
   const [includeNaPrice, setIncludeNaPrice] = useState(true);
   const [visible, setVisible] = useState(PAGE_SIZE);
+  const catalogSearchRef = useRef<HTMLInputElement>(null);
+
+  // Keyboard shortcut: press / to focus catalog search
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
+        const catalog = document.getElementById("catalog");
+        if (catalog && catalog.getBoundingClientRect().top < window.innerHeight) {
+          e.preventDefault();
+          catalogSearchRef.current?.focus();
+        }
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   // Reset pagination to the first page whenever the search or category prop
   // changes. We use the React-recommended "adjust state during render"
@@ -113,7 +129,7 @@ export function ProductCatalog({
     !includeNaPrice;
 
   return (
-    <section id="catalog" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+    <section id="catalog" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial scroll-mt-24">
       <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
           <p className="kicker mb-4">The catalog</p>
@@ -154,9 +170,16 @@ export function ProductCatalog({
             <div className="relative max-w-xs flex-1">
               <Search size={15} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <Input
+                ref={catalogSearchRef}
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="Search by name or keyword…"
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") {
+                    (e.target as HTMLInputElement).blur();
+                  }
+                }}
+                placeholder='Search by name or keyword…  ⌘/'
+                title='Press "/" to focus'
                 className="h-9 rounded-full pl-9 pr-3 text-sm"
                 aria-label="Search products"
               />

@@ -18,7 +18,7 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
   };
 
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+    <section id="categories" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial scroll-mt-24">
       <div className="mb-12 max-w-2xl">
         <p className="kicker mb-4">Browse by category</p>
         <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">

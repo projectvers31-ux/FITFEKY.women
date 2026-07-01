@@ -27,14 +27,13 @@ export function PageShell({ kicker, title, subtitle, children, heroVisual }: Pag
     <>
       <Header
         onSearch={() => {
-          /* search is home-page scoped; navigate there to use it */
-          window.location.hash = "#catalog";
+          window.location.href = "/#catalog";
         }}
         onCategorySelect={() => {
-          window.location.hash = "#catalog";
+          window.location.href = "/#catalog";
         }}
       />
-      <main className="flex-1">
+      <main className="flex-1 animate-fade-up">
         {/* Hero band */}
         <section className="bg-ambient border-b border-border/50">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">

@@ -49,7 +49,7 @@ export function Footer() {
               {CATEGORIES.slice(0, 8).map((c) => (
                 <li key={c.id}>
                   <Link
-                    href="#catalog"
+                    href="/#catalog"
                     className="text-background/70 transition-colors hover:text-accent"
                   >
                     {c.label}

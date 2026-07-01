@@ -25,7 +25,7 @@ export function FeaturedPicks({ products, onQuickView, onSeeAll }: FeaturedPicks
   if (products.length === 0) return null;
 
   return (
-    <section id="featured" className="relative overflow-hidden bg-secondary/30 section-editorial">
+    <section id="featured" className="relative overflow-hidden bg-secondary/30 section-editorial scroll-mt-24">
       <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 blob bg-primary/5 blur-3xl animate-drift" />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">

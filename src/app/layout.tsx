@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -30,6 +32,13 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   ...homeMetadata,
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: { url: "/logo.svg", type: "image/svg+xml" },
+  },
   alternates: {
     canonical: "/",
   },
@@ -97,6 +106,9 @@ export default function RootLayout({
         {/* AI crawler directives */}
         <meta name="gptbot" content="index, follow" />
         <meta name="ccbot" content="index, follow" />
+
+        {/* Pinterest domain verification */}
+        <meta name="p:domain_verify" content="81b1dc0d56bdc58a9041f5c5cb56097e" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased bg-background text-foreground`}
@@ -110,6 +122,12 @@ export default function RootLayout({
 
         {/* Google Analytics 4 — async, privacy-friendly, Googlebot-aware */}
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+
+        {/* Vercel Analytics */}
+        <Analytics />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
 
         {/* Theme initialization — injected into <head> as raw HTML by Next.js (beforeInteractive) */}
         <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `!function(){try{var e=localStorage.getItem("theme")||"light";"system"===e&&(e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(e);document.documentElement.style.colorScheme=e}catch(e){}}()` }} />

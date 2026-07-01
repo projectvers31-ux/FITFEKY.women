@@ -31,6 +31,7 @@ export function ProductImage({
   sizes,
 }: ProductImageProps) {
   const [errored, setErrored] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   if (!src || errored) {
     return (
@@ -52,16 +53,25 @@ export function ProductImage({
   }
 
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      priority={priority}
-      onError={() => setErrored(true)}
-      unoptimized
-      sizes={sizes}
-      className={cn("object-contain", className)}
-    />
+    <div className={cn("relative overflow-hidden", className)} style={{ aspectRatio: `${width} / ${height}` }}>
+      {!loaded && (
+        <div className="absolute inset-0 shimmer" />
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        onError={() => setErrored(true)}
+        onLoad={() => setLoaded(true)}
+        unoptimized
+        sizes={sizes}
+        className={cn(
+          "object-contain transition-opacity duration-500",
+          loaded ? "opacity-100" : "opacity-0",
+        )}
+      />
+    </div>
   );
 }

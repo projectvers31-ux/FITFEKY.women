@@ -219,18 +219,18 @@ export function homeBreadcrumb() {
 /** Generate the sitemap entries (homepage + category anchors). */
 export function sitemapEntries() {
   const stats = catalogStats();
-  const base = [
-    { url: "/", priority: 1.0, changefreq: "daily" as const },
+  const base: { url: string; priority: number; changefreq: string }[] = [
+    { url: "/", priority: 1.0, changefreq: "daily" },
   ];
   for (const c of CATEGORIES) {
     base.push({
       url: `/#catalog`,
       priority: 0.8,
-      changefreq: "weekly" as const,
+      changefreq: "weekly",
     });
   }
-  base.push({ url: "/#calculators", priority: 0.7, changefreq: "monthly" as const });
-  base.push({ url: "/#editorial", priority: 0.7, changefreq: "weekly" as const });
+  base.push({ url: "/#calculators", priority: 0.7, changefreq: "monthly" });
+  base.push({ url: "/#editorial", priority: 0.7, changefreq: "weekly" });
   return { entries: base, totalProducts: stats.total };
 }
 

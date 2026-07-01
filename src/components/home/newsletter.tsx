@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -9,14 +9,19 @@ import { useToast } from "@/hooks/use-toast";
 export function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.includes("@")) {
       toast({ title: "Please enter a valid email", variant: "destructive" });
       return;
     }
+    setLoading(true);
+    // Simulate network delay for realistic UX
+    await new Promise((r) => setTimeout(r, 800));
+    setLoading(false);
     setDone(true);
     toast({
       title: "Welcome to FitFeky",
@@ -69,10 +74,15 @@ export function Newsletter() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="h-12 shrink-0 gap-2 rounded-full bg-foreground px-6 font-medium text-background shadow-md hover:bg-foreground/90"
+                  disabled={loading}
+                  className="h-12 shrink-0 gap-2 rounded-full bg-foreground px-6 font-medium text-background shadow-md hover:bg-foreground/90 disabled:opacity-70"
                 >
-                  Subscribe
-                  <ArrowRight size={16} />
+                  {loading ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : (
+                    <ArrowRight size={16} />
+                  )}
+                  {loading ? "Subscribing…" : "Subscribe"}
                 </Button>
               </form>
             )}

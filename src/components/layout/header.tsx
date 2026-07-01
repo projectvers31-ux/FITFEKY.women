@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Search, Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,12 +30,25 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
   const mounted = useIsClient();
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Keyboard shortcut: press / to focus search, Escape to blur
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
   const submitSearch = (e: React.FormEvent) => {
@@ -53,16 +66,6 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const goCalculators = () => {
-    setOpen(false);
-    document.getElementById("calculators")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const goEditorial = () => {
-    setOpen(false);
-    document.getElementById("editorial")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <header
       className={cn(
@@ -74,7 +77,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
     >
       <div className="mx-auto flex h-16 items-center gap-3 px-6 sm:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="#top" className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]">
           <Logo size={36} />
           <span className="flex flex-col leading-none">
             <span className="font-display text-xl font-semibold tracking-tight text-foreground">
@@ -86,29 +89,29 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
         {/* Desktop nav */}
         <nav className="ml-6 hidden items-center gap-1 lg:flex">
           <Link
-            href="#catalog"
+            href="/#catalog"
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Shop
           </Link>
           <Link
-            href="#categories"
+            href="/#categories"
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Categories
           </Link>
-          <button
-            onClick={goCalculators}
+          <Link
+            href="/#calculators"
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Tools
-          </button>
-          <button
-            onClick={goEditorial}
+          </Link>
+          <Link
+            href="/#editorial"
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Journal
-          </button>
+          </Link>
         </nav>
 
         {/* Desktop search */}
@@ -119,9 +122,16 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
               className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             />
             <Input
+              ref={searchRef}
               value={term}
               onChange={(e) => setTerm(e.target.value)}
-              placeholder="Search yoga mats, walking pads…"
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  (e.target as HTMLInputElement).blur();
+                }
+              }}
+              placeholder='Search yoga mats, walking pads…  ⌘/'
+              title='Press "/" to focus'
               className="h-9 rounded-full border-border bg-secondary/50 pl-9 pr-3 text-sm"
               aria-label="Search products"
             />
@@ -172,9 +182,9 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                 </form>
 
                 <nav className="flex flex-col gap-1">
-                  <MobileLink onClick={() => goCategory("all")}>All Products</MobileLink>
-                  <MobileLink onClick={goCalculators}>Calculators</MobileLink>
-                  <MobileLink onClick={goEditorial}>Wellness Journal</MobileLink>
+                  <Link href="/#catalog" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>All Products</Link>
+                  <Link href="/#calculators" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Calculators</Link>
+                  <Link href="/#editorial" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Wellness Journal</Link>
                 </nav>
 
                 <p className="mb-2 mt-5 px-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -200,23 +210,4 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
   );
 }
 
-function MobileLink({
-  children,
-  onClick,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary"
-    >
-      {children}
-    </button>
-  );
-}
 
-export function MenuIconClose() {
-  return <X />;
-}

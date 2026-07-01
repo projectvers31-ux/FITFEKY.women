@@ -110,6 +110,13 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: "Sparkles",
     accent: "from-pink-400/80 to-rose-600/80",
   },
+  {
+    id: "shaker_bottle",
+    label: "Shaker Bottles",
+    blurb: "Mix, shake & hydrate — the perfect post-workout companion.",
+    icon: "Droplet",
+    accent: "from-sky-400/80 to-blue-600/80",
+  },
 ];
 
 export const CATEGORY_MAP: Record<CategoryId, CategoryMeta> = CATEGORIES.reduce(

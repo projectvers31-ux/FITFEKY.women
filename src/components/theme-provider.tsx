@@ -139,7 +139,7 @@ export function ThemeProvider({
   }, [storageKey, applyTheme, themeList]);
 
   const resolvedTheme: "light" | "dark" | undefined =
-    forcedTheme ?? (theme === "system" ? systemTheme : theme);
+    forcedTheme === "system" ? systemTheme : (forcedTheme ?? (theme === "system" ? systemTheme : theme));
 
   const ctxValue = useMemo<ThemeContextValue>(
     () => ({

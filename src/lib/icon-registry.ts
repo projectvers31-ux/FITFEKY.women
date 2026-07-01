@@ -18,6 +18,7 @@ import {
   StretchHorizontal,
   HeartPulse,
   HandHeart,
+  Droplet,
   type LucideIcon,
 } from "lucide-react";
 
@@ -45,6 +46,7 @@ const REGISTRY: Record<string, LucideIcon> = {
   StretchHorizontal,
   HeartPulse,
   HandHeart,
+  Droplet,
 };
 
 export function resolveIcon(name: string): LucideIcon {

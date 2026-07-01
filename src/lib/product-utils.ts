@@ -7,7 +7,7 @@ export { products };
 export function allCategories(): CategoryId[] {
   const seen = new Set<CategoryId>();
   for (const p of products) seen.add(p.category);
-  return seen;
+  return Array.from(seen);
 }
 
 /** Apply the catalog query (filter + sort + slice). Pure & shared. */

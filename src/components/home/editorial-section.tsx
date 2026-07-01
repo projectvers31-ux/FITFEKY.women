@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { BookOpen, Clock, ArrowRight, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -18,9 +18,32 @@ import { ARTICLES, type Article } from "@/lib/articles";
 export function EditorialSection() {
   const [active, setActive] = useState<Article | null>(null);
   const [featured, ...rest] = ARTICLES;
+  const mounted = useRef(false);
+
+  // Read URL hash on mount to auto-open the matching article
+  useEffect(() => {
+    const match = window.location.hash.match(/^#article-(.+)$/);
+    if (match) {
+      const slug = match[1];
+      const article = ARTICLES.find((a) => a.slug === slug);
+      if (article) {
+        setTimeout(() => setActive(article), 100);
+      }
+    }
+    mounted.current = true;
+  }, []);
+
+  // Update hash when article opens/closes
+  useEffect(() => {
+    if (active && mounted.current) {
+      history.replaceState(null, "", `/#article-${active.slug}`);
+    } else if (mounted.current) {
+      history.replaceState(null, "", window.location.pathname);
+    }
+  }, [active]);
 
   return (
-    <section id="editorial" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial">
+    <section id="editorial" className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 section-editorial scroll-mt-24">
       <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="max-w-2xl">
           <p className="kicker mb-4">The Wellness Journal</p>
@@ -161,15 +184,38 @@ function ArticleReader({ article, onClose }: { article: Article | null; onClose:
                   gear below — every product is chosen to support exactly this
                   kind of sustainable, joint-friendly routine.
                 </div>
-                <Button
-                  className="mt-4 w-full"
-                  onClick={() => {
-                    onClose();
-                    setTimeout(() => document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" }), 80);
-                  }}
-                >
-                  Browse the catalog
-                </Button>
+                <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                  <Button
+                    className="flex-1"
+                    onClick={() => {
+                      onClose();
+                      const cat = article.relatedCategory;
+                      setTimeout(() => {
+                        if (cat) {
+                          const el = document.getElementById("catalog");
+                          if (el) {
+                            el.scrollIntoView({ behavior: "smooth" });
+                            // Dispatch a custom event so the catalog knows which category to filter
+                            window.dispatchEvent(new CustomEvent("select-category", { detail: cat }));
+                          }
+                        } else {
+                          document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }, 80);
+                    }}
+                  >
+                    {article.ctaText ?? "Browse the catalog"} <ArrowRight size={16} />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      onClose();
+                      setTimeout(() => document.getElementById("calculators")?.scrollIntoView({ behavior: "smooth" }), 80);
+                    }}
+                  >
+                    Free wellness tools
+                  </Button>
+                </div>
               </div>
             </ScrollArea>
           </>

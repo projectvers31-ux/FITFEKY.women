@@ -37,6 +37,10 @@ export interface PlanResult {
   remainingBudget: number;
   /** Categories represented in the kit. */
   categories: CategoryId[];
+  /** Whether any slot has an N/A price. */
+  hasNaPrice: boolean;
+  /** Count of slots with a known price. */
+  pricedCount: number;
 }
 
 /** Map each fitness goal to the categories that serve it. */
@@ -193,6 +197,10 @@ export function recommendGearForPlan(input: PlanInput): PlanResult {
     general_fitness: {
       role: "Wellness essential",
       reason: "A thoughtful extra for a complete home studio.",
+    },
+    shaker_bottle: {
+      role: "Hydration & nutrition",
+      reason: "Stay hydrated and fuel your workouts with ease.",
     },
   };
 

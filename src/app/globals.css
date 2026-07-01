@@ -138,6 +138,15 @@
     /* Better mobile text rendering */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Account for sticky header when navigating via anchor links */
+    scroll-padding-top: 5.5rem;
+    /* Native smooth scrolling */
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   body {
     @apply bg-background text-foreground;

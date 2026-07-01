@@ -4633,6 +4633,110 @@ export const products: Product[] = [
     ],
     "suggestedCalculator": "Home Workout Calorie Calculator"
   },
+  {
+    "id": "B0CXPWMSX6",
+    "asin": "B0CXPWMSX6",
+    "title": "VELOMIX -2 Pack- 28 oz Protein Shaker Bottles for Protein Mixes - 2x Wire Whisk | Leak Proof Shaker Cups for Protein Shakes",
+    "category": "shaker_bottle",
+    "price": 9.99,
+    "priceDisplay": "$9.99",
+    "rating": 4.7,
+    "reviews": 15241,
+    "image": "https://m.media-amazon.com/images/I/71gz8Q2tRiL._AC_UL320_.jpg",
+    "affiliateUrl": "https://www.amazon.com/dp/B0CXPWMSX6?tag=fitfeky-20",
+    "priority": "B",
+    "qualityScore": 86,
+    "mainKeyword": "protein shaker bottle for women",
+    "secondaryKeywords": [
+      "shaker bottle for protein",
+      "leak proof shaker cup",
+      "protein shaker bottle pack"
+    ],
+    "longTailKeywords": [
+      "best protein shaker bottles for women over 40",
+      "leak proof shaker cup for post workout",
+      "easy to clean protein shaker bottle"
+    ],
+    "suggestedCalculator": "Home Workout Calorie Calculator"
+  },
+  {
+    "id": "B084PVQGH1",
+    "asin": "B084PVQGH1",
+    "title": "BlenderBottle Strada Shaker Cup Insulated Stainless Steel Water Bottle with Wire Whisk, 24-Ounce, Black",
+    "category": "shaker_bottle",
+    "price": 19.97,
+    "priceDisplay": "$19.97",
+    "rating": 4.6,
+    "reviews": 15264,
+    "image": "https://m.media-amazon.com/images/I/51tSeiwSZkL._AC_UL320_.jpg",
+    "affiliateUrl": "https://www.amazon.com/dp/B084PVQGH1?tag=fitfeky-20",
+    "priority": "A",
+    "qualityScore": 90,
+    "mainKeyword": "insulated shaker bottle for women",
+    "secondaryKeywords": [
+      "stainless steel shaker cup",
+      "insulated protein shaker",
+      "BlenderBottle Strada"
+    ],
+    "longTailKeywords": [
+      "best insulated shaker bottle for women over 40",
+      "stainless steel protein shaker bottle for workouts",
+      "double wall insulated shaker cup for post workout"
+    ],
+    "suggestedCalculator": "Home Workout Calorie Calculator"
+  },
+  {
+    "id": "B0BFF5MN6T",
+    "asin": "B0BFF5MN6T",
+    "title": "VOLTRX Electric Protein Shaker Bottle - USB Rechargeable Mixer Cup for Shakes and Meal Replacements, BPA-Free Tritan, 24oz",
+    "category": "shaker_bottle",
+    "price": 19.99,
+    "priceDisplay": "$19.99",
+    "rating": 4.5,
+    "reviews": 17220,
+    "image": "https://m.media-amazon.com/images/I/61xY5x1JAkL._AC_UL320_.jpg",
+    "affiliateUrl": "https://www.amazon.com/dp/B0BFF5MN6T?tag=fitfeky-20",
+    "priority": "B",
+    "qualityScore": 85,
+    "mainKeyword": "electric protein shaker bottle for women",
+    "secondaryKeywords": [
+      "USB rechargeable mixer cup",
+      "electric shaker bottle for protein",
+      "automatic mixing protein shaker"
+    ],
+    "longTailKeywords": [
+      "best electric protein shaker bottle for women over 40",
+      "USB rechargeable shaker bottle for workouts",
+      "electric mixer cup for protein shakes with arthritis"
+    ],
+    "suggestedCalculator": "Home Workout Calorie Calculator"
+  },
+  {
+    "id": "B07TK681SZ",
+    "asin": "B07TK681SZ",
+    "title": "BlenderBottle Classic V2 Shaker Bottle Perfect for Protein Shakes and Pre Workout, 28-Ounce, Clear/Black",
+    "category": "shaker_bottle",
+    "price": 9.99,
+    "priceDisplay": "$9.99",
+    "rating": 4.7,
+    "reviews": 155996,
+    "image": "https://m.media-amazon.com/images/I/51Vz9OQZFzL._AC_UL320_.jpg",
+    "affiliateUrl": "https://www.amazon.com/dp/B07TK681SZ?tag=fitfeky-20",
+    "priority": "A",
+    "qualityScore": 94,
+    "mainKeyword": "BlenderBottle Classic shaker for women",
+    "secondaryKeywords": [
+      "BlenderBottle Classic V2",
+      "protein shaker bottle 28 oz",
+      "pre workout mixer cup"
+    ],
+    "longTailKeywords": [
+      "best BlenderBottle for women over 40",
+      "classic protein shaker bottle for daily use",
+      "affordable shaker bottle for home gym"
+    ],
+    "suggestedCalculator": "Home Workout Calorie Calculator"
+  },
 ];
 
 export const productCount = products.length;

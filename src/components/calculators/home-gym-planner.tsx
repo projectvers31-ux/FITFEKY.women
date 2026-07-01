@@ -26,13 +26,14 @@ import {
   type FitnessGoal,
   type RoomSize,
 } from "@/lib/planner";
+import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const GOALS = Object.keys(GOAL_LABELS) as FitnessGoal[];
 const ROOMS = Object.keys(ROOM_LABELS) as RoomSize[];
 
 interface HomeGymPlannerProps {
-  onQuickView: (product: { id: string }) => void;
+  onQuickView: (product: Product) => void;
 }
 
 export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {

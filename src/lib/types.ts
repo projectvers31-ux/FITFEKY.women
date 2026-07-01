@@ -21,7 +21,8 @@ export type CategoryId =
   | "squat_machine"
   | "yoga_mat"
   | "inversion_table"
-  | "fitness_tracker";
+  | "fitness_tracker"
+  | "shaker_bottle";
 
 /** Canonical product record ingested from the curated catalog. */
 export interface Product {

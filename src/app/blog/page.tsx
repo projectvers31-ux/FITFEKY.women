@@ -46,7 +46,7 @@ export default function BlogPage() {
       {/* Featured article */}
       <article className="mt-10">
         <Link
-          href={`/#editorial`}
+          href={`/#article-${featured.slug}`}
           className="card-modern group block overflow-hidden p-0"
         >
           <div className="relative h-56 overflow-hidden sm:h-72">
@@ -90,7 +90,7 @@ export default function BlogPage() {
         {rest.map((a) => (
           <Link
             key={a.id}
-            href={`/#editorial`}
+            href={`/#article-${a.slug}`}
             className="card-modern group flex flex-col p-0 overflow-hidden"
           >
             <div className="relative h-40 overflow-hidden">
@@ -130,13 +130,13 @@ export default function BlogPage() {
           What we write about
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Our Wellness Journal covers the topics women over 40 actually search
-          for: the best walking pads for weight loss, resistance bands vs.
-          weights for bone density, gentle yoga for stiff hips, smart scale
-          accuracy, low-impact cardio for bad knees, muscle recovery after 50,
-          and honest buying guides for every category of home fitness gear.
-          Every article is written by our editorial team and reviewed for
-          medical accuracy.
+        Our Wellness Journal covers the topics women over 40 actually search
+        for: the best walking pads for weight loss, resistance bands vs.
+        weights for bone density, gentle yoga for stiff hips, smart scale
+        accuracy, low-impact cardio for bad knees, muscle recovery after 50,
+        protein and post-workout nutrition, and honest buying guides for every
+        category of home fitness gear. Every article is written by our
+        editorial team and reviewed for medical accuracy.
         </p>
       </div>
 
@@ -147,8 +147,8 @@ export default function BlogPage() {
           Looking for specific gear?
         </p>
         <p className="max-w-md text-sm text-muted-foreground">
-          Browse our full catalog of 172 quality-scored products, filtered by
-          category, price and priority tier.
+        Browse our full catalog of 176 quality-scored products, filtered by
+        category, price and priority tier.
         </p>
         <Link
           href="/#catalog"

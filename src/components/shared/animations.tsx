@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, Children, isValidElement, type ReactNode } from "react";
 
 /* ============================================================
  * FitFeky animation system — CSS-based scroll-triggered
@@ -8,7 +8,12 @@ import { createContext, useContext, useEffect, useRef, useState, type ReactNode 
  * No framer-motion dependency.
  * ============================================================ */
 
-const StaggerCtx = createContext<{ visible: boolean; index: { current: number }; stagger: number } | null>(null);
+interface StaggerCtxValue {
+  visible: boolean;
+  stagger: number;
+}
+
+const StaggerCtx = createContext<StaggerCtxValue | null>(null);
 
 /** Fade + rise into view using IntersectionObserver + CSS transitions. */
 export function Reveal({
@@ -61,7 +66,6 @@ export function StaggerContainer({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const indexRef = useRef({ current: 0 });
 
   useEffect(() => {
     const el = ref.current;
@@ -75,15 +79,29 @@ export function StaggerContainer({
   }, []);
 
   return (
-    <StaggerCtx.Provider value={{ visible, index: indexRef, stagger }}>
+    <StaggerCtx.Provider value={{ visible, stagger }}>
       <div ref={ref} className={className}>
-        {children}
+        {Children.map(children, (child, i) => {
+          if (!isValidElement(child)) return child;
+          return (
+            <div
+              key={child.key ?? i}
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${stagger * i}s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${stagger * i}s`,
+              }}
+            >
+              {child}
+            </div>
+          );
+        })}
       </div>
     </StaggerCtx.Provider>
   );
 }
 
-/** Child of <StaggerContainer>. Fades + rises when its parent reveals it. */
+/** Child of <StaggerContainer>. Renders children with staggered animation timing. */
 export function StaggerItem({
   children,
   className,
@@ -91,23 +109,7 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  const ctx = useContext(StaggerCtx);
-  const idx = ctx ? ctx.index.current++ : 0;
-  const visible = ctx?.visible ?? true;
-  const delay = ctx ? ctx.stagger * idx : 0;
-
-  return (
-    <div
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(20px)",
-        transition: `opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 /** Scale + fade in — for images and cards. */
