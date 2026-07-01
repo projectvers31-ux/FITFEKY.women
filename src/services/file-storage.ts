@@ -1,3 +1,5 @@
+"use server";
+
 import fs from "fs/promises";
 import path from "path";
 
@@ -15,7 +17,12 @@ export async function readJsonFile<T>(filename: string): Promise<T> {
 
 export async function writeJsonFile<T>(filename: string, data: T): Promise<void> {
   const filePath = path.join(DATA_DIR, filename);
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+  try {
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+  } catch (error) {
+    console.error(`Failed to write file ${filename}:`, error);
+    // Silently fail on Vercel (read-only file system)
+  }
 }
 
 export async function readSettings(): Promise<Settings> {
