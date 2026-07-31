@@ -12,64 +12,64 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "GPTBot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Explicitly allow Anthropic's ClaudeBot
       {
         userAgent: "ClaudeBot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Explicitly allow Claude-Web
       {
         userAgent: "Claude-Web",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Explicitly allow PerplexityBot
       {
         userAgent: "PerplexityBot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Google's AI training crawler
       {
         userAgent: "Google-Extended",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Common Crawl (used by many open-source LLMs)
       {
         userAgent: "CCBot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Amazon's crawler (feeds Alexa, Amazon product AI)
       {
         userAgent: "Amazonbot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Meta's crawler
       {
         userAgent: "meta-externalagent",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Apple's AI crawler
       {
         userAgent: "AppleBot-Extended",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Default rule for everyone else
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://fitfeky.com/sitemap.xml",
-    host: "https://fitfeky.com",
+    sitemap: "https://www.fitfeky.com/sitemap.xml",
+    host: "https://www.fitfeky.com",
   };
 }

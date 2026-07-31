@@ -2,19 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ShieldCheck, DollarSign, Heart, ExternalLink } from "lucide-react";
 import { PageShell, PageHeading, PageP, PageList, PageMeta } from "@/components/layout/page-shell";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Affiliate Disclosure — How FitFeky Earns (Not From You) | FitFeky",
+  title: "Affiliate Disclosure — How FitFeky Earns | FitFeky",
   description:
-    "FitFeky is an Amazon Associates affiliate. We earn a commission from Amazon on qualifying purchases — at no extra cost to you. Read our full, transparent disclosure.",
-  alternates: { canonical: "/affiliate-disclosure" },
+    "FitFeky is an Amazon Associates affiliate. We earn a commission on qualifying purchases at no extra cost to you. Read our full, transparent disclosure.",
   robots: { index: true, follow: true },
+  ...pageMetadata("/affiliate-disclosure"),
 };
 
 export default function AffiliateDisclosurePage() {
   return (
-    <PageShell
-      kicker="Transparency"
+    <>
+      <PageShell
+        kicker="Transparency"
       title="Affiliate Disclosure"
       subtitle="We believe in complete honesty about how we make money. The short version: we earn a commission from Amazon when you buy — never from you."
     >
@@ -44,7 +46,7 @@ export default function AffiliateDisclosurePage() {
       <PageHeading id="what-is-fitfeky">What FitFeky is</PageHeading>
       <PageP>
         FitFeky is an independent editorial website that curates, reviews and
-        quality-scores at-home fitness equipment for women over 40. We are a
+        quality-scores at-home fitness equipment for women over 45. We are a
         participant in the{" "}
         <a
           href="https://affiliate-program.amazon.com/"
@@ -176,6 +178,7 @@ export default function AffiliateDisclosurePage() {
         </Link>
       </div>
     </PageShell>
+    </>
   );
 }
 

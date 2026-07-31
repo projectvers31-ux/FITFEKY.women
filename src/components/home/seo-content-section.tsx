@@ -12,7 +12,7 @@ interface SeoContentSectionProps {
 
 /**
  * Keyword-rich category buying-guide blocks. Each block targets a high-intent
- * long-tail query (e.g. "best resistance bands for women over 40") with an
+ * long-tail query (e.g. "best resistance bands for women over 45") with an
  * H2, intro paragraph and keyword chips. Drives SEO indexing + buyer intent.
  */
 export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) {

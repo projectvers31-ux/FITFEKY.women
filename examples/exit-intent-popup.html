@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exit-Intent Email Capture — FitFeky (standalone)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ Palette (matches FitFeky design tokens) ============ */
+  :root {
+    --terracotta: #b5654a;
+    --terracotta-dark: #9c543c;
+    --sage: #6f8265;
+    --cream: #fdf8f3;
+    --card: #fffdfa;
+    --espresso: #40372f;
+    --muted: #6f6358;
+    --border: #e8ddcf;
+    --gold: #d9b98a;
+    --radius: 1.75rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--cream);
+    color: var(--espresso);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* Demo page content only — remove in production */
+  .demo { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
+  .demo h1 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
+  .demo p { color: var(--muted); }
+  .demo .note {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--sage); border: 1px solid var(--sage);
+    padding: 4px 10px; border-radius: 999px;
+  }
+
+  /* ============ Overlay ============ */
+  .ff-popup {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  @media (min-width: 600px) { .ff-popup { align-items: center; padding: 24px; } }
+
+  .ff-popup[hidden] { display: none; }
+
+  .ff-popup__overlay {
+    position: absolute; inset: 0;
+    background: rgba(40, 32, 26, 0.5);
+    backdrop-filter: blur(2px);
+    animation: ff-fade 0.25s ease both;
+  }
+
+  /* ============ Panel ============ */
+  .ff-popup__panel {
+    position: relative;
+    width: 100%; max-width: 28rem;
+    max-height: 92vh; overflow-y: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 32px 28px calc(28px + env(safe-area-inset-bottom));
+    box-shadow: 0 24px 64px -24px rgba(40, 32, 26, 0.35);
+    animation: ff-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @media (min-width: 600px) {
+    .ff-popup__panel { border-radius: var(--radius); animation-name: ff-scale-in; }
+  }
+
+  /* Warm accent bar */
+  .ff-popup__bar {
+    position: absolute; inset: 0 0 auto 0; height: 6px; border-radius: var(--radius) var(--radius) 0 0;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--sage));
+  }
+
+  /* Close button */
+  .ff-popup__close {
+    position: absolute; top: 12px; right: 12px;
+    width: 40px; height: 40px; border: none; border-radius: 50%;
+    background: transparent; color: var(--muted); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .ff-popup__close:hover { background: #f0e7db; color: var(--espresso); }
+  .ff-popup__close:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+  .ff-popup__close svg { width: 18px; height: 18px; }
+
+  /* Content */
+  .ff-popup__kicker {
+    margin: 0 0 10px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta);
+  }
+  .ff-popup__title {
+    margin: 0; font-family: "Fraunces", Georgia, serif;
+    font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .ff-popup__title em { font-style: normal; color: var(--terracotta); }
+  .ff-popup__desc {
+    margin: 12px 0 20px; font-size: 15px; color: var(--muted);
+  }
+
+  .ff-popup__field {
+    width: 100%; height: 48px; padding: 0 18px; margin-bottom: 12px;
+    font: inherit; font-size: 16px; color: var(--espresso);
+    background: #fff; border: 1px solid var(--border); border-radius: 999px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ff-popup__field::placeholder { color: #9d9085; }
+  .ff-popup__field:focus-visible {
+    outline: none; border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(181, 101, 74, 0.2);
+  }
+  .ff-popup__field[aria-invalid="true"] { border-color: #b3261e; }
+  .ff-popup__error {
+    margin: -6px 0 10px; font-size: 12px; font-weight: 500; color: #b3261e;
+  }
+
+  .ff-popup__cta {
+    width: 100%; height: 48px; border: none; border-radius: 999px;
+    font: inherit; font-size: 16px; font-weight: 600; cursor: pointer;
+    color: #fffdfa; background: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .ff-popup__cta:hover { background: var(--terracotta-dark); }
+  .ff-popup__cta:active { transform: scale(0.99); }
+  .ff-popup__cta:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+  .ff-popup__cta:disabled { opacity: 0.7; cursor: default; }
+  .ff-popup__cta svg { width: 16px; height: 16px; }
+  .ff-popup__cta .ff-spin { animation: ff-spin 0.9s linear infinite; }
+
+  .ff-popup__fineprint {
+    margin: 14px 0 0; text-align: center; font-size: 11px; color: var(--muted);
+  }
+
+  /* Success state */
+  .ff-popup__success {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    text-align: center; padding: 24px 0;
+  }
+  .ff-popup__success-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(111, 130, 101, 0.18); color: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ff-popup__success-icon svg { width: 28px; height: 28px; }
+  .ff-popup__success h3 {
+    margin: 0; font-family: "Fraunces", Georgia, serif;
+    font-size: 24px; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .ff-popup__success p { margin: 0; font-size: 14px; color: var(--muted); }
+
+  /* ============ Animations ============ */
+  @keyframes ff-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ff-slide-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ff-scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes ff-spin { to { transform: rotate(360deg); } }
+
+  /* ============ Accessibility: reduced motion ============ */
+  @media (prefers-reduced-motion: reduce) {
+    .ff-popup__overlay, .ff-popup__panel { animation: none; }
+    .ff-popup__cta .ff-spin { animation: none; }
+  }
+
+  /* ============ Tap targets on touch devices ============ */
+  @media (pointer: coarse) {
+    .ff-popup__close { width: 48px; height: 48px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Demo page content — remove in production -->
+  <main class="demo">
+    <span class="note">Demo page</span>
+    <h1>FitFeky — joint-friendly fitness gear for women 45+</h1>
+    <p>This page is only here so you can test the popup. Move your mouse to the very top edge of the window (or shrink the window and tap around / scroll up on mobile) to trigger it.</p>
+    <p>Scroll down far enough, then scroll back up to test the mobile scroll trigger. Or wait 30 seconds.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+  </main>
+
+  <!-- ============ Exit-intent popup ============ -->
+  <div class="ff-popup" hidden role="dialog" aria-modal="true" aria-labelledby="ff-exit-title" aria-describedby="ff-exit-desc">
+    <div class="ff-popup__overlay" data-close></div>
+    <div class="ff-popup__panel" tabindex="-1">
+      <div class="ff-popup__bar" aria-hidden="true"></div>
+
+      <button type="button" class="ff-popup__close" data-close aria-label="Close popup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="ff-popup__form">
+        <p class="ff-popup__kicker">Free download</p>
+        <h2 class="ff-popup__title" id="ff-exit-title">Wait! Get Your <em>Free Joint-Friendly Home Gym Checklist</em></h2>
+        <p class="ff-popup__desc" id="ff-exit-desc">The 7 essential pieces of equipment every woman over 45 needs to build strength safely at home — without joint pain.</p>
+
+        <form id="ff-exit-form" novalidate aria-label="Get the free checklist">
+          <label for="ff-exit-email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+          <input class="ff-popup__field" id="ff-exit-email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="Enter your email address" aria-describedby="ff-exit-error">
+          <p class="ff-popup__error" id="ff-exit-error" role="alert" hidden></p>
+          <button type="submit" class="ff-popup__cta">
+            <svg class="ff-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <span class="ff-label">Send My Free Checklist</span>
+          </button>
+        </form>
+        <p class="ff-popup__fineprint">No spam. Unsubscribe anytime.</p>
+      </div>
+
+      <div class="ff-popup__success" hidden aria-live="polite">
+        <span class="ff-popup__success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
+        </span>
+        <h3>Check your inbox!</h3>
+        <p>Your checklist is on its way.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== Config — keep these in sync with the React component ===== */
+  var KEY_DISMISSED = "fitfeky_exit_popup_dismissed_at";
+  var KEY_SUBSCRIBED = "fitfeky_exit_popup_subscribed";
+  var KEY_QUEUE = "fitfeky_exit_popup_queue";
+  var SUPPRESS_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+  var MOBILE_DELAY_MS = 30000; // 30s on touch devices
+  var EXIT_THRESHOLD = 8; // top-edge zone in px
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  var popup = document.querySelector(".ff-popup");
+  var panel = popup.querySelector(".ff-popup__panel");
+  var form = document.getElementById("ff-exit-form");
+  var input = document.getElementById("ff-exit-email");
+  var errorEl = document.getElementById("ff-exit-error");
+  var ctaBtn = form.querySelector(".ff-popup__cta");
+  var ctaLabel = form.querySelector(".ff-label");
+  var sendIcon = form.querySelector(".ff-send");
+  var formView = popup.querySelector(".ff-popup__form");
+  var successView = popup.querySelector(".ff-popup__success");
+
+  var shown = false;
+  var passedHalfway = false;
+  var previouslyFocused = null;
+  var mobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  function read(key) {
+    try { return window.localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function write(key, value) {
+    try { window.localStorage.setItem(key, value); } catch (e) { /* ignore */ }
+  }
+
+  function shouldShow() {
+    if (shown) return false;
+    if (read(KEY_SUBSCRIBED)) return false;
+    var dismissed = Number(read(KEY_DISMISSED));
+    if (dismissed && Date.now() - dismissed < SUPPRESS_MS) return false;
+    return true;
+  }
+
+  function show() {
+    if (!shouldShow()) return;
+    shown = true;
+    previouslyFocused = document.activeElement;
+    popup.hidden = false;
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(function () { input.focus(); });
+  }
+
+  function close() {
+    popup.hidden = true;
+    document.body.style.overflow = "";
+    write(KEY_DISMISSED, String(Date.now()));
+    if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+  }
+
+  /* Keyboard: Escape closes, Tab stays inside the dialog */
+  function onKeyDown(e) {
+    if (popup.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); return; }
+    if (e.key !== "Tab") return;
+    var focusables = panel.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    var first = focusables[0];
+    var last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  document.addEventListener("keydown", onKeyDown);
+
+  /* Overlay + X close */
+  popup.querySelectorAll("[data-close]").forEach(function (el) {
+    el.addEventListener("click", close);
+  });
+
+  /* ===== Trigger: mobile — 30s timer or scroll back up past 50% ===== */
+  if (mobile) {
+    var timer = window.setTimeout(show, MOBILE_DELAY_MS);
+    window.addEventListener("scroll", function () {
+      var half = (document.documentElement.scrollHeight - window.innerHeight) * 0.5;
+      if (window.scrollY > half) passedHalfway = true;
+      else if (passedHalfway) show();
+    }, { passive: true });
+  } else {
+    /* ===== Trigger: desktop — cursor toward close/back zone (top edge) ===== */
+    var lastY = 0, scheduled = false;
+    document.addEventListener("mousemove", function (e) {
+      var y = e.clientY;
+      if (y > EXIT_THRESHOLD) lastY = y;
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(function () {
+        scheduled = false;
+        if (y <= EXIT_THRESHOLD && y < lastY) show();
+      });
+    }, { passive: true });
+    document.addEventListener("mouseout", function (e) {
+      if (!e.relatedTarget && e.clientY <= EXIT_THRESHOLD) show();
+    });
+  }
+
+  /* ===== Submit ===== */
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var value = input.value.trim().toLowerCase();
+    if (!EMAIL_RE.test(value)) {
+      errorEl.textContent = "Please enter a valid email address.";
+      errorEl.hidden = false;
+      input.setAttribute("aria-invalid", "true");
+      input.focus();
+      return;
+    }
+    errorEl.hidden = true;
+    input.removeAttribute("aria-invalid");
+
+    ctaBtn.disabled = true;
+    ctaLabel.textContent = "Sending…";
+    sendIcon.classList.add("ff-spin");
+
+    setTimeout(function () {
+      /* Queue the email — ready for ConvertKit / Mailchimp sync */
+      var queue = [];
+      try { queue = JSON.parse(read(KEY_QUEUE) || "[]"); } catch (err) { queue = []; }
+      if (queue.indexOf(value) === -1) queue.push(value);
+      write(KEY_QUEUE, JSON.stringify(queue));
+      write(KEY_SUBSCRIBED, "1");
+
+      formView.hidden = true;
+      successView.hidden = false;
+      panel.querySelector(".ff-popup__close").focus();
+    }, 800);
+  });
+})();
+</script>
+</body>
+</html>

@@ -3,8 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { CATEGORIES } from "@/lib/categories";
 import { resolveIcon } from "@/lib/icon-registry";
-import { StaggerContainer, StaggerItem } from "@/components/shared/animations";
-import { cn } from "@/lib/utils";
+import { StaggerContainer } from "@/components/shared/animations";
 
 interface CategoryShowcaseProps {
   counts: Record<string, number>;
@@ -37,11 +36,11 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
           const Icon = resolveIcon(c.icon);
           const count = counts[c.id] ?? 0;
           return (
-            <StaggerItem key={c.id}>
-              <button
-                onClick={() => handle(c.id)}
-                className="card-modern group flex min-h-[120px] w-full flex-col items-start p-4 text-left transition-transform hover:scale-[1.02] active:scale-[0.99] sm:p-5"
-              >
+            <button
+              key={c.id}
+              onClick={() => handle(c.id)}
+              className="card-modern group flex min-h-[120px] w-full flex-col items-start p-4 text-left transition-transform hover:scale-[1.02] active:scale-[0.99] sm:p-5"
+            >
                 <div className="flex w-full items-center justify-between">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon size={18} strokeWidth={1.75} />
@@ -60,8 +59,7 @@ export function CategoryShowcase({ counts, onSelect }: CategoryShowcaseProps) {
                 <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-muted-foreground/70">
                   {count} {count === 1 ? "piece" : "pieces"}
                 </p>
-              </button>
-            </StaggerItem>
+            </button>
           );
         })}
       </StaggerContainer>

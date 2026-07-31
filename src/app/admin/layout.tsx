@@ -1,5 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { FileText, Sparkles } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Admin — FitFeky",
+  robots: { index: false, follow: false },
+};
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -26,7 +26,7 @@ function bfCategory(bf: number, sex: Sex): BfCategory {
       ? [
           { max: 13, label: "Essential", tone: "text-sky-600", pct: 12, range: "10–13%", advice: "Minimum fat needed for basic physiological functions." },
           { max: 20, label: "Athletic", tone: "text-accent", pct: 30, range: "14–20%", advice: "Lean, athletic range — common in trained women." },
-          { max: 24, label: "Fitness", tone: "text-accent", pct: 48, range: "21–24%", advice: "Healthy and fit — a great target for women over 40." },
+          { max: 24, label: "Fitness", tone: "text-accent", pct: 48, range: "21–24%", advice: "Healthy and fit — a great target for women over 45." },
           { max: 31, label: "Acceptable", tone: "text-amber-600", pct: 72, range: "25–31%", advice: "Average healthy range for most women." },
           { max: 100, label: "Higher than optimal", tone: "text-rose-600", pct: 92, range: "32%+", advice: "Consider gentle, consistent movement and strength work." },
         ]
@@ -228,7 +228,7 @@ export function BodyFatCalculator() {
             </div>
 
             <p className="mt-4 text-xs text-muted-foreground">
-              For women over 40, body fat % is a far better health signal than
+              For women over 45, body fat % is a far better health signal than
               scale weight — muscle is denser than fat, so the mirror and your
               favorite jeans tell the real story. Pair this with a smart scale
               to track the trend monthly.

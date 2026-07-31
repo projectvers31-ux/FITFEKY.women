@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 /**
  * MET-based calorie burn. Activities chosen to match the catalog's low-impact,
- * women-40+ focus. MET values are conservative moderate-effort estimates.
+ * women-45+ focus. MET values are conservative moderate-effort estimates.
  */
 const ACTIVITIES: { id: string; label: string; met: number; calc: string }[] = [
   { id: "walking", label: "Walking pad (2.5 mph)", met: 3.0, calc: "Calories Burned Walking Calculator" },

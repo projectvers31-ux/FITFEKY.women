@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import { PageShell, PageHeading, PageP, PageList, PageMeta } from "@/components/layout/page-shell";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | FitFeky",
   description:
     "How FitFeky collects, uses and protects your personal information. We collect minimal data, use it only to improve your experience, and never sell it.",
-  alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
+  ...pageMetadata("/privacy"),
 };
 
 export default function PrivacyPage() {
   return (
-    <PageShell
+    <>
+      <PageShell
       kicker="Your data, your rights"
       title="Privacy Policy"
       subtitle="We collect the minimum data needed to run the site, we use it only to improve your experience, and we never sell it."
@@ -21,7 +23,7 @@ export default function PrivacyPage() {
       <PageP>
         This Privacy Policy explains how FitFeky (&ldquo;we&rdquo;,
         &ldquo;us&rdquo; or &ldquo;our&rdquo;) collects, uses, discloses and
-        safeguards your information when you visit fitfeky.com (the
+        safeguards your information when you visit www.fitfeky.com (the
         &ldquo;Site&rdquo;). We are committed to protecting your privacy and
         complying with the California Consumer Privacy Act (CCPA), the
         California Online Privacy Protection Act (CalOPPA) and the EU General
@@ -150,5 +152,6 @@ export default function PrivacyPage() {
         <>We aim to respond to all privacy requests within 48 hours.</>
       </PageList>
     </PageShell>
+    </>
   );
 }

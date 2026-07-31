@@ -14,7 +14,7 @@ interface FeaturedPicksProps {
 }
 
 export function FeaturedPicks({ products, onQuickView, onSeeAll }: FeaturedPicksProps) {
-  const scroller = useRef<HTMLDivElement>(null);
+  const scroller = useRef<HTMLUListElement>(null);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = scroller.current;
@@ -56,19 +56,19 @@ export function FeaturedPicks({ products, onQuickView, onSeeAll }: FeaturedPicks
           </div>
         </Reveal>
 
-        <div
+        <ul
           ref={scroller}
-          className="scroll-soft flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          className="scroll-soft flex list-none snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
         >
           {products.map((p) => (
-            <div
+            <li
               key={p.id}
               className="w-[68%] shrink-0 snap-start sm:w-[42%] lg:w-[24%]"
             >
               <ProductCard product={p} onQuickView={onQuickView} />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
+import { OptimizedImage } from "@/components/shared/optimized-image";
 import { ARTICLES } from "@/lib/articles";
+import { articleJsonLd, jsonLdScript, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Wellness Journal — Fitness Advice for Women Over 40 | FitFeky",
+  title: "Wellness Journal — Fitness Advice for Women Over 45 | FitFeky",
   description:
-    "Expert buying guides, workout tips and recovery advice for women 40+. Walking pads, resistance bands, yoga, smart scales, massage guns — honest, science-backed reading.",
-  alternates: { canonical: "/blog" },
+    "Expert buying guides, workouts and recovery advice for women 45+ — walking pads, resistance bands, yoga and smart scales. Honest, science-backed reading.",
   robots: { index: true, follow: true },
   keywords: [
-    "fitness blog for women over 40",
+    "fitness blog for women over 45",
     "home workout advice",
     "walking pad guide",
     "resistance band training",
-    "yoga for women 50+",
-    "recovery after 50",
+    "yoga for women over 45",
+    "recovery after 45",
   ],
+  ...pageMetadata("/blog"),
 };
 
 export default function BlogPage() {
@@ -26,9 +27,30 @@ export default function BlogPage() {
   const categories = Array.from(new Set(ARTICLES.map((a) => a.category)));
 
   return (
-    <PageShell
-      kicker="The Wellness Journal"
-      title="Honest fitness reading for women 40+"
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            ARTICLES.map((a) =>
+              articleJsonLd({
+                title: a.title,
+                description: a.excerpt,
+                body: a.body,
+                keywords: a.keywords,
+                image: a.image,
+                urlPath: "/#article-" + a.slug,
+                datePublished: "2026-01-15",
+                dateModified: "2026-07-01",
+                author: "FitFeky Editorial Team",
+              }),
+            ),
+          ),
+        }}
+      />
+      <PageShell
+        kicker="The Wellness Journal"
+      title="Honest fitness reading for women 45+"
       subtitle="No fad diets, no “blast your belly” nonsense. Just thoughtful, science-backed guidance on gear, training and recovery — written for the body you have today."
     >
       {/* Category pills */}
@@ -50,13 +72,12 @@ export default function BlogPage() {
           className="card-modern group block overflow-hidden p-0"
         >
           <div className="relative h-56 overflow-hidden sm:h-72">
-            <Image
+            <OptimizedImage
               src={featured.image}
               alt={featured.imageAlt}
-              fill
-              priority
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 672px"
+              className="h-full"
+              imgClassName="transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute left-5 top-5">
@@ -94,12 +115,12 @@ export default function BlogPage() {
             className="card-modern group flex flex-col p-0 overflow-hidden"
           >
             <div className="relative h-40 overflow-hidden">
-              <Image
+              <OptimizedImage
                 src={a.image}
                 alt={a.imageAlt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 336px"
+                className="h-full"
+                imgClassName="transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -130,10 +151,10 @@ export default function BlogPage() {
           What we write about
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-        Our Wellness Journal covers the topics women over 40 actually search
+        Our Wellness Journal covers the topics women over 45 actually search
         for: the best walking pads for weight loss, resistance bands vs.
         weights for bone density, gentle yoga for stiff hips, smart scale
-        accuracy, low-impact cardio for bad knees, muscle recovery after 50,
+        accuracy, low-impact cardio for bad knees, muscle recovery after 45,
         protein and post-workout nutrition, and honest buying guides for every
         category of home fitness gear. Every article is written by our
         editorial team and reviewed for medical accuracy.
@@ -158,5 +179,6 @@ export default function BlogPage() {
         </Link>
       </div>
     </PageShell>
+    </>
   );
 }

@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
   // Experimental: optimize package imports for smaller bundles
   experimental: {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+    // Inline imported CSS as <style> tags in the HTML instead of emitting
+    // render-blocking <link rel="stylesheet"> tags (App Router, production).
+    inlineCss: true,
   },
 };
 

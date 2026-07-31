@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { ShieldCheck, Lock, Eye, HeartHandshake } from "lucide-react";
 import { TESTING_CRITERIA } from "@/lib/content";
 import { resolveIcon } from "@/lib/icon-registry";
+import { OptimizedImage } from "@/components/shared/optimized-image";
 
 export function HowWeTestSection() {
   return (
@@ -10,15 +10,12 @@ export function HowWeTestSection() {
         {/* Visual — large, breathing */}
         <div className="relative order-2 lg:order-1">
           <div className="relative overflow-hidden rounded-[1.5rem] bg-secondary/40 shadow-xl">
-            <div className="relative aspect-[4/5] w-full sm:aspect-[4/4]">
-              <Image
-                src="/how-we-test.png"
-                alt="FitFeky editors testing at-home fitness gear"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            <OptimizedImage
+              src="/how-we-test.png"
+              alt="FitFeky editors testing at-home fitness gear"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="relative aspect-[4/5] w-full sm:aspect-[4/4]"
+            />
           </div>
 
           {/* Floating score card */}
@@ -79,7 +76,7 @@ export function HowWeTestSection() {
           <div className="mt-6 flex flex-wrap gap-2">
             <MicroBadge icon={Lock} label="No paid placement" />
             <MicroBadge icon={Eye} label="Independently verified" />
-            <MicroBadge icon={HeartHandshake} label="Women 40+ focused" />
+            <MicroBadge icon={HeartHandshake} label="Women 45+ focused" />
           </div>
         </div>
       </div>

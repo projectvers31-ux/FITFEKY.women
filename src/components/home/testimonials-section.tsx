@@ -22,12 +22,12 @@ export function TestimonialsSection() {
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="kicker mb-4 text-primary">Real women · Real results</p>
-          <h2
+          <h3
             id="testimonials-heading"
             className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Strength, reclaimed.
-          </h2>
+          </h3>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-background/70">
             From regaining flexibility to managing chronic pain — these are the
             women whose lives changed with the right gear.
@@ -35,7 +35,12 @@ export function TestimonialsSection() {
         </div>
 
         {/* Featured testimonial — large editorial quote */}
-        <figure className="mx-auto mt-14 max-w-3xl text-center">
+        <figure
+          itemScope
+          itemType="https://schema.org/Review"
+          className="mx-auto mt-14 max-w-3xl text-center"
+        >
+          <meta itemProp="itemReviewed" content="FitFeky" />
           <Quote
             className="mx-auto h-10 w-10 text-primary/40"
             strokeWidth={1}
@@ -43,18 +48,30 @@ export function TestimonialsSection() {
             aria-hidden="true"
           />
           <blockquote
+            itemProp="reviewBody"
             key={active}
             className="mt-6 font-display text-2xl font-medium leading-[1.4] tracking-tight animate-fade-up sm:text-3xl lg:text-[2.1rem] lg:leading-[1.4]"
           >
             &ldquo;{TESTIMONIALS[active].quote}&rdquo;
           </blockquote>
           <figcaption className="mt-8 flex flex-col items-center gap-3">
-            <div className="flex items-center gap-1" aria-hidden="true">
+            <div
+              itemProp="reviewRating"
+              itemScope
+              itemType="https://schema.org/Rating"
+              className="flex items-center gap-1"
+            >
+              <meta itemProp="ratingValue" content={String(TESTIMONIALS[active].rating)} />
+              <meta itemProp="bestRating" content="5" />
+              <meta itemProp="worstRating" content="1" />
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
+                <Star key={i} size={15} className="fill-amber-400 text-amber-400" aria-hidden="true" />
               ))}
+              <span className="sr-only">
+                Rated {TESTIMONIALS[active].rating} out of 5 stars
+              </span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3" itemProp="author" itemScope itemType="https://schema.org/Person">
               <div
                 className={cn(
                   "grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br font-display text-sm font-semibold text-white shadow-md",
@@ -66,10 +83,13 @@ export function TestimonialsSection() {
               </div>
               <div className="text-left">
                 <p className="font-semibold text-background">
-                  {TESTIMONIALS[active].name}, {TESTIMONIALS[active].age}
+                  <span itemProp="name">
+                    {TESTIMONIALS[active].name}, {TESTIMONIALS[active].age}
+                  </span>
                 </p>
                 <p className="text-sm text-background/60">
-                  {TESTIMONIALS[active].location} · {TESTIMONIALS[active].highlight}
+                  {TESTIMONIALS[active].location} · {TESTIMONIALS[active].product} ·{" "}
+                  {TESTIMONIALS[active].highlight}
                 </p>
               </div>
             </div>

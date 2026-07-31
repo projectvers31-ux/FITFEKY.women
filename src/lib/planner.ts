@@ -144,7 +144,7 @@ export function recommendGearForPlan(input: PlanInput): PlanResult {
     },
     resistance_bands: {
       role: "Strength training",
-      reason: "Joint-friendly resistance that rebuilds muscle safely after 40.",
+      reason: "Joint-friendly resistance that rebuilds muscle safely after 45.",
     },
     yoga_mat: {
       role: "Floor foundation",
@@ -156,7 +156,7 @@ export function recommendGearForPlan(input: PlanInput): PlanResult {
     },
     smart_scale: {
       role: "Progress tracking",
-      reason: "Body composition matters more than weight after 40 — track the trend.",
+      reason: "Body composition matters more than weight after 45 — track the trend.",
     },
     dumbbell: {
       role: "Bone-building strength",

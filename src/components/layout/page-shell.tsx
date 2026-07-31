@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { cn } from "@/lib/utils";
 
 interface PageShellProps {
   kicker: string;
@@ -13,6 +14,8 @@ interface PageShellProps {
   children: React.ReactNode;
   /** Optional right-aligned hero element (image, card, etc.) */
   heroVisual?: React.ReactNode;
+  /** Use a wider content column without prose styling (tables, tools). */
+  wide?: boolean;
 }
 
 /**
@@ -22,7 +25,7 @@ interface PageShellProps {
  *
  * Uses the same warm editorial design system as the homepage.
  */
-export function PageShell({ kicker, title, subtitle, children, heroVisual }: PageShellProps) {
+export function PageShell({ kicker, title, subtitle, children, heroVisual, wide }: PageShellProps) {
   return (
     <>
       <Header
@@ -57,8 +60,13 @@ export function PageShell({ kicker, title, subtitle, children, heroVisual }: Pag
         </section>
 
         {/* Content */}
-        <section className="mx-auto max-w-3xl px-6 py-14 sm:px-8 sm:py-16 lg:px-12">
-          <div className="prose-fitfeky">{children}</div>
+        <section
+          className={cn(
+            "mx-auto px-6 py-14 sm:px-8 sm:py-16 lg:px-12",
+            wide ? "max-w-7xl" : "max-w-3xl",
+          )}
+        >
+          <div className={wide ? undefined : "prose-fitfeky"}>{children}</div>
         </section>
       </main>
       <Footer />

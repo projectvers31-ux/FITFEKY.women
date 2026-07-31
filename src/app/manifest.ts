@@ -6,30 +6,36 @@ import type { MetadataRoute } from "next";
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "FitFeky — Premium At-Home Fitness Gear for Women Over 40",
+    name: "FitFeky — Premium At-Home Fitness Gear for Women Over 45",
     short_name: "FitFeky",
     description:
-      "Quality-scored walking pads, resistance bands, yoga mats, smart scales & recovery tools for women 40+. Expert reviews, free calculators, real ratings.",
+      "Quality-scored walking pads, resistance bands, yoga mats, smart scales & recovery tools for women 45+. Expert reviews, free calculators, real ratings.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f8f4ee",
-    theme_color: "#b85c3a",
+    background_color: "#faf7f2",
+    theme_color: "#7a9e7e",
     orientation: "portrait-primary",
     scope: "/",
     lang: "en-US",
     categories: ["health", "fitness", "shopping", "lifestyle"],
     icons: [
       {
-        src: "/logo.svg",
-        sizes: "any",
-        type: "image/svg+xml",
+        src: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
         purpose: "any",
       },
       {
-        src: "/favicon.ico",
-        sizes: "48x48",
-        type: "image/x-icon",
+        src: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
         purpose: "any",
+      },
+      {
+        src: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
     shortcuts: [
@@ -55,7 +61,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Wellness Journal",
         short_name: "Journal",
         url: "/#editorial",
-        description: "Expert buying guides and fitness advice for women 40+",
+        description: "Expert buying guides and fitness advice for women 45+",
       },
     ],
   };

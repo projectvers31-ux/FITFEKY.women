@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import { PageShell, PageHeading, PageP, PageList, PageMeta } from "@/components/layout/page-shell";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Terms of Service | FitFeky",
   description:
-    "The terms and conditions governing your use of FitFeky. By using the site you agree to these terms, including our affiliate disclosure and disclaimer.",
-  alternates: { canonical: "/terms" },
+    "The terms governing your use of FitFeky — including our affiliate disclosure, disclaimer and limitation of liability — written in plain English.",
   robots: { index: true, follow: true },
+  ...pageMetadata("/terms"),
 };
 
 export default function TermsPage() {
   return (
-    <PageShell
+    <>
+      <PageShell
       kicker="The fine print, in plain English"
       title="Terms of Service"
       subtitle="By using FitFeky you agree to these terms. We&rsquo;ve written them in plain language — no legalese where we can help it."
@@ -21,7 +23,7 @@ export default function TermsPage() {
       <PageHeading id="agreement">1. Agreement to terms</PageHeading>
       <PageP>
         These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and
-        use of fitfeky.com (the &ldquo;Site&rdquo;) operated by FitFeky
+        use of www.fitfeky.com (the &ldquo;Site&rdquo;) operated by FitFeky
         (&ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;). By accessing
         or using the Site, you agree to be bound by these Terms. If you
         disagree with any part, you may not access the Site.
@@ -64,7 +66,7 @@ export default function TermsPage() {
       <PageP>
         Always consult a qualified physician, physical therapist or certified
         trainer before starting any exercise program, especially if you have a
-        pre-existing condition, are recovering from injury, or are over 40
+        pre-existing condition, are recovering from injury, or are over 45
         and resuming intense activity. Use our calculators as estimates, not
         diagnoses.
       </PageP>
@@ -177,5 +179,6 @@ export default function TermsPage() {
         </p>
       </div>
     </PageShell>
+    </>
   );
 }

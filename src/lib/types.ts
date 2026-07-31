@@ -87,7 +87,7 @@ export interface CategoryMeta {
   id: CategoryId;
   /** Human label, e.g. "Resistance Bands". */
   label: string;
-  /** Short empathetic description for women 40+. */
+  /** Short empathetic description for women 45+. */
   blurb: string;
   /** Lucide icon name (resolved on the client). */
   icon: string;

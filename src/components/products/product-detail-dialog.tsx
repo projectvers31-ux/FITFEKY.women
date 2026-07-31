@@ -26,6 +26,7 @@ import { PriorityBadge } from "@/components/shared/priority-badge";
 import { ProductCard } from "./product-card";
 import { CATEGORY_MAP, CALCULATOR_MAP } from "@/lib/categories";
 import { relatedProducts } from "@/lib/product-utils";
+import { trackViewContent } from "@/lib/meta-pixel";
 import type { Product } from "@/lib/types";
 
 interface ProductDetailDialogProps {
@@ -45,6 +46,12 @@ export function ProductDetailDialog({ product, onClose, onQuickView }: ProductDe
       document.body.style.overflow = original;
     };
   }, [open]);
+
+  // Meta Pixel — ViewContent whenever a product detail is shown.
+  useEffect(() => {
+    if (!product) return;
+    trackViewContent(product);
+  }, [product]);
 
   if (!product) return null;
 
@@ -102,9 +109,9 @@ export function ProductDetailDialog({ product, onClose, onQuickView }: ProductDe
                   {category.label}
                 </p>
               )}
-              <h2 className="mt-1.5 font-display text-2xl font-bold leading-tight tracking-tight text-foreground">
+              <h3 className="mt-1.5 font-display text-2xl font-bold leading-tight tracking-tight text-foreground">
                 {product.title}
-              </h2>
+              </h3>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <StarRating rating={product.rating} reviews={product.reviews} size={15} />
@@ -140,6 +147,9 @@ export function ProductDetailDialog({ product, onClose, onQuickView }: ProductDe
                   <AffiliateButton
                     href={product.affiliateUrl}
                     priceDisplay={product.priceDisplay}
+                    contentId={product.id}
+                    contentName={product.title}
+                    price={product.price}
                     size="lg"
                     fullWidth
                   />
@@ -267,7 +277,7 @@ function editorialBlurb(p: Product): string {
         : "";
 
   return (
-    `Hand-picked for women over 40, this ${catLabel} entry is ${scoreTier} for ${audience}. ` +
+    `Hand-picked for women over 45, this ${catLabel} entry is ${scoreTier} for ${audience}. ` +
     `We weighted its quality score (${p.qualityScore}/100), priority tier and real customer feedback to make sure it earns a place in your home studio.${ratingLine} ` +
     `It's the kind of joint-kind, low-impact equipment that helps you build strength and flexibility without beating up your body.`
   );

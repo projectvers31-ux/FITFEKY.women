@@ -2,7 +2,6 @@
 
 import { memo } from "react";
 import { Eye, ArrowUpRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { ProductImage } from "@/components/shared/product-image";
 import { StarRating } from "@/components/shared/star-rating";
 import { AffiliateButton } from "@/components/shared/affiliate-button";
@@ -18,7 +17,7 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
   const editorsChoice = product.qualityScore >= 90;
 
   return (
-    <Card className="card-modern group flex h-full flex-col overflow-hidden p-0">
+    <article className="card-modern group flex h-full flex-col overflow-hidden p-0">
       {/* Image area — generous, with minimal overlay */}
       <button
         onClick={() => onQuickView(product)}
@@ -36,11 +35,9 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
 
         {/* Editor's Choice — minimalist top-left mark */}
         {editorsChoice && (
-          <div className="absolute left-3 top-3">
-            <span className="badge-minimal border-none bg-background/90 text-primary backdrop-blur-md">
-              Editor's Choice
-            </span>
-          </div>
+          <span className="badge-minimal absolute left-3 top-3 border-none bg-background/90 text-primary backdrop-blur-md">
+            Editor's Choice
+          </span>
         )}
 
         {/* Quality score — refined, top-right */}
@@ -57,11 +54,9 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
         </div>
 
         {/* Quick view affordance — subtle, bottom */}
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center pb-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-md backdrop-blur-md">
-            <Eye size={13} /> Quick view
-          </span>
-        </div>
+        <span className="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-md backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+          <Eye size={13} /> Quick view
+        </span>
       </button>
 
       {/* Body — editorial type treatment, tighter padding on mobile */}
@@ -76,33 +71,30 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
           {product.title}
         </h3>
 
-        <div className="mt-2.5">
-          <StarRating rating={product.rating} reviews={product.reviews} size={12} />
-        </div>
+        <StarRating rating={product.rating} reviews={product.reviews} size={12} className="mt-2.5" />
 
         {/* Price — confident, editorial */}
-        <div className="mt-auto pt-4">
-          {product.priceDisplay ? (
-            <div className="flex items-baseline gap-2">
-              <p className="font-display text-xl font-semibold text-foreground">
-                {product.priceDisplay}
-              </p>
-            </div>
-          ) : (
-            <p className="text-sm font-medium text-muted-foreground">
-              Price on Amazon
-              <span className="ml-1.5 text-[10px] uppercase tracking-wide text-primary">
-                Live
-              </span>
-            </p>
-          )}
-        </div>
+        {product.priceDisplay ? (
+          <p className="mt-auto pt-4 font-display text-xl font-semibold text-foreground">
+            {product.priceDisplay}
+          </p>
+        ) : (
+          <p className="mt-auto pt-4 text-sm font-medium text-muted-foreground">
+            Price on Amazon
+            <span className="ml-1.5 text-[10px] uppercase tracking-wide text-primary">
+              Live
+            </span>
+          </p>
+        )}
 
         {/* Refined CTA row — larger touch targets on mobile */}
         <div className="mt-4 flex items-center gap-2">
           <AffiliateButton
             href={product.affiliateUrl}
             priceDisplay={product.priceDisplay}
+            contentId={product.id}
+            contentName={product.title}
+            price={product.price}
             size="sm"
             fullWidth
             className="h-11 font-medium sm:h-9"
@@ -116,6 +108,6 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
           </button>
         </div>
       </div>
-    </Card>
+    </article>
   );
 });

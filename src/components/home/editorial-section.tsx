@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { BookOpen, Clock, ArrowRight, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { OptimizedImage } from "@/components/shared/optimized-image";
 import { ARTICLES, type Article } from "@/lib/articles";
 
 export function EditorialSection() {
@@ -47,10 +47,10 @@ export function EditorialSection() {
       <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="max-w-2xl">
           <p className="kicker mb-4">The Wellness Journal</p>
-          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+          <h3 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
             Honest guidance,{" "}
             <span className="text-gradient-warm">written for you.</span>
-          </h2>
+          </h3>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             No fad diets, no “blast your belly” nonsense. Just thoughtful,
             science-backed reading for women building strength at midlife and
@@ -66,12 +66,12 @@ export function EditorialSection() {
           className="card-modern group relative flex flex-col overflow-hidden p-0 text-left"
         >
           <div className="relative h-56 overflow-hidden sm:h-72">
-            <Image
+            <OptimizedImage
               src={featured.image}
               alt={featured.imageAlt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              className="h-full"
+              imgClassName="transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute left-4 top-4">
@@ -108,12 +108,12 @@ export function EditorialSection() {
               className="card-modern group flex gap-5 p-5 text-left"
             >
               <div className="relative hidden h-24 w-32 shrink-0 overflow-hidden rounded-xl sm:block">
-                <Image
+                <OptimizedImage
                   src={a.image}
                   alt={a.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="128px"
+                  className="h-full w-full"
+                  imgClassName="transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-1 flex-col">
@@ -148,21 +148,20 @@ function ArticleReader({ article, onClose }: { article: Article | null; onClose:
               An article from the FitFeky Wellness Journal: {article.title}.
             </DialogDescription>
             <div className="relative h-48 overflow-hidden">
-              <Image
+              <OptimizedImage
                 src={article.image}
                 alt={article.imageAlt}
-                fill
-                className="object-cover"
                 sizes="(max-width: 768px) 90vw, 672px"
+                className="h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
               <div className="absolute bottom-4 left-5 right-5 text-white">
                 <p className="text-xs font-semibold uppercase tracking-wide opacity-90">
                   {article.category}
                 </p>
-                <h2 className="mt-1 font-display text-xl font-bold leading-tight sm:text-2xl">
+                <h3 className="mt-1 font-display text-xl font-bold leading-tight sm:text-2xl">
                   {article.title}
-                </h2>
+                </h3>
               </div>
             </div>
             <ScrollArea className="max-h-[60vh]">

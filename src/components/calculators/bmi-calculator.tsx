@@ -93,7 +93,7 @@ export function BmiCalculator() {
         )}
         <p className="text-xs text-muted-foreground">
           BMI is a screening tool — not a full health picture. Body composition
-          (muscle vs. fat) matters more after 40, which is why we love smart scales.
+          (muscle vs. fat) matters more after 45, which is why we love smart scales.
         </p>
       </div>
 

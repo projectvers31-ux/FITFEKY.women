@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -77,7 +77,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
     >
       <div className="mx-auto flex h-16 items-center gap-3 px-6 sm:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]">
+        <Link href="/" prefetch={false} className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]">
           <Logo size={36} />
           <span className="flex flex-col leading-none">
             <span className="font-display text-xl font-semibold tracking-tight text-foreground">
@@ -89,25 +89,25 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
         {/* Desktop nav */}
         <nav className="ml-6 hidden items-center gap-1 lg:flex">
           <Link
-            href="/#catalog"
+            href="/#catalog" prefetch={false}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Shop
           </Link>
           <Link
-            href="/#categories"
+            href="/#categories" prefetch={false}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Categories
           </Link>
           <Link
-            href="/#calculators"
+            href="/#calculators" prefetch={false}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Tools
           </Link>
           <Link
-            href="/#editorial"
+            href="/#editorial" prefetch={false}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Journal
@@ -130,7 +130,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                   (e.target as HTMLInputElement).blur();
                 }
               }}
-              placeholder='Search yoga mats, walking pads…  ⌘/'
+              placeholder='Search yoga mats, walking padsâ€¦  âŒ˜/'
               title='Press "/" to focus'
               className="h-9 rounded-full border-border bg-secondary/50 pl-9 pr-3 text-sm"
               aria-label="Search products"
@@ -175,16 +175,16 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                   <Input
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
-                    placeholder="Search products…"
+                    placeholder="Search productsâ€¦"
                     className="h-10 rounded-full pl-9"
                     aria-label="Search products"
                   />
                 </form>
 
                 <nav className="flex flex-col gap-1">
-                  <Link href="/#catalog" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>All Products</Link>
-                  <Link href="/#calculators" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Calculators</Link>
-                  <Link href="/#editorial" className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Wellness Journal</Link>
+                  <Link href="/#catalog" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>All Products</Link>
+                  <Link href="/#calculators" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Calculators</Link>
+                  <Link href="/#editorial" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Wellness Journal</Link>
                 </nav>
 
                 <p className="mb-2 mt-5 px-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">

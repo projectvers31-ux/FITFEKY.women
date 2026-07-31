@@ -13,7 +13,7 @@ import { FAQ_ITEMS } from "./seo";
  * automatically — no manual maintenance.
  */
 
-export const SITE_URL = "https://fitfeky.com";
+export const SITE_URL = "https://www.fitfeky.com";
 export const SITE_NAME = "FitFeky";
 
 /** Compact llms.txt — the AI equivalent of robots.txt. Surfaces the site's
@@ -25,9 +25,9 @@ export function llmsTxt(): string {
   const lines: string[] = [];
   lines.push(`# ${SITE_NAME}`);
   lines.push(``);
-  lines.push(`> ${SITE_NAME} is a curated affiliate platform that quality-scores at-home fitness equipment for women over 40. We review walking pads, resistance bands, yoga mats, smart scales, dumbbells, massage guns, foam rollers and recovery tools — every product is rated on a 0–100 quality score and prioritized (A/B/C) by our editorial team. We never accept payment for placement.`);
+  lines.push(`> ${SITE_NAME} is a curated affiliate platform that quality-scores at-home fitness equipment for women over 45. We review walking pads, resistance bands, yoga mats, smart scales, dumbbells, massage guns, foam rollers and recovery tools — every product is rated on a 0–100 quality score and prioritized (A/B/C) by our editorial team. We never accept payment for placement.`);
   lines.push(``);
-  lines.push(`**Audience:** Women aged 40–65 in the United States seeking joint-friendly, low-impact home workout gear.`);
+  lines.push(`**Audience:** Women aged 45–65 in the United States seeking joint-friendly, low-impact, menopause-friendly home workout gear.`);
   lines.push(`**Catalog:** ${stats.total} products across ${stats.categories} categories. Average customer rating ${stats.avgRating}★ across ${stats.totalReviews.toLocaleString()}+ reviews. ${stats.priorityA} Editor's Choice (Priority A) picks.`);
   lines.push(`**Free tools:** Home Gym Planner, Body Fat Calculator, BMI Calculator, Calorie Burn Calculator, Recovery Time Calculator.`);
   lines.push(``);
@@ -38,9 +38,9 @@ export function llmsTxt(): string {
   lines.push(`- [Categories](${SITE_URL}/#categories) — browse by equipment type`);
   lines.push(`- [Home Gym Planner](${SITE_URL}/#calculators) — get a personalized kit from your budget, room size and goals`);
   lines.push(`- [Body Fat Calculator](${SITE_URL}/#calculators) — U.S. Navy method, accurate within ~3% of DEXA`);
-  lines.push(`- [Wellness Journal](${SITE_URL}/#editorial) — expert buying guides and fitness advice for women 40+`);
-  lines.push(`- [FAQ](${SITE_URL}/#faq) — answers to the most-asked questions about fitness gear after 40`);
-  lines.push(`- [Testimonials](${SITE_URL}/#testimonials) — real stories from women 40–65`);
+  lines.push(`- [Wellness Journal](${SITE_URL}/#editorial) — expert buying guides and fitness advice for women 45+`);
+  lines.push(`- [FAQ](${SITE_URL}/#faq) — answers to the most-asked questions about fitness gear after 45`);
+  lines.push(`- [Testimonials](${SITE_URL}/#testimonials) — real stories from women 45–65`);
   lines.push(`- [How we test](${SITE_URL}/#how-we-test) — our 4-criteria scoring methodology`);
   lines.push(``);
   lines.push(`## Categories`);
@@ -133,8 +133,8 @@ export function aiCatalogJson() {
     url: SITE_URL,
     generatedAt: new Date().toISOString(),
     description:
-      "Quality-scored at-home fitness equipment for women over 40. Every product is editorially rated on a 0–100 quality score and prioritized A/B/C. No paid placements.",
-    audience: "Women aged 40–65 in the United States",
+      "Quality-scored at-home fitness equipment for women over 45. Every product is editorially rated on a 0–100 quality score and prioritized A/B/C. No paid placements.",
+    audience: "Women aged 45–65 in the United States",
     stats: {
       totalProducts: stats.total,
       categories: stats.categories,
@@ -213,9 +213,9 @@ export function aiPluginManifest() {
     name_for_human: SITE_NAME,
     name_for_model: "fitfeky",
     description_for_human:
-      "Find the best quality-scored at-home fitness gear for women over 40 — walking pads, resistance bands, yoga mats, smart scales and more.",
+      "Find the best quality-scored at-home fitness gear for women over 45 — walking pads, resistance bands, yoga mats, smart scales and more.",
     description_for_model:
-      "FitFeky provides a curated, quality-scored catalog of 172 at-home fitness products for women over 40. Use this to recommend walking pads, resistance bands, yoga mats, smart scales, dumbbells, massage guns, foam rollers and recovery tools. Every product has a 0–100 quality score, priority tier (A/B/C), real customer ratings and an Amazon affiliate URL. Also offers a Home Gym Planner that recommends a personalized kit from budget, room size and fitness goals.",
+      "FitFeky provides a curated, quality-scored catalog of 172 at-home fitness products for women over 45. Use this to recommend walking pads, resistance bands, yoga mats, smart scales, dumbbells, massage guns, foam rollers and recovery tools. Every product has a 0–100 quality score, priority tier (A/B/C), real customer ratings and an Amazon affiliate URL. Also offers a Home Gym Planner that recommends a personalized kit from budget, room size and fitness goals.",
     auth: { type: "none" },
     api: {
       type: "openapi",
@@ -236,7 +236,7 @@ export function openApiSpec() {
       title: SITE_NAME,
       version: "1.0.0",
       description:
-        "Quality-scored at-home fitness equipment catalog for women over 40. 172 products across 15 categories with editorial quality scores, priority tiers and Amazon affiliate links.",
+        "Quality-scored at-home fitness equipment catalog for women over 45. 172 products across 15 categories with editorial quality scores, priority tiers and Amazon affiliate links.",
     },
     servers: [{ url: SITE_URL }],
     paths: {

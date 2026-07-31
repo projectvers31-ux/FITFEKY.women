@@ -37,18 +37,30 @@ export function StarRating({
           const isHalf = hasHalf && i === full;
           return (
             <span key={i} className="relative" style={{ width: size, height: size }} aria-hidden="true">
-              <Star
-                size={size}
-                className="absolute inset-0 text-amber-500/25"
-                strokeWidth={1.5}
-              />
-              {(isFull || isHalf) && (
+              {isFull ? (
+                // Full stars don't need the background layer — halves the SVG count.
                 <Star
                   size={size}
                   className="absolute inset-0 text-amber-500"
                   strokeWidth={1.5}
-                  style={{ fill: "currentColor", clipPath: isHalf ? "inset(0 50% 0 0)" : undefined }}
+                  style={{ fill: "currentColor" }}
                 />
+              ) : (
+                <>
+                  <Star
+                    size={size}
+                    className="absolute inset-0 text-amber-500/25"
+                    strokeWidth={1.5}
+                  />
+                  {isHalf && (
+                    <Star
+                      size={size}
+                      className="absolute inset-0 text-amber-500"
+                      strokeWidth={1.5}
+                      style={{ fill: "currentColor", clipPath: "inset(0 50% 0 0)" }}
+                    />
+                  )}
+                </>
               )}
             </span>
           );

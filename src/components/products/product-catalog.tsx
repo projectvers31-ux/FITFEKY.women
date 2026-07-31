@@ -21,7 +21,7 @@ import { CATEGORIES } from "@/lib/categories";
 import type { Product, SortKey, Priority, CategoryId } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 9;
 
 interface ProductCatalogProps {
   /** shared search term (controlled by the parent, also bound to the header). */
@@ -242,11 +242,13 @@ export function ProductCatalog({
 
       {/* Grid — generous padding, max 3 cols for editorial breathing room */}
       {shown.length > 0 ? (
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <ul className="mt-6 grid list-none grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {shown.map((p) => (
-            <ProductCard key={p.id} product={p} onQuickView={onQuickView} />
+            <li key={p.id}>
+              <ProductCard product={p} onQuickView={onQuickView} />
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <div className="mt-10 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 bg-card/30 py-20 text-center">
           <span className="grid h-14 w-14 place-items-center rounded-full bg-secondary/60 text-muted-foreground">

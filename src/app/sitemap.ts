@@ -8,7 +8,7 @@ import { CATEGORIES } from "@/lib/categories";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const base = "https://fitfeky.com";
+  const base = "https://www.fitfeky.com";
 
   const entries: MetadataRoute.Sitemap = [
     {
@@ -91,6 +91,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${base}/quiz`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${base}/features`,

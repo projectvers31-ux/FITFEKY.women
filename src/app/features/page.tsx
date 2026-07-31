@@ -13,14 +13,15 @@ import {
   Calculator as CalcIcon,
 } from "lucide-react";
 import { PageShell, PageHeading, PageP } from "@/components/layout/page-shell";
+import { pageMetadata } from "@/lib/seo";
 import { catalogStats } from "@/lib/product-utils";
 
 export const metadata: Metadata = {
-  title: "Features — Free Fitness Tools & Smart Product Discovery | FitFeky",
+  title: "Features: Free Fitness Tools for Women 45+ | FitFeky",
   description:
-    "Discover FitFeky's free tools: Home Gym Planner, Body Fat Calculator, BMI & Calorie Burn calculators, quality-scored product catalog, buying guides and more — built for women over 40.",
-  alternates: { canonical: "/features" },
+    "Free tools built for women 45+: Home Gym Planner, Body Fat, BMI and Calorie Burn calculators, plus a quality-scored catalog and buying guides.",
   robots: { index: true, follow: true },
+  ...pageMetadata("/features"),
 };
 
 const FEATURES = [
@@ -46,7 +47,7 @@ const FEATURES = [
     icon: Scale,
     title: "BMI & Healthy Weight",
     description:
-      "Calculate your BMI and see the healthy weight range for your height. We explain why body composition matters more than the number after 40 — and which smart scales track it.",
+      "Calculate your BMI and see the healthy weight range for your height. We explain why body composition matters more than the number after 45 — and which smart scales track it.",
     href: "/#calculators",
     cta: "Check my BMI",
     accent: "from-amber-400/15 to-orange-400/15",
@@ -91,7 +92,7 @@ const FEATURES = [
     icon: ShieldCheck,
     title: "Buying Guides & Reviews",
     description:
-      "In-depth, keyword-rich buying guides for every category. We answer the questions women over 40 actually ask — about knee pain, weight loss, flexibility and recovery.",
+      "In-depth, keyword-rich buying guides for every category. We answer the questions women over 45 actually ask — about knee pain, gentle strength, flexibility and recovery.",
     href: "/#editorial",
     cta: "Read the guides",
     accent: "from-lime-400/15 to-green-400/15",
@@ -102,9 +103,10 @@ export default function FeaturesPage() {
   const stats = catalogStats();
 
   return (
-    <PageShell
-      kicker="Everything FitFeky offers"
-      title="Free tools and smart features built for women 40+"
+    <>
+      <PageShell
+        kicker="Everything FitFeky offers"
+      title="Free tools and smart features built for women 45+"
       subtitle="From a personalized home gym planner to a body fat calculator accurate within ~3% of a DEXA scan — every tool on FitFeky is free, genuinely useful, and built for the body you have today."
     >
       {/* Stats band */}
@@ -160,10 +162,10 @@ export default function FeaturesPage() {
         using our four-criteria methodology:
       </PageP>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <CriterionCard weight="30%" title="Customer ratings" body="Real reviews from women 40+" />
+        <CriterionCard weight="30%" title="Customer ratings" body="Real reviews from women 45+" />
         <CriterionCard weight="20%" title="Review volume" body="Sustained, recent feedback" />
         <CriterionCard weight="25%" title="Build quality" body="Materials, capacity, warranty" />
-        <CriterionCard weight="25%" title="Fit for 40+" body="Joint-friendly, approachable" />
+        <CriterionCard weight="25%" title="Fit for 45+" body="Joint-friendly, approachable" />
       </div>
       <PageP>
         Products scoring 85+ earn our Editor&rsquo;s Choice badge. Learn more
@@ -189,6 +191,7 @@ export default function FeaturesPage() {
         </Link>
       </div>
     </PageShell>
+    </>
   );
 }
 

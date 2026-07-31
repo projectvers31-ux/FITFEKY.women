@@ -3,6 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { trackAddToCart } from "@/lib/meta-pixel";
 
 interface AffiliateButtonProps {
   href: string;
@@ -12,6 +13,12 @@ interface AffiliateButtonProps {
   className?: string;
   variant?: "default" | "secondary" | "outline" | "ghost";
   fullWidth?: boolean;
+  /** Product id (ASIN) — fires Meta Pixel AddToCart when present. */
+  contentId?: string;
+  /** Product title — passed as content_name with AddToCart. */
+  contentName?: string;
+  /** Product price in USD — passed with AddToCart (omitted when null). */
+  price?: number | null;
 }
 
 /**
@@ -29,8 +36,17 @@ export function AffiliateButton({
   className,
   variant = "default",
   fullWidth,
+  contentId,
+  contentName,
+  price,
 }: AffiliateButtonProps) {
   const text = label ?? (priceDisplay ? "Check Price on Amazon" : "View Price on Amazon");
+
+  const handleClick = () => {
+    if (contentId) {
+      trackAddToCart({ id: contentId, title: contentName ?? text, price });
+    }
+  };
 
   return (
     <Button
@@ -48,6 +64,7 @@ export function AffiliateButton({
         href={href}
         target="_blank"
         rel="sponsored nofollow noopener noreferrer"
+        onClick={handleClick}
         aria-label={`${text}${priceDisplay ? ` — ${priceDisplay}` : ""}`}
       >
         <span>{text}</span>

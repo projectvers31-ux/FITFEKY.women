@@ -49,10 +49,10 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
         <Reveal>
           <div className="mb-12 max-w-2xl">
             <p className="kicker mb-4">Free wellness tools</p>
-            <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+            <h3 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
               Know your numbers, then{" "}
               <span className="text-gradient-warm text-gradient-animate">pick your gear.</span>
-            </h2>
+            </h3>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Plan your home gym, estimate your body fat, calculate your BMI and
               calorie burn — then we'll suggest the gear that fits.
@@ -79,39 +79,51 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="planner" className="mt-5">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
-              <HomeGymPlanner onQuickView={onQuickView} />
-            </div>
-          </TabsContent>
+          {/* Only the active panel is mounted — Radix renders all panels
+              otherwise, bloating the DOM with 4 hidden calculators. */}
+          {tab === "planner" && (
+            <TabsContent value="planner" className="mt-5">
+              <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+                <HomeGymPlanner onQuickView={onQuickView} />
+              </div>
+            </TabsContent>
+          )}
 
-          <TabsContent value="bodyfat" className="mt-5">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
-              <BodyFatCalculator />
-            </div>
-            <SuggestionIntro />
-          </TabsContent>
+          {tab === "bodyfat" && (
+            <TabsContent value="bodyfat" className="mt-5">
+              <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+                <BodyFatCalculator />
+              </div>
+              <SuggestionIntro />
+            </TabsContent>
+          )}
 
-          <TabsContent value="bmi" className="mt-5">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
-              <BmiCalculator />
-            </div>
-            <SuggestionIntro />
-          </TabsContent>
+          {tab === "bmi" && (
+            <TabsContent value="bmi" className="mt-5">
+              <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+                <BmiCalculator />
+              </div>
+              <SuggestionIntro />
+            </TabsContent>
+          )}
 
-          <TabsContent value="burn" className="mt-5">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
-              <CalorieBurnCalculator onActivityChange={setActiveCalcId} />
-            </div>
-            <SuggestionIntro />
-          </TabsContent>
+          {tab === "burn" && (
+            <TabsContent value="burn" className="mt-5">
+              <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+                <CalorieBurnCalculator onActivityChange={setActiveCalcId} />
+              </div>
+              <SuggestionIntro />
+            </TabsContent>
+          )}
 
-          <TabsContent value="recovery" className="mt-5">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
-              <RecoveryCalculator />
-            </div>
-            <SuggestionIntro />
-          </TabsContent>
+          {tab === "recovery" && (
+            <TabsContent value="recovery" className="mt-5">
+              <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-7">
+                <RecoveryCalculator />
+              </div>
+              <SuggestionIntro />
+            </TabsContent>
+          )}
         </Tabs>
 
         {/* Live product suggestions */}
@@ -123,11 +135,13 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
             </h3>
           </div>
           {suggestions.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            <ul className="grid list-none grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
               {suggestions.map((p) => (
-                <ProductCard key={p.id} product={p} onQuickView={onQuickView} />
+                <li key={p.id}>
+                  <ProductCard product={p} onQuickView={onQuickView} />
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
             <div className="rounded-2xl border border-dashed border-border bg-card/40 p-8 text-center text-sm text-muted-foreground">
               No specific gear mapped to this calculator yet — explore the full{" "}

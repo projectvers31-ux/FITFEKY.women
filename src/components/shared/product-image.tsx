@@ -12,13 +12,17 @@ interface ProductImageProps {
   /** intrinsic width for the layout box */
   width?: number;
   height?: number;
+  /** Only for LCP images — eager + fetchPriority="high". Default: lazy. */
   priority?: boolean;
   sizes?: string;
+  quality?: number;
 }
 
 /**
  * Resilient product image. Uses next/image with the Amazon CDN whitelisted
- * in next.config.ts. Falls back to a tasteful placeholder if the source 404s
+ * in next.config.ts. Images are re-encoded as AVIF/WebP and served at the
+ * exact display size via the responsive srcset (formats configured in
+ * next.config.ts). Falls back to a tasteful placeholder if the source 404s
  * or is blocked.
  */
 export function ProductImage({
@@ -29,6 +33,7 @@ export function ProductImage({
   height = 400,
   priority,
   sizes,
+  quality,
 }: ProductImageProps) {
   const [errored, setErrored] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -63,9 +68,11 @@ export function ProductImage({
         width={width}
         height={height}
         priority={priority}
+        loading={priority ? undefined : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
         onError={() => setErrored(true)}
         onLoad={() => setLoaded(true)}
-        unoptimized
+        quality={quality}
         sizes={sizes}
         className={cn(
           "object-contain transition-opacity duration-500",

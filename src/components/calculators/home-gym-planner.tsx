@@ -281,6 +281,9 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                       <AffiliateButton
                         href={slot.product.affiliateUrl}
                         priceDisplay={slot.product.priceDisplay}
+                        contentId={slot.product.id}
+                        contentName={slot.product.title}
+                        price={slot.product.price}
                         size="sm"
                       />
                       <button
@@ -299,7 +302,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
               <Sparkles size={14} className="mt-0.5 shrink-0 text-primary" />
               <span>
                 This plan is built from our quality-scored catalog of 172
-                products, ranked by priority and fit for women 40+. Prices
+                products, ranked by priority and fit for women 45+. Prices
                 reflect Amazon at the time of your visit and may change.
               </span>
             </div>
