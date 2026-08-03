@@ -13,7 +13,8 @@ interface SeoContentSectionProps {
 /**
  * Keyword-rich category buying-guide blocks. Each block targets a high-intent
  * long-tail query (e.g. "best resistance bands for women over 45") with an
- * H2, intro paragraph and keyword chips. Drives SEO indexing + buyer intent.
+ * H3, intro paragraph and keyword chips. Drives SEO indexing + buyer intent.
+ * H3 keeps the homepage's total H2 count ≤ 6 (section headers stay H2).
  */
 export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) {
   // Only render blocks for categories that have curated content.
@@ -38,9 +39,9 @@ export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) 
                 {/* Copy */}
                 <div className="lg:col-span-8">
                   <p className="kicker mb-4">Buying guide</p>
-                  <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
+                  <h3 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
                     {content.h2}
-                  </h2>
+                  </h3>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {content.intro}
                   </p>
