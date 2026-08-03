@@ -13,6 +13,9 @@
  */
 import { categoryLabel } from "@/lib/categories";
 
+/** True only when NEXT_PUBLIC_META_PIXEL_ID is configured at build time. */
+const pixelConfigured = (process.env.NEXT_PUBLIC_META_PIXEL_ID || "").trim() !== "";
+
 /** Event names we use across the site (subset of Meta's standard events). */
 export type MetaPixelEvent =
   | "PageView"
@@ -52,6 +55,7 @@ function flushPending() {
  */
 export function fbTrack(event: string, params?: MetaPixelParams) {
   if (typeof window === "undefined") return;
+  if (!pixelConfigured) return;
   const fbq = getFbq();
   const safeParams = params ?? {};
   if (typeof fbq === "function") {

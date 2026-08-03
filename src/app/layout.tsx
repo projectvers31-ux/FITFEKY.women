@@ -9,8 +9,13 @@ import { homeMetadata, organizationJsonLd, websiteJsonLd, jsonLdScript } from "@
 import { ExitIntentPopup } from "@/components/shared/exit-intent-popup";
 import { MetaPixelPageView } from "@/components/shared/meta-pixel-pageview";
 
-/** Meta Pixel ID — set NEXT_PUBLIC_META_PIXEL_ID in .env.local / Vercel. */
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "YOUR_PIXEL_ID";
+/**
+ * Meta Pixel ID — set NEXT_PUBLIC_META_PIXEL_ID in .env.local / Vercel.
+ * When unset the pixel scripts are rendered but disabled (never initialized),
+ * so Meta never receives an invalid "YOUR_PIXEL_ID" / null init call.
+ */
+const META_PIXEL_ID = (process.env.NEXT_PUBLIC_META_PIXEL_ID || "").trim();
+const metaPixelConfigured = META_PIXEL_ID !== "";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -135,23 +140,28 @@ export default function RootLayout({
         </Suspense>
 
         {/* Meta Pixel (Facebook) — lazy-loaded; early events are buffered and
-            replayed by lib/meta-pixel.ts once window.fbq exists. */}
-        <Script
-          id="meta-pixel"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`,
-          }}
-        />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-            alt=""
+            replayed by lib/meta-pixel.ts once window.fbq exists. Only loads
+            when NEXT_PUBLIC_META_PIXEL_ID is configured. */}
+        {metaPixelConfigured && (
+          <Script
+            id="meta-pixel"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`,
+            }}
           />
-        </noscript>
+        )}
+        {metaPixelConfigured && (
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+              alt=""
+            />
+          </noscript>
+        )}
 
         {/* Theme initialization — injected into <head> as raw HTML by Next.js (beforeInteractive) */}
         <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `!function(){try{var e=localStorage.getItem("theme")||"light";"system"===e&&(e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(e);document.documentElement.style.colorScheme=e}catch(e){}}()` }} />
