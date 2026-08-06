@@ -2,7 +2,7 @@ import os
 import json
 import requests
 from datetime import datetime
-from google import genai
+from google.genai import Client
 from google.genai import types
 
 # 1. Environment Setup
@@ -11,8 +11,8 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 SITE_URL = "https://yourwebsite.com"  # Replace with your actual domain
 
-# Initialize Gemini Client with new SDK
-client = genai.Client(api_key=GEMINI_API_KEY)
+# Initialize Gemini Client directly
+client = Client(api_key=GEMINI_API_KEY)
 
 # 2. Generate English Article via Gemini API
 def generate_article():
@@ -37,7 +37,6 @@ def generate_article():
     }
     """
     
-    # Using the new model name gemini-2.5-flash and response_mime_type config
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt,
