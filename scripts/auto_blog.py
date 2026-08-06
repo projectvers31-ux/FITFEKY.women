@@ -9,7 +9,7 @@ from google.genai import types
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-SITE_URL = "https://yourwebsite.com"  # Replace with your actual domain
+SITE_URL = "https://www.fitfeky.com/"  # Replace with your actual domain
 
 # Initialize Gemini Client directly
 client = Client(api_key=GEMINI_API_KEY)
