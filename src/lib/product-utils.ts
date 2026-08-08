@@ -10,6 +10,47 @@ export function allCategories(): CategoryId[] {
   return Array.from(seen);
 }
 
+/**
+ * SEO alt-text phrases per category — keyword-rich, joint-friendly language
+ * for women 45+ (e.g. "Quiet joint-friendly walking pad for women over 45").
+ */
+const ALT_PHRASES: Record<string, string> = {
+  treadmill: "quiet joint-friendly walking pad for women over 45",
+  walking_pad: "quiet joint-friendly walking pad for women over 45",
+  recovery_tools: "recovery tools for joint-friendly muscle care after 45",
+  resistance_bands: "ergonomic resistance bands for joint-safe strength training at home",
+  yoga_mat: "cushioned yoga mat for joint support during low-impact home workouts",
+  yoga_accessories: "yoga accessories for gentle, joint-friendly stretching at home",
+  foam_roller: "foam roller for mobility and joint-friendly recovery after workouts",
+  massage_gun: "massage gun for muscle recovery after joint-friendly workouts",
+  smart_scale: "smart body composition scale for tracking fitness progress after 45",
+  dumbbell: "adjustable dumbbells for building bone density after 45",
+  rowing_machine: "low-impact rowing machine for knee-friendly full-body cardio",
+  jump_rope: "low-impact jump rope for joint-friendly cardio at home",
+  pull_up_bar: "doorway pull-up bar for posture and upper-body strength after 45",
+  squat_machine: "squat machine with knee support for joint-safe strength training",
+  inversion_table: "inversion table for back pain relief and spinal decompression",
+  fitness_tracker: "fitness tracker for women over 45 monitoring steps and heart health",
+  general_fitness: "joint-friendly home gym essentials for women over 45",
+  shaker_bottle: "post-workout shaker bottle for protein after 45",
+};
+
+/** Generic fallback for categories without a dedicated phrase. */
+const FALLBACK_ALT = "joint-friendly home fitness gear for women over 45";
+
+/**
+ * Builds a keyword-rich image alt for a product: a short title clause plus a
+ * category-specific joint-friendly phrase. Works with both `Product` and
+ * `ComparisonProduct` shapes.
+ */
+export function productImageAlt(p: { title?: string; name?: string; category: string }): string {
+  const phrase = ALT_PHRASES[p.category] ?? FALLBACK_ALT;
+  const title = (p.title ?? p.name ?? "").trim();
+  if (!title) return phrase;
+  const short = title.split(/[,\-–—;|]| at /i)[0].trim().slice(0, 80).trim();
+  return short ? `${short} — ${phrase}` : phrase;
+}
+
 /** Apply the catalog query (filter + sort + slice). Pure & shared. */
 export function queryProducts(q: ProductQuery = {}): Product[] {
   const {

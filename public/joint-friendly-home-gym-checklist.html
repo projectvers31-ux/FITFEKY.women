@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Joint-Friendly Home Gym Checklist — FitFeky</title>
+<meta name="description" content="7 essential pieces of equipment every woman over 45 needs to build strength safely at home. A free guide from FitFeky." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     FITFEKY — Joint-Friendly Home Gym Checklist (print / PDF)
+     A4 · 20mm margins · cream/sage/terracotta palette
+     ============================================================ */
+
+  :root {
+    --sage:        #7a9e7e;
+    --sage-deep:   #5f8263;
+    --sage-pale:   #eef3ee;
+    --terracotta:  #c4705a;
+    --terracotta-deep: #a8543f;
+    --terracotta-pale: #f6e8e3;
+    --cream:       #faf7f2;
+    --cream-deep:  #f1ece2;
+    --gold:        #c9a96e;
+    --ink:         #2d2d2d;
+    --muted:       #6f6a62;
+    --line:        #ddd6c9;
+    --white:       #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: #e6e1d7; /* only on screen */
+  }
+
+  /* ---------- Page geometry: A4 minus 20mm @page margins ---------- */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  .sheet { width: 210mm; margin: 0 auto; }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 257mm;            /* 297mm − 40mm margins */
+    padding: 0 12mm 16mm;
+    background: var(--cream);
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .footer {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer::before {
+    content: "";
+    display: block;
+    width: 42mm;
+    height: 1px;
+    margin: 0 auto 4mm;
+    background: linear-gradient(90deg, transparent, var(--sage) 30%, var(--terracotta) 70%, transparent);
+  }
+  .footer .dot { color: var(--sage); padding: 0 6px; }
+
+  /* ---------- Typography helpers ---------- */
+  .kicker {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .serif { font-family: "Playfair Display", Georgia, serif; }
+  .em { font-style: italic; }
+
+  .rule {
+    height: 1px;
+    border: 0;
+    background: var(--line);
+  }
+  .rule-sage {
+    height: 2px;
+    width: 34mm;
+    background: linear-gradient(90deg, var(--sage), var(--gold));
+  }
+
+  /* ============================================================
+     PAGE 1 — COVER
+     ============================================================ */
+  .cover { display: flex; flex-direction: column; padding-top: 10mm; }
+
+  .cover-top { text-align: center; }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .cover-badge .mark { width: 15mm; height: 15mm; }
+  .cover-badge .wordmark {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .cover-badge .wordmark span { color: var(--terracotta); }
+
+  .cover-kicker {
+    margin-top: 11mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6mm;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  .cover-kicker::before,
+  .cover-kicker::after {
+    content: "";
+    height: 1px;
+    width: 22mm;
+    background: var(--sage);
+    opacity: 0.6;
+  }
+
+  .cover-title {
+    margin-top: 9mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .cover-title .accent { color: var(--terracotta); }
+  .cover-title .accent-sage { color: var(--sage-deep); }
+
+  .cover-subtitle {
+    margin: 8mm auto 0;
+    max-width: 128mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 16.5px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .cover-tagline {
+    margin-top: 12mm;
+    padding-top: 6mm;
+    border-top: 1px solid var(--line);
+    font-size: 11px;
+    font-style: italic;
+    color: var(--sage-deep);
+    letter-spacing: 0.02em;
+  }
+  .cover-tagline b { font-style: normal; color: var(--terracotta); font-weight: 600; }
+
+  .cover-strip {
+    margin-top: 12mm;
+    display: flex;
+    gap: 7mm;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-stat { flex: 1; max-width: 46mm; }
+  .cover-stat .num {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--sage-deep);
+    line-height: 1.1;
+  }
+  .cover-stat .lbl {
+    margin-top: 2.5mm;
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .cover-stat + .cover-stat { border-left: 1px solid var(--line); }
+
+  .cover-bottom { margin-top: auto; text-align: center; }
+  .cover-ornament { color: var(--gold); font-size: 13px; letter-spacing: 1.2em; }
+  .cover-url {
+    margin-top: 4mm;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* ============================================================
+     PAGES 2–3 — THE CHECKLIST
+     ============================================================ */
+  .content-head { padding: 0 4mm 0; }
+
+  .content-head h2 {
+    margin-top: 2.5mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .content-head h2 em { font-style: italic; color: var(--terracotta); }
+  .content-head .sub {
+    margin-top: 3mm;
+    max-width: 148mm;
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+  .items { margin-top: 5mm; }
+
+  .item {
+    background: var(--white);
+    border: 1px solid #ece5d8;
+    border-radius: 12px;
+    padding: 5.5mm 6mm 5mm 16mm;
+    position: relative;
+    margin-bottom: 4mm;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 0 rgba(45,45,45,0.03);
+  }
+
+  .item .icobg {
+    position: absolute;
+    left: -7mm;
+    top: 6mm;
+    width: 13mm;
+    height: 13mm;
+    border-radius: 50%;
+    background: linear-gradient(140deg, var(--sage) 0%, var(--sage-deep) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7mm;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(95,130,99,0.35);
+    border: 2px solid var(--cream);
+  }
+
+  .item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4mm;
+  }
+  .item .idx {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .item h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .score {
+    flex-shrink: 0;
+    background: var(--sage-pale);
+    border: 1px solid #dbe6dc;
+    color: var(--sage-deep);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2.2mm 3.5mm;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .score b { font-size: 11px; font-weight: 800; }
+
+  .why { margin-top: 2.5mm; }
+  .why .why-lbl {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .why p {
+    margin-top: 1.2mm;
+    font-size: 10.5px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .why p b { color: var(--ink); font-weight: 600; }
+
+  .lookfor {
+    margin-top: 2.8mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4mm 5mm;
+    background: var(--cream);
+    border: 1px dashed var(--line);
+    border-radius: 9px;
+    padding: 3mm 4mm 3mm 4.5mm;
+  }
+  .lookfor .lbl {
+    grid-column: 1 / -1;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  .lookfor li {
+    list-style: none;
+    font-size: 9.5px;
+    color: var(--ink);
+    padding-left: 4.5mm;
+    position: relative;
+    line-height: 1.45;
+  }
+  .lookfor li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+    font-size: 10px;
+  }
+
+  .item-bottom {
+    margin-top: 3mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .budget {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5mm;
+    background: var(--terracotta-pale);
+    border: 1px solid #ecd3c9;
+    color: var(--terracotta-deep);
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 1.8mm 4mm;
+    border-radius: 999px;
+  }
+  .budget b { font-weight: 700; }
+  .item-note {
+    font-size: 9px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .items-continued { margin-top: 1.5mm; }
+  .items-continued .item { margin-bottom: 3.6mm; }
+
+  /* ============================================================
+     PAGE 4 — SAFETY RULES
+     ============================================================ */
+  .rules { margin-top: 6mm; }
+
+  .rule-row {
+    display: flex;
+    gap: 7mm;
+    align-items: flex-start;
+    padding: 5mm 4mm;
+    border-bottom: 1px solid var(--line);
+    page-break-inside: avoid;
+  }
+  .rule-row:first-child { border-top: 1px solid var(--line); }
+  .rule-row .rnum {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--sage);
+    line-height: 0.9;
+    width: 16mm;
+    flex-shrink: 0;
+  }
+  .rule-row:nth-child(even) .rnum { color: var(--terracotta); }
+  .rule-row h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .rule-row p {
+    margin-top: 1.5mm;
+    font-size: 10.5px;
+    color: var(--muted);
+    max-width: 142mm;
+    line-height: 1.55;
+  }
+  .rule-row p b { color: var(--ink); font-weight: 600; }
+
+  .rules-note {
+    margin-top: 7mm;
+    background: var(--sage-pale);
+    border: 1px solid #d3e0d5;
+    border-radius: 12px;
+    padding: 5.5mm 7mm;
+    display: flex;
+    gap: 5mm;
+    align-items: flex-start;
+  }
+  .rules-note .quote-mark {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--sage-deep);
+  }
+  .rules-note p {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .rules-note small {
+    display: block;
+    margin-top: 2mm;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+
+  /* ============================================================
+     PAGE 5 — YOUR NEXT STEP
+     ============================================================ */
+  .nextstep {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 14mm;
+  }
+
+  .next-kicker {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+
+  .next-title {
+    margin-top: 6mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .next-title em { color: var(--terracotta); font-style: italic; }
+
+  .next-copy {
+    margin: 5mm auto 0;
+    max-width: 118mm;
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .next-copy b { color: var(--ink); font-weight: 600; }
+
+  .next-steps {
+    margin: 9mm auto 0;
+    display: flex;
+    gap: 7mm;
+    justify-content: center;
+  }
+  .next-step {
+    flex: 1;
+    max-width: 46mm;
+    background: var(--white);
+    border: 1px solid #ece5d8;
+    border-radius: 12px;
+    padding: 6mm 4mm 5.5mm;
+  }
+  .next-step .n {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+  .next-step .t {
+    margin-top: 2.5mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .next-step .d {
+    margin-top: 1.8mm;
+    font-size: 9.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .cta-box {
+    margin: 11mm auto 0;
+    background: linear-gradient(140deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
+    border-radius: 14px;
+    padding: 7mm 10mm 6.5mm;
+    max-width: 118mm;
+    box-shadow: 0 6px 16px rgba(168,84,63,0.28);
+  }
+  .cta-box .cta-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #f7ddd3;
+  }
+  .cta-box .cta-main {
+    margin-top: 2.5mm;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+  .cta-box .cta-sub {
+    margin-top: 1.8mm;
+    font-size: 10px;
+    color: #f3cfc2;
+  }
+  .cta-box .cta-url {
+    display: inline-block;
+    margin-top: 4mm;
+    background: var(--white);
+    color: var(--terracotta-deep);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3mm 9mm;
+    border-radius: 999px;
+  }
+
+  .next-signoff {
+    margin-top: auto;
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ============================================================
+     SCREEN-ONLY styling (page preview niceties)
+     ============================================================ */
+  @media screen {
+    .sheet { padding: 12mm 0; }
+    .page {
+      box-shadow: 0 4px 22px rgba(45,45,45,0.22);
+      margin-bottom: 12mm;
+      border-radius: 3px;
+    }
+  }
+  @media print {
+    body { background: none; }
+    .sheet { width: auto; margin: 0; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ================= PAGE 1 · COVER ================= -->
+  <section class="page cover">
+    <div class="cover-top">
+      <div class="cover-badge">
+        <!-- FitFeky logo mark (reused from /public/logo.svg) -->
+        <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="FitFeky logo">
+          <defs>
+            <linearGradient id="fitfeky-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#c4705a"/>
+              <stop offset="1" stop-color="#c9a96e"/>
+            </linearGradient>
+          </defs>
+          <rect width="40" height="40" rx="11" fill="url(#fitfeky-grad)"/>
+          <path d="M13 10 H27 V14 H17.5 V18.5 H25 V22.5 H17.5 V30 H13 V10 Z" fill="#ffffff"/>
+          <path d="M27 10 C27 10 30 10 30 13 C30 16 27 16 27 16 C27 16 24 16 24 13 C24 10 27 10 27 10 Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M27 11.5 C26 12.5 26 14 27 15 C28 14 28 12.5 27 11.5 Z" fill="#c9a96e" opacity="0.5"/>
+        </svg>
+        <div class="wordmark">Fit<span>Feky</span></div>
+      </div>
+
+      <div class="cover-kicker">A free guide for women 45+</div>
+
+      <h1 class="cover-title">
+        The Joint-Friendly<br />
+        <span class="accent">Home Gym</span><br />
+        Checklist<span class="accent-sage">.</span>
+      </h1>
+
+      <p class="cover-subtitle">
+        7 essential pieces of equipment every woman over 45 needs to build
+        strength safely at home — without joint pain.
+      </p>
+
+      <p class="cover-tagline">
+        <b>✦</b>&nbsp; Curated by women who train, for women who move with intention. &nbsp;<b>✦</b>
+      </p>
+    </div>
+
+    <div class="cover-strip">
+      <div class="cover-stat">
+        <div class="num">7</div>
+        <div class="lbl">Essentials,<br />quality-scored</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">5</div>
+        <div class="lbl">Rules of<br />joint-friendly training</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">100%</div>
+        <div class="lbl">Honest picks,<br />no paid placements</div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-ornament">✦ ✦ ✦</div>
+      <div class="cover-url">fitfeky.com</div>
+    </div>
+
+    <div class="footer">© 2026 FitFeky.com <span class="dot">•</span> Free Download <span class="dot">•</span> fitfeky.com</div>
+  </section>
+
+  <!-- ================= PAGE 2 · CHECKLIST 1–4 ================= -->
+  <section class="page">
+    <header class="content-head">
+      <div class="kicker">The Checklist — Part 1</div>
+      <h2>Seven essentials, <em>one</em> joint-friendly home gym</h2>
+      <p class="sub">
+        Each pick is scored the way we score everything at FitFeky: tested or researched to the
+        same depth, ranked openly. Scores are a 0–100 FitFeky Quality score.
+      </p>
+    </header>
+
+    <div class="items">
+
+      <!-- 1 · Walking pad -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">🚶‍♀️</div>
+        <div class="item-top">
+          <h3><span class="idx">01 —</span> Under-Desk Walking Pad</h3>
+          <span class="score">FitFeky Score <b>Q94</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            Walking is the most joint-friendly cardio there is — and an under-desk pad makes it part
+            of your day instead of another appointment. <b>It keeps blood moving and joints gently loaded</b>
+            so your daily 30 minutes actually happen, even in bad weather.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>Quiet motor (under 50 dB) and speed up to ~4 mph for desk use</li>
+          <li>Light enough to wheel under furniture (< 55 lb) when not in use</li>
+          <li>Wide, non-slip belt and a sturdy, wobble-free frame</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$150 – $400</b></span>
+          <span class="item-note">Low-impact cardio · the “just walk” fix</span>
+        </div>
+      </article>
+
+      <!-- 2 · Resistance bands -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">💪</div>
+        <div class="item-top">
+          <h3><span class="idx">02 —</span> Resistance Band Set with Handles</h3>
+          <span class="score">FitFeky Score <b>Q92</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            Muscle and bone density decline faster after 45 — bands build both without slamming
+            joints or needing a spotter. <b>Tension builds smoothly through the range of motion</b>,
+            giving tendons time to catch up with your enthusiasm.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>5 resistance levels in a zip carry case (light → heavy)</li>
+          <li>Padded, grippy handles plus ankle cuffs and a door anchor</li>
+          <li>Latex-free option if you have sensitivities</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$30 – $70</b></span>
+          <span class="item-note">Strength without joint stress</span>
+        </div>
+      </article>
+
+      <!-- 3 · Yoga mat -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">🧘‍♀️</div>
+        <div class="item-top">
+          <h3><span class="idx">03 —</span> Thick Cushioned Yoga Mat</h3>
+          <span class="score">FitFeky Score <b>Q90</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            On a hard floor, your wrists and knees absorb every point of pressure — carpet doesn't
+            fix that. <b>A 6–8 mm cushioned mat protects them</b> so floorwork, planks and mobility
+            drills stay comfortable enough to do every day.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>6–8 mm cushion with a non-slip bottom that grips hardwood</li>
+          <li>Extra width (61+ cm) so you never hang off the edge</li>
+          <li>Easy-clean surface that resists sweat and odour</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$30 – $90</b></span>
+          <span class="item-note">Wrist &amp; knee protection</span>
+        </div>
+      </article>
+
+      <!-- 4 · Foam roller -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">🌀</div>
+        <div class="item-top">
+          <h3><span class="idx">04 —</span> Foam Roller</h3>
+          <span class="score">FitFeky Score <b>Q87</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            Recovery is a training day. <b>A good roller unwinds tight hips, hamstrings and lower back</b> —
+            the usual culprits after years of sitting — and preps your body for the next session.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>High-density foam — “squishy” ones do nothing</li>
+          <li>Full 40–45 cm length so back and legs fit in one pass</li>
+          <li>Light texture (knurled) for trigger-point work</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$15 – $60</b></span>
+          <span class="item-note">Recovery &amp; mobility</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="footer">© 2026 FitFeky.com <span class="dot">•</span> Free Download <span class="dot">•</span> fitfeky.com</div>
+  </section>
+
+  <!-- ================= PAGE 3 · CHECKLIST 5–7 ================= -->
+  <section class="page">
+    <header class="content-head">
+      <div class="kicker">The Checklist — Part 2</div>
+      <h2>Three more pieces, <em>zero</em> regret</h2>
+      <p class="sub">
+        The remaining essentials build on the first four — more strength, better tracking,
+        deeper recovery. Buy in any order; start with what feels doable today.
+      </p>
+    </header>
+
+    <div class="items items-continued">
+
+      <!-- 5 · Adjustable dumbbells -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">🏋️‍♀️</div>
+        <div class="item-top">
+          <h3><span class="idx">05 —</span> Adjustable Dumbbells</h3>
+          <span class="score">FitFeky Score <b>Q88</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            Progressive resistance is the closest cousin of bone density — and adjustable dumbbells
+            give it to you from 5 to 20 lb without a rack of iron. <b>Heavy enough to challenge, light
+            enough to keep form honest.</b>
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>Pairs that adjust from 5 lb up to 20+ lb per hand</li>
+          <li>Quick-dial or cradle changeover (no 10-minute re-threading)</li>
+          <li>Secure locking collar — safety first, always</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$30 – $150</b></span>
+          <span class="item-note">Bone density · 5–20 lb range</span>
+        </div>
+      </article>
+
+      <!-- 6 · Smart scale -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">⚖️</div>
+        <div class="item-top">
+          <h3><span class="idx">06 —</span> Smart Body Composition Scale</h3>
+          <span class="score">FitFeky Score <b>Q89</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            After 45 the wins are measured in muscle and stability, not just weight. <b>A body-composition
+            scale shows the trend over weeks</b>, so you see progress when movement is working — and stop
+            when it isn't.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>Syncs with Apple Health / Google Fit (Bluetooth is enough)</li>
+          <li>Reports muscle mass and body fat — not just BMI</li>
+          <li>Clear display; step-on auto-read works with bare feet</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$30 – $80</b></span>
+          <span class="item-note">Track muscle, not just weight</span>
+        </div>
+      </article>
+
+      <!-- 7 · Massage gun / therapy ball -->
+      <article class="item">
+        <div class="icobg" aria-hidden="true">💆‍♀️</div>
+        <div class="item-top">
+          <h3><span class="idx">07 —</span> Massage Gun or Therapy Ball</h3>
+          <span class="score">FitFeky Score <b>Q85</b></span>
+        </div>
+        <div class="why">
+          <span class="why-lbl">Why it matters after 45</span>
+          <p>
+            Tight quads, shoulders and calves quietly drain energy and mobility. <b>Ten minutes of
+            percussion (or a well-placed ball) loosens knots</b> so your next workout starts 20% fresher.
+          </p>
+        </div>
+        <ul class="lookfor">
+          <span class="lbl">What to look for</span>
+          <li>Gun: 4+ speeds, 4–5 head attachments, quiet motor</li>
+          <li>Gun: under 1.5 kg and long battery life</li>
+          <li>Ball: firm rubber, palm-sized — $10 alternative that works</li>
+        </ul>
+        <div class="item-bottom">
+          <span class="budget">Estimated budget: <b>$50 – $150</b> <span style="color:var(--muted);font-weight:400">(or $10–$25 for a ball)</span></span>
+          <span class="item-note">Muscle recovery</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="footer">© 2026 FitFeky.com <span class="dot">•</span> Free Download <span class="dot">•</span> fitfeky.com</div>
+  </section>
+
+  <!-- ================= PAGE 4 · SAFETY RULES ================= -->
+  <section class="page">
+    <header class="content-head">
+      <div class="kicker">Train smart</div>
+      <h2>The 5 rules of <em>joint-friendly</em> training</h2>
+      <p class="sub">
+        Gear is only half the story. These five habits keep joints happy for decades — no exceptions, no shortcuts.
+      </p>
+    </header>
+
+    <div class="rules">
+      <div class="rule-row">
+        <div class="rnum">1</div>
+        <div>
+          <h4>Warm up for five minutes. Every single time.</h4>
+          <p>
+            Blood flow is joint lubrication. <b>Walk in place, arm circles, gentle hip openers</b> — five
+            minutes raises tissue temperature and cuts injury risk more than any other single habit.
+          </p>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rnum">2</div>
+        <div>
+          <h4>Progress 10% per week, not 10x overnight.</h4>
+          <p>
+            Tendons and ligaments adapt slower than muscles — about six weeks. <b>Add weight or
+            minutes gradually</b>; if you're excited to do more, do it next week, not tonight.
+          </p>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rnum">3</div>
+        <div>
+          <h4>Pain is a signal, not a badge of honour.</h4>
+          <p>
+            “No pain, no gain” was written by someone without a knee replacement. <b>Distinguish
+            muscle burn from joint pain</b> — the first is progress, the second is a stop sign.
+          </p>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rnum">4</div>
+        <div>
+          <h4>Rest days are training days.</h4>
+          <p>
+            Strength is built during recovery, not during the workout. <b>Schedule two rest days a
+            week like appointments</b> — walking still counts, and it should be gentle.
+          </p>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rnum">5</div>
+        <div>
+          <h4>Recover with rolling, not force.</h4>
+          <p>
+            Your foam roller and massage gun aren't optional extras — they're equipment.
+            <b>Ten minutes of rolling after a session</b> keeps you consistent for the next one.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules-note">
+      <span class="quote-mark">“</span>
+      <div>
+        <p>You don't need to be as fit as you were at 30. You need to be fit enough to enjoy the
+        next 30 years.</p>
+        <small>— The FitFeky training philosophy</small>
+      </div>
+    </div>
+
+    <div class="footer">© 2026 FitFeky.com <span class="dot">•</span> Free Download <span class="dot">•</span> fitfeky.com</div>
+  </section>
+
+  <!-- ================= PAGE 5 · NEXT STEP ================= -->
+  <section class="page nextstep">
+    <div class="next-kicker">Your next step</div>
+
+    <h2 class="next-title">Not sure where to <em>start?</em></h2>
+
+    <p class="next-copy">
+      Every body is different — your budget, your space, your knees. That's why we built a
+      <b>2-minute Personalized Gear Quiz</b>. Answer a few simple questions and get matched to the
+      exact gear from this checklist that fits <b>your</b> situation.
+    </p>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="n">1</div>
+        <div class="t">Take the quiz</div>
+        <div class="d">Two minutes, five questions, no email required.</div>
+      </div>
+      <div class="next-step">
+        <div class="n">2</div>
+        <div class="t">Get matched</div>
+        <div class="d">A shortlist of gear scored for your goals and budget.</div>
+      </div>
+      <div class="next-step">
+        <div class="n">3</div>
+        <div class="t">Start moving</div>
+        <div class="d">Buy with confidence — or just start with what you have.</div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-lbl">Free · 2 minutes · No spam</div>
+      <div class="cta-main">Take the Personalized Gear Quiz</div>
+      <div class="cta-sub">Join 5,000+ women 45+ who train the joint-friendly way.</div>
+      <span class="cta-url">fitfeky.com/quiz</span>
+    </div>
+
+    <p class="next-signoff">See you out there — moving with intention.</p>
+
+    <div class="footer">© 2026 FitFeky.com <span class="dot">•</span> Free Download <span class="dot">•</span> fitfeky.com</div>
+  </section>
+
+</div>
+</body>
+</html>

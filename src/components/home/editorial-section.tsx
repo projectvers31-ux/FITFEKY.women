@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { BookOpen, Clock, ArrowRight, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,16 +48,24 @@ export function EditorialSection() {
       <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="max-w-2xl">
           <p className="kicker mb-4">The Wellness Journal</p>
-          <h3 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
             Honest guidance,{" "}
             <span className="text-gradient-warm">written for you.</span>
-          </h3>
+          </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             No fad diets, no “blast your belly” nonsense. Just thoughtful,
             science-backed reading for women building strength at midlife and
             beyond.
           </p>
         </div>
+        <Link
+          href="/blog"
+          className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+        >
+          <BookOpen size={15} className="text-primary" />
+          View all articles
+          <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
 
       <div className="grid gap-5 lg:grid-cols-2">

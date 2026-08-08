@@ -22,12 +22,12 @@ export function TestimonialsSection() {
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="kicker mb-4 text-primary">Real women · Real results</p>
-          <h3
+          <h2
             id="testimonials-heading"
             className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Strength, reclaimed.
-          </h3>
+          </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-background/70">
             From regaining flexibility to managing chronic pain — these are the
             women whose lives changed with the right gear.

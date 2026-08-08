@@ -63,7 +63,7 @@ export function HowWeTestSection() {
                       <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
                       <span className="text-xs font-semibold text-primary">{c.weight}</span>
                     </div>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                       {c.description}
                     </p>
                   </div>

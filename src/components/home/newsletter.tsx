@@ -40,9 +40,9 @@ export function Newsletter() {
         <div className="relative grid items-center gap-8 lg:grid-cols-2">
           <div>
             <p className="kicker mb-4 text-primary-foreground/80">The weekly edit</p>
-            <h3 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
               Thoughtful fitness picks, in your inbox weekly.
-            </h3>
+            </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/80 sm:text-base">
               One email a week: new editor's-choice gear, quick low-impact
               workouts, and honest recovery tips. No spam, ever.

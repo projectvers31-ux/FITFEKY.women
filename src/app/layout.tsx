@@ -100,14 +100,13 @@ export default function RootLayout({
         {/* PWA / manifest */}
         <link rel="manifest" href="/manifest.webmanifest" />
 
-        {/* Favicons — inline SVG (zero extra request, crisp at any size),
-            favicon.ico for legacy browsers, apple-touch-icon for iOS home screen */}
-        <link
-          rel="icon"
-          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23faf7f2'/%3E%3Ctext x='16' y='17' font-family='Segoe UI,Arial,sans-serif' font-size='20' font-weight='700' fill='%237a9e7e' text-anchor='middle' dominant-baseline='middle'%3EF%3C/text%3E%3C/svg%3E"
-          type="image/svg+xml"
-        />
+        {/* Favicons — /logo.svg for sharp rendering at any size,
+            favicon.ico for legacy browsers, android-chrome for Android PWA
+            home screens, apple-touch-icon for iOS home screen */}
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
+        <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/android-chrome-512x512.png" sizes="512x512" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Preconnect + DNS-prefetch for external assets. No crossorigin on the
@@ -123,6 +122,9 @@ export default function RootLayout({
 
         {/* Pinterest site verification */}
         <meta name="pinterest-site-verification" content="81b1dc0d56bdc58a9041f5c5cb56097e" />
+
+        {/* Google Search Console site verification */}
+        <meta name="google-site-verification" content="QLvmAoX4FSm-FQifh4tAeUyjvNC170AbtkdCxfaw5mw" />
       </head>
       <body
         className={`${geistSans.variable} ${fraunces.variable} antialiased bg-background text-foreground`}

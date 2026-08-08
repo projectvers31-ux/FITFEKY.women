@@ -3,6 +3,7 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  poweredByHeader: false,
   turbopack: {
     root: path.resolve(__dirname),
   },
@@ -19,6 +20,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "z-cdn.chatglm.cn",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
       },
     ],
     formats: ["image/avif", "image/webp"],
@@ -39,9 +44,6 @@ const nextConfig: NextConfig = {
   // Experimental: optimize package imports for smaller bundles
   experimental: {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
-    // Inline imported CSS as <style> tags in the HTML instead of emitting
-    // render-blocking <link rel="stylesheet"> tags (App Router, production).
-    inlineCss: true,
   },
 };
 

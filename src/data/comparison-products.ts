@@ -43,9 +43,9 @@ export const COMPARISON_CATEGORIES: {
   label: string;
 }[] = [
   { id: "all", label: "All Categories" },
-  { id: "walking_pad", label: "Walking Pads" },
-  { id: "resistance_bands", label: "Resistance Bands" },
-  { id: "yoga_mat", label: "Yoga Mats" },
+  { id: "walking_pad", label: "Walking Pads & Treadmills" },
+  { id: "resistance_bands", label: "Ergonomic Resistance Bands" },
+  { id: "yoga_mat", label: "Cushioned Yoga & Joint Support" },
   { id: "smart_scale", label: "Smart Scales" },
   { id: "recovery_tools", label: "Recovery Tools" },
 ];
@@ -74,11 +74,11 @@ export const JOINT_FRIENDLY_LEVELS: {
 export function categoryLabel(id: ComparisonCategoryId): string {
   switch (id) {
     case "walking_pad":
-      return "Walking Pads";
+      return "Walking Pads & Treadmills";
     case "resistance_bands":
-      return "Resistance Bands";
+      return "Ergonomic Resistance Bands";
     case "yoga_mat":
-      return "Yoga Mats";
+      return "Cushioned Yoga & Joint Support";
     case "smart_scale":
       return "Smart Scales";
     case "recovery_tools":

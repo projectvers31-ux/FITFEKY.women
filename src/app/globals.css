@@ -67,7 +67,7 @@
   --secondary: oklch(0.94 0.014 72);            /* warm stone */
   --secondary-foreground: oklch(0.3 0.02 45);
   --muted: oklch(0.94 0.012 72);
-  --muted-foreground: oklch(0.5 0.018 50);
+  --muted-foreground: oklch(0.44 0.02 50);        /* darker for AA readability */
   --accent: oklch(0.6 0.07 145);                /* muted sage */
   --accent-foreground: oklch(0.99 0.005 75);
   --destructive: oklch(0.577 0.245 27.325);
@@ -177,6 +177,11 @@
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+  /* Warm, visible text selection */
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 22%, transparent);
+    color: var(--foreground);
+  }
 }
 
 /* === Modern utility classes === */
@@ -263,9 +268,9 @@
 /* Editorial kicker — small uppercase label above headlines */
 .kicker {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--primary);
 }

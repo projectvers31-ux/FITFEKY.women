@@ -49,10 +49,10 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
         <Reveal>
           <div className="mb-12 max-w-2xl">
             <p className="kicker mb-4">Free wellness tools</p>
-            <h3 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+            <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
               Know your numbers, then{" "}
               <span className="text-gradient-warm text-gradient-animate">pick your gear.</span>
-            </h3>
+            </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Plan your home gym, estimate your body fat, calculate your BMI and
               calorie burn — then we'll suggest the gear that fits.
@@ -170,7 +170,7 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary">
                     <Icon size={17} />
                   </span>
-                  <h4 className="mt-3 text-sm font-bold text-foreground">{c.label}</h4>
+                  <p className="mt-3 text-sm font-bold text-foreground">{c.label}</p>
                   <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{c.description}</p>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
@@ -180,10 +180,11 @@ export function CalculatorsSection({ onQuickView, onCategorySelect }: Calculator
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-7 gap-1 px-2 text-[11px]"
+                        className="h-9 gap-1 px-3 text-xs"
+                        aria-label={`Shop ${c.label} in the catalog`}
                         onClick={() => goToCatalog(c.categories[0])}
                       >
-                        Shop <ArrowRight size={12} />
+                        Shop <ArrowRight size={13} />
                       </Button>
                     )}
                   </div>

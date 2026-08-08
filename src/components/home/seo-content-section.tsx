@@ -13,8 +13,8 @@ interface SeoContentSectionProps {
 /**
  * Keyword-rich category buying-guide blocks. Each block targets a high-intent
  * long-tail query (e.g. "best resistance bands for women over 45") with an
- * H3, intro paragraph and keyword chips. Drives SEO indexing + buyer intent.
- * H3 keeps the homepage's total H2 count ≤ 6 (section headers stay H2).
+ * H2 (each guide is a standalone content section), intro paragraph and
+ * keyword chips. Drives SEO indexing + buyer intent.
  */
 export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) {
   // Only render blocks for categories that have curated content.
@@ -39,9 +39,9 @@ export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) 
                 {/* Copy */}
                 <div className="lg:col-span-8">
                   <p className="kicker mb-4">Buying guide</p>
-                  <h3 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
+                  <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
                     {content.h2}
-                  </h3>
+                  </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {content.intro}
                   </p>
@@ -61,7 +61,8 @@ export function SeoContentSection({ onCategorySelect }: SeoContentSectionProps) 
                   <div className="mt-6">
                     <Button
                       variant="outline"
-                      className="group gap-2"
+                      size="lg"
+                      className="group gap-2 rounded-full"
                       onClick={() => {
                         onCategorySelect(cat.id);
                         document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });

@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ProductImage } from "@/components/shared/product-image";
 import { AffiliateButton } from "@/components/shared/affiliate-button";
+import { productImageAlt } from "@/lib/product-utils";
 import { cn } from "@/lib/utils";
 import {
   COMPARISON_CATEGORIES,
@@ -126,7 +127,7 @@ function ProductName({
     <div className="flex items-center gap-3">
       <ProductImage
         src={product.image}
-        alt={product.name}
+        alt={productImageAlt(product)}
         width={160}
         height={160}
         sizes={imageSize}
@@ -414,7 +415,7 @@ export function ComparisonTable({
                 <div className="flex gap-3">
                   <ProductImage
                     src={p.image}
-                    alt={p.name}
+                    alt={productImageAlt(p)}
                     width={160}
                     height={160}
                     sizes="80px"
@@ -424,9 +425,9 @@ export function ComparisonTable({
                     <div className="mb-1 flex flex-wrap items-center gap-1.5">
                       <Badges badge={p.badge} />
                     </div>
-                    <h3 className="font-display text-[0.95rem] font-semibold leading-snug text-foreground">
+                    <p className="font-display text-[0.95rem] font-semibold leading-snug text-foreground">
                       {p.name}
-                    </h3>
+                    </p>
                     <p className="kicker mt-1">
                       {categoryLabel(p.category)} ·{" "}
                       {p.reviews.toLocaleString()} reviews

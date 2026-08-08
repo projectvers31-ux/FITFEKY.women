@@ -1,0 +1,39 @@
+{
+  "name": "FitFeky | Joint-Friendly Home Fitness Gear for Women 45+",
+  "short_name": "FitFeky",
+  "description": "Curated, quality-scored at-home fitness equipment for women over 45 — walking pads, resistance bands, yoga gear, smart scales and recovery tools.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#faf7f2",
+  "theme_color": "#7a9e7e",
+  "lang": "en-US",
+  "categories": ["fitness", "health", "lifestyle", "shopping"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

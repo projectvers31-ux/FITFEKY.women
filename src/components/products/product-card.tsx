@@ -1,11 +1,12 @@
 "use client";
 
 import { memo } from "react";
-import { Eye, ArrowUpRight } from "lucide-react";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 import { ProductImage } from "@/components/shared/product-image";
 import { StarRating } from "@/components/shared/star-rating";
 import { AffiliateButton } from "@/components/shared/affiliate-button";
 import { categoryLabel } from "@/lib/categories";
+import { productImageAlt } from "@/lib/product-utils";
 import type { Product } from "@/lib/types";
 
 interface ProductCardProps {
@@ -26,7 +27,7 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
       >
         <ProductImage
           src={product.image}
-          alt={product.title}
+          alt={productImageAlt(product)}
           width={500}
           height={500}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -55,7 +56,7 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
 
         {/* Quick view affordance — subtle, bottom */}
         <span className="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-md backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
-          <Eye size={13} /> Quick view
+          <Sparkles size={13} /> Why we recommend it
         </span>
       </button>
 
@@ -64,14 +65,23 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
         <p className="kicker mb-1.5 text-[0.625rem] sm:mb-2">
           {categoryLabel(product.category)}
         </p>
-        <h3
-          className="line-clamp-2 cursor-pointer font-display text-[0.8rem] font-semibold leading-snug text-foreground transition-colors hover:text-primary sm:text-[0.975rem]"
+        <p
+          className="line-clamp-2 cursor-pointer font-display text-sm font-semibold leading-snug text-foreground transition-colors hover:text-primary sm:text-[1.0625rem]"
           onClick={() => onQuickView(product)}
         >
           {product.title}
-        </h3>
+        </p>
 
-        <StarRating rating={product.rating} reviews={product.reviews} size={12} className="mt-2.5" />
+        <StarRating rating={product.rating} reviews={product.reviews} size={13} className="mt-2.5" />
+
+        {/* Key benefit + why-recommendation — the clearest reason this pick suits women 45+ */}
+        <p className="mt-2.5 flex items-start gap-1.5 text-[13px] leading-snug text-muted-foreground sm:text-sm">
+          <Sparkles size={13} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+          <span>
+            <span className="font-medium text-foreground/90">Why we recommend it:</span>{" "}
+            Great for <span className="font-medium text-foreground/80">{product.mainKeyword}</span>.
+          </span>
+        </p>
 
         {/* Price — confident, editorial */}
         {product.priceDisplay ? (
@@ -97,14 +107,14 @@ export const ProductCard = memo(function ProductCard({ product, onQuickView }: P
             price={product.price}
             size="sm"
             fullWidth
-            className="h-11 font-medium sm:h-9"
+            className="h-12 font-medium sm:h-11"
           />
           <button
             onClick={() => onQuickView(product)}
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary sm:h-9 sm:w-9"
-            aria-label="View details"
+            className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary sm:h-11 sm:w-11"
+            aria-label={`View details for ${product.title}`}
           >
-            <ArrowUpRight size={15} />
+            <ArrowUpRight size={16} />
           </button>
         </div>
       </div>

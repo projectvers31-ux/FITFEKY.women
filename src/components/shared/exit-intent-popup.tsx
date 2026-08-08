@@ -132,7 +132,7 @@ export function ExitIntentPopup() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        setOpen(false);
+        close();
         return;
       }
       if (e.key !== "Tab" || !dialog) return;
@@ -158,7 +158,7 @@ export function ExitIntentPopup() {
       document.removeEventListener("keydown", onKeyDown);
       previouslyFocused?.focus();
     };
-  }, [open, status]);
+  }, [open, status, close]);
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

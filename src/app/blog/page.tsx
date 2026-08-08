@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Clock, ArrowRight, BookOpen, Search } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import { OptimizedImage } from "@/components/shared/optimized-image";
+import { FaqSection } from "@/components/home/faq-section";
 import { ARTICLES } from "@/lib/articles";
 import { articleJsonLd, jsonLdScript, pageMetadata } from "@/lib/seo";
 
@@ -36,7 +37,6 @@ export default function BlogPage() {
               articleJsonLd({
                 title: a.title,
                 description: a.excerpt,
-                body: a.body,
                 keywords: a.keywords,
                 image: a.image,
                 urlPath: "/#article-" + a.slug,
@@ -178,6 +178,8 @@ export default function BlogPage() {
           Shop the catalog <ArrowRight size={16} />
         </Link>
       </div>
+
+      <FaqSection />
     </PageShell>
     </>
   );

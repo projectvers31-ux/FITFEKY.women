@@ -66,12 +66,33 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", `#${id}`);
+    }
+  };
+
+  const handleNavLink = (id: string, closeMenu = false) => (
+    e: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    if (closeMenu) {
+      setOpen(false);
+    }
+
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      scrollToSection(id);
+    }
+  };
+
   return (
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/75"
+          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl supports-backdrop-filter:bg-background/75"
           : "border-b border-transparent bg-background/60 backdrop-blur-md",
       )}
     >
@@ -89,28 +110,43 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
         {/* Desktop nav */}
         <nav className="ml-6 hidden items-center gap-1 lg:flex">
           <Link
-            href="/#catalog" prefetch={false}
+            href="/#catalog"
+            prefetch={false}
+            onClick={handleNavLink("catalog")}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Shop
           </Link>
           <Link
-            href="/#categories" prefetch={false}
+            href="/#categories"
+            prefetch={false}
+            onClick={handleNavLink("categories")}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Categories
           </Link>
           <Link
-            href="/#calculators" prefetch={false}
+            href="/#calculators"
+            prefetch={false}
+            onClick={handleNavLink("calculators")}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Tools
           </Link>
           <Link
-            href="/#editorial" prefetch={false}
+            href="/#editorial"
+            prefetch={false}
+            onClick={handleNavLink("editorial")}
             className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
           >
             Journal
+          </Link>
+          <Link
+            href="/community"
+            prefetch={false}
+            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-foreground"
+          >
+            Community
           </Link>
         </nav>
 
@@ -130,7 +166,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                   (e.target as HTMLInputElement).blur();
                 }
               }}
-              placeholder='Search yoga mats, walking padsâ€¦  âŒ˜/'
+              placeholder='Search yoga mats, walking pads…  /'
               title='Press "/" to focus'
               className="h-9 rounded-full border-border bg-secondary/50 pl-9 pr-3 text-sm"
               aria-label="Search products"
@@ -175,16 +211,44 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                   <Input
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
-                    placeholder="Search productsâ€¦"
+                    placeholder="Search products…"
                     className="h-10 rounded-full pl-9"
                     aria-label="Search products"
                   />
                 </form>
 
                 <nav className="flex flex-col gap-1">
-                  <Link href="/#catalog" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>All Products</Link>
-                  <Link href="/#calculators" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Calculators</Link>
-                  <Link href="/#editorial" prefetch={false} className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary" onClick={() => setOpen(false)}>Wellness Journal</Link>
+                  <Link
+                    href="/#catalog"
+                    prefetch={false}
+                    onClick={handleNavLink("catalog", true)}
+                    className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary"
+                  >
+                    All Products
+                  </Link>
+                  <Link
+                    href="/#calculators"
+                    prefetch={false}
+                    onClick={handleNavLink("calculators", true)}
+                    className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary"
+                  >
+                    Calculators
+                  </Link>
+                  <Link
+                    href="/#editorial"
+                    prefetch={false}
+                    onClick={handleNavLink("editorial", true)}
+                    className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary"
+                  >
+                    Wellness Journal
+                  </Link>
+                  <Link
+                    href="/community"
+                    prefetch={false}
+                    className="flex items-center justify-between rounded-lg px-2 py-2.5 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-secondary"
+                  >
+                    Community Circle
+                  </Link>
                 </nav>
 
                 <p className="mb-2 mt-5 px-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -194,6 +258,7 @@ export function Header({ onSearch, onCategorySelect, initialSearch = "" }: Heade
                   {CATEGORIES.map((c) => (
                     <button
                       key={c.id}
+                      type="button"
                       onClick={() => goCategory(c.id)}
                       className="rounded-lg px-2 py-2 text-left text-sm text-foreground/80 transition-colors hover:bg-secondary"
                     >

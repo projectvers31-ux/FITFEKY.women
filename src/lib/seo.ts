@@ -15,14 +15,18 @@ export const homeMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "FitFeky | Joint-Friendly Home Fitness Gear for Women 45+",
   description:
-    "Curated walking pads, resistance bands & yoga gear for women 45+. Quality-scored, expert-reviewed, joint-friendly. Find your perfect home workout setup.",
+    "Quality-scored walking pads, resistance bands & cushioned yoga gear for women 45+. Low-impact, knee-friendly home workout equipment for active aging — curated by women who train.",
   keywords: [
     "best fitness equipment for women over 45",
     "at home workout gear women 45",
     "walking pad for weight loss",
+    "walking pads for knee pain",
     "resistance bands for women over 45",
     "yoga gear for midlife women",
     "low impact cardio equipment",
+    "low impact exercises for women over 50",
+    "knee friendly exercise equipment",
+    "joint safe home gym gear",
     "smart body fat scale reviews",
     "massage gun for muscle recovery",
     "home gym equipment for women",
@@ -167,7 +171,7 @@ export function reviewerJsonLd(name: string) {
 export function articleJsonLd(opts: {
   title: string;
   description: string;
-  body: string[];
+  body?: string[];
   keywords?: string[];
   image: string;
   urlPath: string;
@@ -201,7 +205,7 @@ export function articleJsonLd(opts: {
     inLanguage: "en-US",
     keywords: opts.keywords?.join(", "),
     articleSection: "Wellness Journal",
-    articleBody: opts.body.join("\n\n"),
+    ...(opts.body?.length ? { articleBody: opts.body.join("\n\n") } : {}),
   };
 }
 
@@ -351,20 +355,40 @@ export function extractBrand(title: string): string {
 /** Long-tail keyword FAQ content for SEO + conversion. */
 export const FAQ_ITEMS: { q: string; a: string }[] = [
   {
-    q: "What is the best fitness equipment for women over 45 to use at home?",
-    a: "The best at-home fitness equipment for women over 45 prioritizes joint-friendly, low-impact movement. Our top picks include under-desk walking pads for daily cardio, resistance bands for gentle strength training that protects joints, a cushioned yoga mat for flexibility, and a smart body composition scale to track real progress (not just weight). Every product in our catalog is quality-scored by our editorial team so you can shop with confidence.",
+    q: "What is the best low-impact home fitness equipment for women over 45?",
+    a: "The best low-impact fitness gear for women over 45 includes cushioned walking pads, ergonomic resistance band sets and thick anti-slip yoga mats. These let you build strength and burn calories without putting stress on your knees, lower back, or hip joints — our Editor's Choice picks all score 85+ on the FitFeky joint-friendly scale.",
   },
   {
     q: "Are walking pads good for weight loss after 45?",
     a: "Yes. A walking pad is one of the most effective low-impact tools for women over 45 because it lets you accumulate 5,000–8,000 daily steps without the joint stress of running. At 2.5 mph, a 160 lb woman burns roughly 90–120 calories per 30 minutes. Consistency is the key — five 30-minute sessions per week creates a meaningful, sustainable calorie deficit.",
   },
   {
+q: "What are the best walking pads for knee pain?",
+    a: "The best walking pads for knee pain are low-impact models with a cushioned belt, a slower speed range you can ease into, and a stable, foldable frame you can use beside a desk or sofa. Walking keeps knees lubricated without the impact forces of running — many women with knee concerns find a 20–30 minute daily walk on a pad noticeably easier on the joints than stairs or cardio machines. Look for models with a FitFeky quality score of 85+ and cushioned support settings.",
+  },
+  {
+    q: "Are compact walking pads safe for women with joint pain or bad knees?",
+    a: "Yes. High-quality compact walking pads designed for home use feature built-in shock absorption and cushioned belts that reduce joint impact compared with walking on concrete or traditional treadmills. Choose a model with a slow start speed, stable base and generous belt cushioning — our picks keep running noise low and impact lower, making them a knee-friendly first step into low-impact cardio.",
+  },
+  {
     q: "Which resistance bands are best for women over 45?",
-    a: "For women over 45 we recommend fabric or padded-handle resistance band sets with door anchors and stackable levels (5–150 lbs). Bands offer ascending resistance, meaning the load is lightest where your joints are most vulnerable. Look for sets with a quality score of 85+ and Priority A status in our catalog — these have the strongest real-customer ratings and best durability.",
+    a: "For women over 45 we recommend fabric or padded-handle resistance band sets with door anchors and stackable levels (5–150 lbs). Bands offer ascending resistance, meaning the load is lightest where your joints are most vulnerable. This makes strength training kinder to your joints than heavy dumbbells, which is why resistance band training is a cornerstone of our menopause-friendly recommendations. Look for sets with a quality score of 85+ and Priority A status in our catalog — these have the strongest real-customer ratings and best durability.",
+  },
+  {
+    q: "How does resistance band training benefit women during menopause and active aging?",
+    a: "Resistance bands provide progressive tension without heavy weights, and this gradual, joint-friendly loading makes them ideal for improving bone density, boosting metabolic rate and maintaining lean muscle during menopause and active aging. Because you control tension by how hard you pull, you can train safely at any strength level, protecting knees and hips while still stimulating muscle growth.",
   },
   {
     q: "How does FitFeky choose and score products?",
     a: "Every product is evaluated against four weighted criteria: real customer ratings (30%), review volume and recency (20%), build quality and brand reputation (25%), and value for women 45+ specifically (25%). Products scoring 85+ earn our Editor's Choice badge; Priority A items are our top-tier recommendations. We never accept payment for placement.",
+  },
+  {
+    q: "How do I choose joint-safe home gym gear?",
+    a: "Start with joint safety in mind: choose equipment with low impact forces (walking pads, rowing machines, bands), adjustable resistance or speed so you can progress gradually, and generous cushioning or padding where joints contact the surface — like a thick yoga mat for wrists and knees. Check build quality, weight limits, and ease of setup, and look for our transparent 0–100 quality score, which weighs real customer ratings and value for women 45+ specifically. When in doubt, start with one joint-safe piece and build from there.",
+  },
+  {
+    q: "How do I choose the right joint-friendly home exercise setup?",
+    a: "A proven joint-friendly setup pairs three pieces: a cushioned walking pad for low-impact cardio, a set of handle-equipped resistance bands for safe strength training, and a high-density anti-slip mat to support sensitive knees during floor work. Choose items with adjustable speeds or resistance levels, a generous weight capacity, and quiet operation so you can build a routine that stays consistent without aggravating joints.",
   },
   {
     q: "Is a smart scale worth it for tracking fitness progress after 45?",
@@ -373,6 +397,10 @@ export const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "What low-impact cardio equipment is easiest on the knees?",
     a: "Walking pads, rowing machines, mini steppers with handles, and elliptical-style resistance band workouts are all excellent knee-friendly cardio options. They keep one foot in contact with the ground (or a stable surface) at all times, reducing impact forces by up to 75% compared to running. Avoid jump ropes and high-impact plyometrics if you have knee concerns.",
+  },
+  {
+    q: "What are the best low-impact exercises for women over 50?",
+    a: "For women over 50, the best low-impact exercises combine daily walking (a walking pad makes this effortless), resistance band strength training for muscle and bone density, cushioned yoga for flexibility and balance, and light dumbbell work in the 5–20 lb range. Aim for 150 minutes of low-impact cardio and two strength sessions per week, keeping joint pain as your guide — if it hurts, ease off or switch to a gentler variation.",
   },
   {
     q: "How often should women over 45 work out at home?",

@@ -7,8 +7,8 @@ import type { CategoryMeta, CategoryId, CalculatorMeta } from "./types";
 export const CATEGORIES: CategoryMeta[] = [
   {
     id: "resistance_bands",
-    label: "Resistance Bands",
-    blurb: "Gentle strength & toning that protects your joints.",
+    label: "Ergonomic Resistance Bands",
+    blurb: "Joint-safe strength training with padded-handle sets.",
     icon: "Dumbbell",
     accent: "from-rose-400/80 to-rose-600/80",
   },
@@ -21,8 +21,8 @@ export const CATEGORIES: CategoryMeta[] = [
   },
   {
     id: "yoga_mat",
-    label: "Yoga Mats",
-    blurb: "Cushioned, non-slip support for every flow.",
+    label: "Cushioned Yoga & Joint Support",
+    blurb: "Thick, non-slip mats that cushion wrists and knees.",
     icon: "RectangleHorizontal",
     accent: "from-teal-400/80 to-teal-600/80",
   },
@@ -35,8 +35,8 @@ export const CATEGORIES: CategoryMeta[] = [
   },
   {
     id: "treadmill",
-    label: "Walking Pads",
-    blurb: "Low-impact cardio you can do while you work.",
+    label: "Walking Pads & Treadmills",
+    blurb: "Knee-friendly low-impact cardio you can do while you work.",
     icon: "Footprints",
     accent: "from-orange-400/80 to-orange-600/80",
   },

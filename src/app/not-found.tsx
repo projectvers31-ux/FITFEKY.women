@@ -24,9 +24,9 @@ import { ARTICLES } from "@/lib/articles";
  */
 
 const TOP_CATEGORIES = [
-  { id: "treadmill", label: "Walking Pads", blurb: "Gentle daily steps" },
-  { id: "resistance_bands", label: "Resistance Bands", blurb: "Strength that protects joints" },
-  { id: "yoga_mat", label: "Yoga Mats", blurb: "Cushioned, non-slip support" },
+  { id: "treadmill", label: "Walking Pads & Treadmills", blurb: "Knee-friendly daily steps" },
+  { id: "resistance_bands", label: "Ergonomic Resistance Bands", blurb: "Strength that protects joints" },
+  { id: "yoga_mat", label: "Cushioned Yoga & Joint Support", blurb: "Cushioned, non-slip support" },
   { id: "smart_scale", label: "Smart Scales", blurb: "Track progress, not just weight" },
 ] as const;
 
@@ -81,7 +81,7 @@ export default function NotFound() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Try “yoga mat”, “walking pad”, “resistance bands”…"
               aria-label="Search the FitFeky catalog"
-              className="h-13 rounded-full border-[#7a9e7e]/30 bg-card pl-11 pr-28 text-[15px] shadow-sm dark:border-[#7a9e7e]/40"
+              className="h-12 rounded-full border-[#7a9e7e]/30 bg-card pl-11 pr-28 text-[15px] shadow-sm dark:border-[#7a9e7e]/40"
             />
             <Button
               type="submit"

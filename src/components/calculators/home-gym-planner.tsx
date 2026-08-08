@@ -26,6 +26,7 @@ import {
   type FitnessGoal,
   type RoomSize,
 } from "@/lib/planner";
+import { productImageAlt } from "@/lib/product-utils";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -245,7 +246,7 @@ export function HomeGymPlanner({ onQuickView }: HomeGymPlannerProps) {
                     <div className="flex flex-1 items-center gap-3 overflow-hidden">
                       <ProductImage
                         src={slot.product.image}
-                        alt={slot.product.title}
+                        alt={productImageAlt(slot.product)}
                         width={56}
                         height={56}
                         className="h-14 w-14 shrink-0 rounded-lg border border-border/50 bg-secondary/40 object-contain"

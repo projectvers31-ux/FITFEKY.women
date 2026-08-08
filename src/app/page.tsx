@@ -53,7 +53,6 @@ export default async function Home({
       articleJsonLd({
         title: a.title,
         description: a.excerpt,
-        body: a.body,
         keywords: a.keywords,
         image: a.image,
         urlPath: "/#article-" + a.slug,

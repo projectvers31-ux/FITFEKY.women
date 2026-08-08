@@ -25,7 +25,7 @@ import { QualityBadge } from "@/components/shared/quality-badge";
 import { PriorityBadge } from "@/components/shared/priority-badge";
 import { ProductCard } from "./product-card";
 import { CATEGORY_MAP, CALCULATOR_MAP } from "@/lib/categories";
-import { relatedProducts } from "@/lib/product-utils";
+import { relatedProducts, productImageAlt } from "@/lib/product-utils";
 import { trackViewContent } from "@/lib/meta-pixel";
 import type { Product } from "@/lib/types";
 
@@ -90,7 +90,7 @@ export function ProductDetailDialog({ product, onClose, onQuickView }: ProductDe
               <div className="mx-auto aspect-square w-full max-w-sm">
                 <ProductImage
                   src={product.image}
-                  alt={product.title}
+                  alt={productImageAlt(product)}
                   width={600}
                   height={600}
                   sizes="(max-width: 768px) 90vw, 40vw"
@@ -109,9 +109,9 @@ export function ProductDetailDialog({ product, onClose, onQuickView }: ProductDe
                   {category.label}
                 </p>
               )}
-              <h3 className="mt-1.5 font-display text-2xl font-bold leading-tight tracking-tight text-foreground">
+              <p className="mt-1.5 font-display text-2xl font-bold leading-tight tracking-tight text-foreground">
                 {product.title}
-              </h3>
+              </p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <StarRating rating={product.rating} reviews={product.reviews} size={15} />
